@@ -1,25 +1,17 @@
 header {
   display: block;
-  background-image: url(Header_Background_Image.png);
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 10px 10px 0 0;
+  background: linear-gradient(69deg, rgba(127,127,127,1) 0%, white, rgba(127,127,127,1) 100%);
+  width: 100%;
+  font-size: 5vh;
+  padding-top: 2vh;
+  margin: auto;
 }
 
 nav {
   float: right;
-  display: block;
+  display: inline-block;
 }
 
-h1 {
-	position: absolute;
-	text-align: center;
-	float: right;
-	width: 90%;
-	font-size: 60pt;
-	padding-top: 0px;
-	margin-top: -200px;
-}
 
 .login {
   width: 70%;
@@ -32,11 +24,8 @@ h1 {
 }
 
 .header_lock {
-  position: absolute;
+  position: relative;
   float: left;
-  width: 20%;
-  padding-left: 100px;
-  margin-top: -250px;
 }
 
 .header_background {
@@ -45,9 +34,28 @@ h1 {
   width: 100%;
 }
 
+.headertable {
+  min-width:90%;
+}
+
+.headertablecell {
+  min-width: 33%;
+}
+
+.lock{
+  max-width: 1vh;
+  text-align: left;
+  padding-left: 2vw;
+}
+
+.title {
+  min-width: 33%;
+  max-width: 33%;
+  text-align: center;
+  margin-left: -4vw;
+}
+
 #wrapper {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
+  max-width: 150vh;
+  margin: auto;
 }
