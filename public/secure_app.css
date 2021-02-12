@@ -1,0 +1,53 @@
+header {
+  display: block;
+  background-image: url(Header_Background_Image.png);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+nav {
+  float: right;
+  display: block;
+}
+
+h1 {
+	position: absolute;
+	text-align: center;
+	float: right;
+	width: 90%;
+	font-size: 60pt;
+	padding-top: 0px;
+	margin-top: -200px;
+}
+
+.login {
+  width: 70%;
+  float: right;
+  display: block;
+}
+
+.horizontal_line {
+  padding-bottom: 10px;
+}
+
+.header_lock {
+  position: absolute;
+  float: left;
+  width: 20%;
+  padding-left: 100px;
+  margin-top: -250px;
+}
+
+.header_background {
+  float: left;
+  display: inline;
+  width: 100%;
+}
+
+#wrapper {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+}
