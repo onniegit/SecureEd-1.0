@@ -1,4 +1,5 @@
 Set up
+
 Step 1: Setting up PHP
  Obtain binaries from https://windows.php.net/download/ 
 Specifically, PHP version 7.3.27
