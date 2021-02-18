@@ -36,8 +36,14 @@
 			<hr>
 		</div>
 		<div class = "login">
-			<input type="hidden" value="The username/password is invalid.">
-			<form action="/index.php">
+			<?php
+			global $loginfailed = false;
+			  if ($loginfailed)
+			  {
+				echo "The username/password is invalid.";
+			  }
+			?>
+			<form action="../src/login.php" method="POST">
 				<label for="username">Username:</label>
 				<input type="text" id="username" name="username"><br><br>
 				<label for="password">Password:</label>
