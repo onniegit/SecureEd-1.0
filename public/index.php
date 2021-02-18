@@ -22,7 +22,7 @@
 		</tbody>
 	  </table>
     </header>
-	
+
     <nav>
       <input type="button" value="Forgot Password?">
     </nav>
@@ -34,6 +34,13 @@
 			<hr>
 		</div>
 		<div class = "login">
+			<?php
+            $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            if ("login=fail" == parse_url($url, PHP_URL_QUERY))
+            {
+                echo "The username/password is invalid.";
+            }
+			?>
 			<form action="/src/login.php" method="POST">
 				<label for="username">Username:</label>
 				<input type="text" id="username" name="username"><br><br>

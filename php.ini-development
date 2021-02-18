@@ -758,7 +758,7 @@ user_dir =
 ; http://php.net/extension-dir
 ;extension_dir = "./"
 ; On windows:
-;extension_dir = "ext"
+extension_dir = "\ext"
 
 ; Directory where the temporary files should be placed.
 ; Defaults to the system default (see sys_get_temp_dir)
@@ -943,7 +943,7 @@ default_socket_timeout = 60
 ;extension=soap
 ;extension=sockets
 ;extension=sodium
-;extension=sqlite3
+extension=sqlite3
 ;extension=tidy
 ;extension=xmlrpc
 ;extension=xsl
@@ -1016,7 +1016,7 @@ cli_server.color = On
 [sqlite3]
 ; Directory pointing to SQLite3 extensions
 ; http://php.net/sqlite3.extension-dir
-;sqlite3.extension_dir =
+sqlite3.extension_dir = "ext"
 
 ; SQLite defensive mode flag (only available from SQLite 3.26+)
 ; When the defensive flag is enabled, language features that allow ordinary

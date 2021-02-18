@@ -11,18 +11,26 @@
     $myusername = stripslashes($myusername);
     $mypassword = stripslashes ($mypassword);
 
-    $query = "SELECT * FROM USER WHERE USERNAME='$myusername' AND PASSWORD='$mypassword'";
-    $result = $db->exec($query);
-    $count = mysql_num_rows($result);
+    $query = "SELECT COUNT(*) as count FROM USER WHERE USERNAME='$myusername' AND PASSWORD='$mypassword'";
+    $count = $db->querySingle($query);
+
+    include '../public/index.php';
+
 
     if($count==1)
 	{
-		echo'worked';
-		$loginfailed = false;
+		echo 'login success';
+		global $loginfailed;
+        $loginfailed = false;
+
+		header("Location: ../public/index.php", $loginfailed);
     }
 	else
 	{
-		$loginfailed = true;
+		echo 'login fail';
+		global $loginfailed;
+        $loginfailed = true;
+        header("Location: ../public/index.php?login=fail", $loginfailed);
 	}
 
 ?>

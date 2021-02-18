@@ -1,12 +1,7 @@
 <?php
 
-   class MyDB extends SQLite3 
-   {
-	   /*The first part of the constructor is filename. When it is empty, it creates a temp database.*/
-      function __construct( string $filename , int $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , string $encryptionKey = "" )
-	  {}
-   }
-   $db = new MyDB();
+   global $db;
+   $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 
    if(!$db) 
@@ -35,12 +30,16 @@ EOF;
 
 
    $ret = $db->exec($sql);
+   echo "Config attempt...\n";
+   
    if(!$ret)
    {
       echo $db->lastErrorMsg();
+	  return $db;
    } 
    else 
    {
       echo "Config completed successfully\n";
+	  return $db;
    }
 ?>
