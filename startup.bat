@@ -5,4 +5,4 @@ ECHO ------------------------------
 ECHO Starting server...
 ECHO Press Ctrl+C to close server. 
 ECHO ------------------------------
-.\php -S localhost:8080
+.\php -S localhost:8000
