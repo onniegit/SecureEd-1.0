@@ -20,17 +20,12 @@
     if($count==1)
 	{
 		echo 'login success';
-		global $loginfailed;
-        $loginfailed = false;
-
-		header("Location: ../public/index.php", $loginfailed);
+		header("Location: ../public/index.php");
     }
 	else
 	{
 		echo 'login fail';
-		global $loginfailed;
-        $loginfailed = true;
-        header("Location: ../public/index.php?login=fail", $loginfailed);
+        header("Location: ../public/index.php?login=fail");
 	}
 
 ?>
