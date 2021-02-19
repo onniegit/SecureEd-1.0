@@ -5,7 +5,8 @@
 
     if (!$db) {
         echo $db->lastErrorMsg();
-    } else {
+    }
+    else {
         echo "Opened database successfully\n";
     }
 
