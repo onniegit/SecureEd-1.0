@@ -102,6 +102,6 @@ EOF;
 	{
         echo "Table created successfully\n";
     	}
-    $db->close();
+
 
 ?>
