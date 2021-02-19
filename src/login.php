@@ -1,6 +1,6 @@
 <?php
 	/*Ensure the database was initialized*/
-    include_once '../config/config.php';
+    include_once '../config/ConfigV2.php';
 
 	/*Get information from the post request*/
     $myusername = $_POST['username'];
