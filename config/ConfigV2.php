@@ -54,6 +54,16 @@ global $db = new SecureDB("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CR
 	FOREIGN KEY (StudentEmail) REFERENCES User (Email) ON
     DELETE SET NULL ON UPDATE CASCADE
 	);
+
+
+	INSERT INTO USER (Email, AccountType, Password, Name, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('Admin@email.com', 'Admin', 'Password1', 'John', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
+
+	INSERT INTO USER (Email, AccountType, Password, Name, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('DrProfessor@email.com', 'Professor', 'Password2', 'DrProfessor', '1932-09-01', NULL, Professor, 'Favorite Relative?', 'Notmyuncle');
+	
+	INSERT INTO USER (Email, AccountType, Password, Name, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('Student@email.com', 'Student', 'Password3', 'Pepe', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 EOF;
 
    $ret = $db->exec($sql);
