@@ -1,13 +1,13 @@
 <?php
-   class MyDB extends SQLite3 
+   class SecureDB extends SQLite3
    {
-      function __construct() 
+     function __construct()
 	{
-         $this->open('Secure.db');
+         $this->open('SecureDB.db');
       	}
    }
-   
-global $db = new SecureDB("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
+ $db = new SecureDB("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
    
 	if(!$db) 
 	{
