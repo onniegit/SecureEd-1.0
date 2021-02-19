@@ -12,11 +12,9 @@ nav {
   display: inline-block;
 }
 
-
 .login {
-  width: 70%;
-  float: right;
-  display: block;
+  text-align:right;
+  display: inline-block;
 }
 
 .horizontal_line {
