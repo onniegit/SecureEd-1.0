@@ -23,34 +23,33 @@
 	  </table>
     </header>
 
-    <nav>
-      <input type="button" value="Forgot Password?">
-    </nav>
-	
     <main>
 	<br>
 		<h2>Log In</h2>
 		<div class=horizontal_line>
 			<hr>
 		</div>
-		<div class = "login">
-			<?php
-            $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            if ("login=fail" == parse_url($url, PHP_URL_QUERY))
-            {
-                echo "The username/password is invalid.";
-            }
-			?>
-			<form action="/src/login.php" method="POST">
-				<label for="username">Username:</label>
-				<input type="text" id="username" name="username"><br><br>
-				<label for="password">Password:</label>
-				<input type="password" id="password" name="password" ><br><br>
-				<input type="submit" value="Submit">
-			</form>
-		</div>
+        <div style="text-align:center">
+            <div class = "login">
+                <?php
+                $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+                if ("login=fail" == parse_url($url, PHP_URL_QUERY))
+                {
+                    echo "The username/password is invalid.";
+                }
+                ?>
+                <form action="/src/login.php" method="POST">
+                    <label style="float: left" for="username">Username:&nbsp;&nbsp;</label>
+                    <input type="text" id="username" name="username"><br><br>
+                    <label style="float: left" for="password">Password:&nbsp;&nbsp;</label>
+                    <input type="password" id="password" name="password" ><br><br>
+                    <span style="float: left"><a href="">[Forgot password?]</a></span>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
     </main>
-	
+
   </div>
 </body>
 </html>
