@@ -19,9 +19,4 @@ while($row = $ret->fetchArray(SQLITE3_ASSOC) )
     echo "Security Answer = " . $row['SAnswer'] . "\n";
 }
 
-
-
-//Select * From Course;
-//Select * From CourseEnroll;
-//Select * From Grade;
 ?>
