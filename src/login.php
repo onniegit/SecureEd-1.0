@@ -11,11 +11,10 @@
     $myusername = stripslashes($myusername);
     $mypassword = stripslashes ($mypassword);
 
-    $query = "SELECT COUNT(*) as count FROM USER WHERE USERNAME='$myusername' AND PASSWORD='$mypassword'";
+    $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND Password='$mypassword'";
     $count = $db->querySingle($query);
 
     include '../public/index.php';
-
 
     if($count==1)
 	{
