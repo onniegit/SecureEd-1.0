@@ -12,7 +12,12 @@ nav {
   display: inline-block;
 }
 
+.subheader {
+  font-size: xxx-large;
+}
+
 .login {
+  font-size: x-large;
   text-align:right;
   display: inline-block;
 }

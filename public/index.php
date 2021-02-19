@@ -25,7 +25,7 @@
 
     <main>
 	<br>
-		<h2>Log In</h2>
+		<h1>Log In</h1>
 		<div class=horizontal_line>
 			<hr>
 		</div>
