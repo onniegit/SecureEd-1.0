@@ -60,10 +60,25 @@
       	VALUES ('Student@email.com', 'Student', 'Password3', 'Pepe','Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 EOF;
 
+<<<<<<< Updated upstream
    $ret = $db->exec($sql);
    if(!$ret){
       echo $db->lastErrorMsg();
    } else {
      // echo "Table created successfully\n";
    }
+=======
+    $ret = $db->exec($sql);
+    echo "Config attempt...\n";
+    if (!$ret) 
+	{
+        echo $db->lastErrorMsg();
+    	}
+	else
+	{
+        echo "Table created successfully\n";
+    	}
+    ;
+
+>>>>>>> Stashed changes
 ?>
