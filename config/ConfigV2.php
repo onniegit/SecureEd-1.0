@@ -29,7 +29,7 @@ CREATE TABLE User
 
 CREATE TABLE Course
     (
-	CourseID	    INT 	PRIMARY KEY     NOT NULL	UNIQUE,
+	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	CourseName      TEXT    NOT NULL,
 	Semester    	TEXT    NOT NULL,
 	StartTime	TIME	NOT NULL,
@@ -50,6 +50,8 @@ CREATE TABLE CourseEnroll
 	MaxSize    	INT     NOT NULL,		
 	FOREIGN KEY (Student) REFERENCES User (Email) ON
     		DELETE SET NULL ON UPDATE CASCADE
+	FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON
+    		DELETE SET NULL ON UPDATE CASCADE
 	);
 	
 CREATE TABLE Grade
@@ -59,6 +61,8 @@ CREATE TABLE Grade
     	LetterGrade	Text	NOT NULL,
 	PRIMARY KEY(CourseID,StudentEmail),  		
 	FOREIGN KEY (StudentEmail) REFERENCES User (Email) ON
+    		DELETE SET NULL ON UPDATE CASCADE
+	FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON
     		DELETE SET NULL ON UPDATE CASCADE
 	);
 
