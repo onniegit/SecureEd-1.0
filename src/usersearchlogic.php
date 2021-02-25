@@ -15,20 +15,20 @@
     if($acctype == "Student")
     {
         //send back student type search results
-        $query = "SELECT * FROM Users 
-                    WHERE acctype='Student' 
+        $query = "SELECT * FROM User 
+                    WHERE AccountType='Student' 
                        AND (Fname LIKE '$fname'
                        OR Lname LIKE '$lname'
                        OR DOB LIKE '$dob'
                        OR Email LIKE '$email'
                        OR Year LIKE '$studentyear')";
-        $results = $db->query($query); 
+        $results = $db->query($query);
     }
     else if($acctype == "Faculty")
     {
         //send back faculty type search results
-        $query = "SELECT * FROM Users 
-                    WHERE acctype='Faculty' 
+        $query = "SELECT * FROM User 
+                    WHERE AccountType='Faculty' 
                        AND (Fname LIKE '$fname'
                        OR Lname LIKE '$lname'
                        OR DOB LIKE '$dob'
@@ -38,8 +38,8 @@
     }
     else
     {
-        //send back a general search
-        $query = "SELECT * FROM Users 
+        //send back a general search (may change to exclude admins)
+        $query = "SELECT * FROM User 
                     WHERE Fname LIKE '$fname'
                        OR Lname LIKE '$lname'
                        OR DOB LIKE '$dob'
@@ -53,4 +53,5 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 }
 
 echo json_encode($jsonArray);
+
 ?>

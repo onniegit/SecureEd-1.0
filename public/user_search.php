@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="secure_app.css">
     <meta charset="utf-8" />
     <title>Secure App - User Search</title>
+
 </head>
 <body>
 <div id="wrapper">
@@ -16,6 +17,7 @@
                 </tr>
                 </thead>
             </table>
+            <tbody>
             <tr>
 
                 <td class="lock"><img src="Header_Lock_Image.svg" style="width:9vh;" alt=""></td>
@@ -53,7 +55,8 @@
                     <hr>
                 </div>
                 <!--Search filters-->
-                <form>
+
+                <form action="" method="post" onsubmit="return fetch();">
                     <table>
                     <tbody>
                     <tr>
@@ -64,7 +67,7 @@
                         </td>
 
                         <td class="search_filter_input">
-                            <input type="text" id ="acctype" name="acctype">
+                            <input type="text" id ="acctype">
                         </td>
 
                         <td class="search_filter">
@@ -85,7 +88,7 @@
                             </label>
                         </td>
                         <td class="search_filter_input">
-                            <input type="text" id="fname" name="fname">
+                            <input type="text" id="fname"/>
                         </td>
 
                         <td class="search_filter">
@@ -141,63 +144,71 @@
                 <div class="horizontal_line">
                     <hr>
                 </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <td class="search_results_output">
-                            <b><u>Name</u></b>
-                        </td>
 
-                        <td class="search_results_output">
-                            <b><u>DOB</u></b>
-                        </td>
+                    <table>
 
-                        <td class="search_results_output">
-                            <b><u>Email</u></b>
-                        </td>
+                        <thead>
+                        <tr>
+                            <td class="search_results_output">
+                                <b><u>Name</u></b>
+                            </td>
 
-                        <td class="search_results_output">
-                            <b><u>Position</u></b>
-                        </td>
+                            <td class="search_results_output">
+                                <b><u>DOB</u></b>
+                            </td>
 
-                        <td class="search_results_output">
-                        </td>
-                    </tr>
-                    </thead>
+                            <td class="search_results_output">
+                                <b><u>Email</u></b>
+                            </td>
 
+                            <td class="search_results_output">
+                                <b><u>Position</u></b>
+                            </td>
 
-
-
-                    <tbody>
-                    <tr>
-                        <td class="search_results_output">
-                            Test McTesterson
-                        </td>
-
-                        <td class="search_results_output">
-                            00/00/0000
-                        </td>
-
-                        <td class="search_results_output">
-                            test
-                        </td>
-
-                        <td class="search_results_output">
-                            some dude
-                        </td>
-
-                        <td class="search_results_output">
-                            <button type="button">Edit</button>
-                        </td>
-                    </tr>
-                    </tbody>
+                            <td class="search_results_output">
+                            </td>
+                        </tr>
+                        </thead>
 
 
 
-                </table>
+
+                        <tbody>
+
+                        <tr>
+                            <td class="search_results_output">
+                                Test McTesterson
+                            </td>
+
+                            <td class="search_results_output">
+                                00/00/0000
+                            </td>
+
+                            <td class="search_results_output">
+                                test
+                            </td>
+
+                            <td class="search_results_output">
+                                some dude
+                            </td>
+
+                            <td class="search_results_output">
+                                <button type="button">Edit</button>
+                            </td>
+                        </tr>
+
+                        </tbody>
+
+                        
+
+                    </table>
+                <! -- This div has to be outside the table to display results correctly (Reason currently unknown) -->
+                <div id="results"></div>
 
             </div>
         </div>
+
+        <script src="../resources/usersearchdisplay.js"></script>
     </main>
 
 </div>
