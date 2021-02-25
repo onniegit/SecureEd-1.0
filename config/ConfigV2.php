@@ -32,8 +32,8 @@ CREATE TABLE Course
 	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	CourseName      TEXT    NOT NULL,
 	Semester    	TEXT    NOT NULL,
-	StartTime	TIME	NOT NULL,
-	EndTime		TIME	NOT NULL,
+	StartTime	TEXT	NOT NULL,
+	EndTime		TEXT	NOT NULL,
     	Location	TEXT	NOT NULL,
 	StartTime	TEXT	NOT NULL,
 	EndTime		TEXT	NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE Grade
       	(
 	CourseID	INT     NOT NULL	UNIQUE,
 	StudentEmail	TEXT    NOT NULL,
-    	LetterGrade	Text	NOT NULL,
+    	LetterGrade	TEXT	NOT NULL,
 	PRIMARY KEY(CourseID,StudentEmail),  		
 	FOREIGN KEY (StudentEmail) REFERENCES User (Email) ON
     		DELETE SET NULL ON UPDATE CASCADE
