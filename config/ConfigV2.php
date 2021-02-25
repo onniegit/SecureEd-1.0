@@ -12,7 +12,8 @@
    	}
 
    $sql =<<<EOF
-      CREATE TABLE User
+      
+CREATE TABLE User
       	(
 	Email		TEXT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	AccountType    	TEXT    NOT NULL,
