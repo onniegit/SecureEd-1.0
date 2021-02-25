@@ -8,15 +8,15 @@
 <body>
   <div id="wrapper">
     <header>
-	  <table class="headertable">
+	  <table class="header_table">
 	    <tbody>
 		  <tr>
 		  
-			<td class="lock"><img src="Header_Lock_Image.svg" style="width:9vh;"></td>
+			<td class="lock"><img src="Header_Lock_Image.svg" style="width:9vh;" alt=""></td>
 			
 			<td class="title"><b>Secure App</b></td>
 			
-			<td class="headertablecell"></td>
+			<td class="header_table_cell"></td>
 
 		  </tr>
 		</tbody>
@@ -29,6 +29,7 @@
 		<div class=horizontal_line>
 			<hr>
 		</div>
+        <br><br>
         <div style="text-align:center">
             <div class = "login">
                 <?php

@@ -22,6 +22,47 @@ nav {
   display: inline-block;
 }
 
+.dashboard {
+  font-size: x-large;
+  text-align:right;
+  display: inline-block;
+}
+
+.button_large {
+  font-size: large;
+}
+
+.search_pane {
+  background-color: whitesmoke;
+  text-align: left;
+  width: fit-content;
+  padding:2vw;
+  padding-top: 1vw;
+}
+.search_filter {
+  text-align: right;
+  padding-left: 2vw;
+  font-size: x-large;
+}
+
+.search_results {
+  background-color: whitesmoke;
+  text-align: left;
+  padding:2vw;
+  padding-top: 1vw;
+}
+
+.search_results_output {
+  text-align: left;
+  padding: 1vw;
+  font-size: x-large;
+}
+
+.search_filter_input {
+  text-align: left;
+  font-size: x-large;
+}
+
 .horizontal_line {
   padding-bottom: 10px;
 }
@@ -37,11 +78,11 @@ nav {
   width: 100%;
 }
 
-.headertable {
+.header_table {
   min-width:90%;
 }
 
-.headertablecell {
+.header_table_cell {
   min-width: 33%;
 }
 
