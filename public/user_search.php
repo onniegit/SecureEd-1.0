@@ -64,7 +64,7 @@
                         </td>
 
                         <td class="search_filter_input">
-                            <input type="text">
+                            <input type="text" id ="acctype" name="acctype">
                         </td>
 
                         <td class="search_filter">
@@ -85,7 +85,7 @@
                             </label>
                         </td>
                         <td class="search_filter_input">
-                            <input type="text">
+                            <input type="text" id="fname" name="fname">
                         </td>
 
                         <td class="search_filter">
@@ -94,7 +94,7 @@
                             </label>
                         </td>
                         <td>
-                            <input type="text">
+                            <input type="text" id="lname" name="lname">
                         </td>
                     </tr>
 
@@ -105,7 +105,7 @@
                             </label>
                         </td>
                         <td class="search_filter_input">
-                            <input type="date">
+                            <input type="date" id="dob" name="dob">
                         </td>
 
                         <td></td>
@@ -118,7 +118,7 @@
                                 Email
                             </label>
                         </td>
-                        <td class="search_filter_input"> <input type="email"> </td>
+                        <td class="search_filter_input"> <input type="email" name="email" id="email"> </td>
 
                         <td></td>
                         <td style="text-align: right">
