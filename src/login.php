@@ -7,9 +7,14 @@
     $mypassword = $_POST['password'];
 
 
-	/* I currently don't know what this does*/
-    $myusername = stripslashes($myusername);
-    $mypassword = stripslashes ($mypassword);
+	/* I currently don't know what this does*/ 
+//I looked it up, all it does is remove backslashes,
+//so we dont really need it. -David
+
+   // $myusername = stripslashes($myusername);
+   // $mypassword = stripslashes ($mypassword);
+
+$myusername = strtolower($myusername); //makes username noncase-sensitive
 
     $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND Password='$mypassword'";
     $count = $db->querySingle($query);
