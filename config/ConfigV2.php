@@ -1,7 +1,7 @@
 <?php
 
  $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
-   
+   /*
 	if(!$db) 
 	{
       	echo $db->lastErrorMsg();
@@ -10,7 +10,7 @@
 	{
       	echo "Opened database successfully\n";
    	}
-
+*/
    $sql =<<<EOF
       
 CREATE TABLE User
@@ -103,13 +103,13 @@ CREATE TABLE Grade
 EOF;
 
     $ret = $db->exec($sql);
-    echo "Config attempt...\n";
+    //echo "Config attempt...\n";
     if (!$ret) 
 	{
-        echo $db->lastErrorMsg();
+        //echo $db->lastErrorMsg();
     	}
 	else
 	{
-        echo "Table created successfully\n";
+        //echo "Table created successfully\n";
     	}
 ?>
