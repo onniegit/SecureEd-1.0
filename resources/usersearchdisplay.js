@@ -23,16 +23,18 @@ function fetch() {
                 let row = document.createElement("tr");
                 if(res['AccountType']==="Student")
                 {
+                    var fixedDOB = dateFromUTC(res['DOB'], '-');
                     row.innerHTML = `<td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
-                                     <td class="search_results_output">${res['DOB']}</td>
+                                     <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                      <td class="search_results_output">${res['Email']}</td> 
                                      <td class="search_results_output">${res['Year']}</td>
                                      <td class="search_results_output"><button type="button">Edit</button></td>`;
                 }
                 else
                 {
+                    var fixedDOB = dateFromUTC(res['DOB'], '/');
                     row.innerHTML = `<td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
-                                     <td class="search_results_output">${res['DOB']}</td>
+                                     <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                      <td class="search_results_output">${res['Email']}</td> 
                                      <td class="search_results_output">${res['Rank']}</td>
                                      <td><button type="button">Edit</button></td>`;
@@ -52,4 +54,19 @@ function fetch() {
             throw new Error(' replied 404');
     }
     return false;
+}
+
+function dateFromUTC( dateAsString, ymdDelimiter ) {
+    var pattern = new RegExp( "(\\d{4})" + ymdDelimiter + "(\\d{2})" + ymdDelimiter + "(\\d{2})" );
+    var parts = dateAsString.match( pattern );
+
+    return new Date( Date.UTC(
+        parseInt( parts[1] )
+        , parseInt( parts[2], 10 ) - 1
+        , parseInt( parts[3], 10 )
+        , 0
+        , 0
+        , 0
+        , 0
+    ));
 }

@@ -1,16 +1,16 @@
 <?php
 
  $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
-   /*
+   
 	if(!$db) 
 	{
       	echo $db->lastErrorMsg();
    	} 
 	else 
 	{
-      	echo "Opened database successfully\n";
+      	//echo "Opened database successfully\n";
    	}
-*/
+
    $sql =<<<EOF
       
 CREATE TABLE User
@@ -18,8 +18,8 @@ CREATE TABLE User
 	Email		TEXT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	AccountType    	TEXT    NOT NULL,
 	Password    	TEXT    NOT NULL,      		
-	Fname          	TEXT    NOT NULL,
-	Lname           TEXT    NOT NULL,
+	FName          	TEXT    NOT NULL,
+	LName           TEXT    NOT NULL,
 	DOB		TEXT	NOT NULL,
       	Year		INT,
 	Rank		TEXT,
@@ -32,9 +32,6 @@ CREATE TABLE Course
 	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	CourseName      TEXT    NOT NULL,
 	Semester    	TEXT    NOT NULL,
-	StartTime	TEXT	NOT NULL,
-	EndTime		TEXT	NOT NULL,
-    	Location	TEXT	NOT NULL,
 	StartTime	TEXT	NOT NULL,
 	EndTime		TEXT	NOT NULL,
     	Location	TEXT	NOT NULL,
@@ -68,13 +65,13 @@ CREATE TABLE Grade
 
 
 /*--------------User Values-----------------*/
-	INSERT INTO User (Email, AccountType, Password, Name, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('Admin@email.com', 'Admin', 'Password1', 'John', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
+	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('Admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
 
 
 	
-	INSERT INTO User (Email, AccountType, Password, Name, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('Student@email.com', 'Student', 'Password3', 'Pepe', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
+	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('Student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 
 
 /*--------------Course Values-----------------*/
@@ -106,10 +103,10 @@ EOF;
     //echo "Config attempt...\n";
     if (!$ret) 
 	{
-        //echo $db->lastErrorMsg();
+        echo $db->lastErrorMsg();
     	}
 	else
 	{
-        //echo "Table created successfully\n";
+       // echo "Table created successfully\n";
     	}
 ?>
