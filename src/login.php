@@ -14,7 +14,7 @@
    // $myusername = stripslashes($myusername);
    // $mypassword = stripslashes ($mypassword);
 
-$myusername = strtolower($myusername); //makes username noncase-sensitive
+    $myusername = strtolower($myusername); //makes username noncase-sensitive
 
     $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND Password='$mypassword'";
     $count = $db->querySingle($query);
@@ -24,7 +24,7 @@ $myusername = strtolower($myusername); //makes username noncase-sensitive
     if($count==1)
 	{
 		echo 'login success';
-		header("Location: ../public/index.php");
+		header("Location: ../public/dashboard.php");
     }
 	else
 	{

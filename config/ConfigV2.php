@@ -65,13 +65,14 @@ CREATE TABLE Grade
 
 
 /*--------------User Values-----------------*/
+/*---------Emails must be lowercase---------*/
 	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('Admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
+      	VALUES ('admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
 
 
 	
 	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('Student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
+      	VALUES ('student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 
 
 /*--------------Course Values-----------------*/

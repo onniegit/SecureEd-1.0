@@ -10,13 +10,7 @@
 <div id="wrapper">
     <header>
         <table class="header_table">
-            <table>
-                <thead>
-                <tr>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
+
             <tbody>
             <tr>
 
