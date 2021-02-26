@@ -6,6 +6,7 @@ function fetch() {
     data.append('lname', document.getElementById("lname").value);
     data.append('dob', document.getElementById("dob").value);
     data.append('email', document.getElementById("email").value);
+    //The two underneath need to be discussed
     //data.append('studentyear', document.getElementById("studentyear").value);
     //data.append('facultyrank', document.getElementById("facultyrank").value);
 
@@ -13,17 +14,19 @@ function fetch() {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "../src/usersearchlogic.php", true);
     xhr.onload = function () {
+        //there must be no other echos except the JSON file or JSON.parse fails
         var results = JSON.parse(this.response),
             wrapper = document.getElementById("results");
         if (results.length > 0)
         {
             wrapper.innerHTML = "";
+            var fixedDOB = "";
             for (let res of results)
             {
                 let row = document.createElement("tr");
                 if(res['AccountType']==="Student")
                 {
-                    var fixedDOB = dateFromUTC(res['DOB'], '-');
+                    fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
                     row.innerHTML = `<td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                      <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                      <td class="search_results_output">${res['Email']}</td> 
@@ -32,7 +35,7 @@ function fetch() {
                 }
                 else
                 {
-                    var fixedDOB = dateFromUTC(res['DOB'], '/');
+                    fixedDOB = dateFromUTC(res['DOB'], '/');
                     row.innerHTML = `<td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                      <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                      <td class="search_results_output">${res['Email']}</td> 
@@ -57,6 +60,7 @@ function fetch() {
 }
 
 function dateFromUTC( dateAsString, ymdDelimiter ) {
+    //sqlite pattern is YYYY-MM-DD HH:MM:SS
     var pattern = new RegExp( "(\\d{4})" + ymdDelimiter + "(\\d{2})" + ymdDelimiter + "(\\d{2})" );
     var parts = dateAsString.match( pattern );
 

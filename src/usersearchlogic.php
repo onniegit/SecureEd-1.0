@@ -11,7 +11,7 @@
     $studentyear = $_POST['studentyear'];
     $facultyrank = $_POST['facultyrank'];
 
-
+    //determine account type
     if($acctype == "Student")
     {
         //send back student type search results

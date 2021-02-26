@@ -21,6 +21,7 @@
 
     include '../public/index.php';
 
+    //determine if an account that met the credentials was found
     if($count==1)
 	{
 		echo 'login success';
