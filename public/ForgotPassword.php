@@ -25,10 +25,18 @@
     </header>
 
     <main>
-<br>
+	<br>
 
         <!--Heading-->
         <h1>Forgot Password</h1>
         <div class=horizontal_line>
             <hr>
         </div>
+
+<div style="text-align:center">
+
+<form action="/src/ForgotPasswordLogic.php" method="POST">
+                    <label style="float: center" for="email">Email:&nbsp;&nbsp;</label>
+                    <input type="text" id="email" name="email"><br><br>
+                    <input type="submit" value="Submit">
+</div>
