@@ -34,27 +34,27 @@ function fetch() {
                 wrapper.innerHTML = "";
                 var fixedDOB = "";
                 for (let res of results) {
-                    let row = document.createElement("tr");
+                    let row = document.createElement("div");
                     if (res['AccountType'] === "Student") {
                         fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
-                        row.innerHTML = `<form method="post" action="editaccount.php">
+                        row.innerHTML = `<tr class="search_results_output"><form method="post" action="edit_account.php">
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
-                                         <td class="search_results_output" id="email">${res['Email']}</td> 
+                                         <td class="search_results_output" id="email"><input type="hidden" name="email">${res['Email']}</input></td> 
                                          <td class="search_results_output">${res['Year']}</td>
-                                         <td class="search_results_output"><button type="button">Edit</button></td>
-                                         </form>`;
+                                         <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
+                                         </form></tr>`;
                     }
                     else
                         {
                         fixedDOB = dateFromUTC(res['DOB'], '/');
-                        row.innerHTML = `<form method="post" action="editaccount.php">
-                                         <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
+                        row.innerHTML = `<form method="post" action="edit_account.php">
+                                         <tr class="search_results_output"> <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
-                                         <td class="search_results_output" id="email">${res['Email']}</td> 
+                                         <td class="search_results_output" id="email"><input type="hidden" name="email">${res['Email']}</input></td>
                                          <td class="search_results_output">${res['Rank']}</td>
-                                         <td class="search_results_output"><button type="button">Edit</button></td>
-                                         </form>`;
+                                         <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
+                                         </form></tr>`;
                         }
 
                     wrapper.appendChild(row);

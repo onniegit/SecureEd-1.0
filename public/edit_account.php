@@ -4,7 +4,34 @@
     <link rel="stylesheet" href="secure_app.css">
     <meta charset="utf-8" />
     <title>Secure App - User Search</title>
+    <?php
+    /*Ensure the database was initialized and obtain db link*/
+    include_once '../config/ConfigV2.php';
 
+    /*Get information from the post request*/
+
+    $email = $_POST['email'];
+
+    $query = "SELECT * FROM User WHERE Email = '$email'";
+    $results = $db->query($query);
+
+    //if($results !== false) //query failed
+    //{
+    if (($results->fetchArray()[0]) !== null) //checks if rows exist
+    {
+        // user was found
+        $error = false;
+        $userinfo = $results->fetchArray(SQLITE3_NUM);
+    } else {
+        // user was not found
+        $error = true;
+    }
+    //}
+    //else
+    {
+        $error = true;
+    }
+    ?>
 </head>
 <body>
 <div id="wrapper">
@@ -46,7 +73,7 @@
             <div class = "edit_acc_pane">
                 <form action="" method="POST">
                     <label class="edit_acc_label">Account type:</label>
-                    <select name="" id="">
+                    <select name="" id="acctype">
                         <option value="faculty">Faculty</option>
                         <option value="student">Student</option>
                     </select>
@@ -62,7 +89,7 @@
                                 <label class = "edit_acc_label"> First Name: </label>
                             </td>
                             <td>
-                                <input type="text">
+                                <input type="text" id="fname">
                             </td>
 
                             <!--Last Name-->
@@ -70,7 +97,7 @@
                                 <label class = "edit_acc_label"> Last Name: </label>
                             </td>
                             <td>
-                                <input type="text">
+                                <input type="text" id="lname">
                             </td>
                         </tr>
 
@@ -80,7 +107,7 @@
                                 <label class = "edit_acc_label"> Date of Birth: </label>
                             </td>
                             <td>
-                                <input type="text">
+                                <input type="date" id="dob">
                             </td>
 
                             <!--Blank-->
@@ -96,13 +123,15 @@
                                 <label class = "edit_acc_label"> Rank/Year: </label>
                             </td>
                             <td>
-                                <select name="" id="">
+                                <select name="" id="studentyear" style = "display:none">
                                     <optgroup label="Student">
                                         <option value="freshman">Freshman</option>
                                         <option value="sophomore">Sophomore</option>
                                         <option value="junior">Junior</option>
                                         <option value="senior">Senior</option>
                                     </optgroup>
+                                </select>
+                                <select name="" id="facultyrank">
                                     <optgroup label="Faculty">
                                         <option value="instructor">Instructor</option>
                                         <option value="adjunct">Adjunct Professor</option>
@@ -265,4 +294,9 @@
 
 </div>
 </body>
+
+<script>
+
+</script>
+
 </html>
