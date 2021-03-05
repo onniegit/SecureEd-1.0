@@ -73,7 +73,7 @@
             if ($error)
             {
                 echo "An errror has occurred finding user";
-                echo $email;
+                echo "$email";
             }
         ?>
 

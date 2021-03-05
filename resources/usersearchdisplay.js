@@ -40,7 +40,7 @@ function fetch() {
                         row.innerHTML = `<form method="post" action="edit_account.php"><table><tr class="search_results_output">
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
-                                         <td class="search_results_output" id="email"><input type="hidden" id="email" name="email">${res['Email']}</input></td> 
+                                         <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
                                          <td class="search_results_output">${res['Year']}</td>
                                          <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
                                          </tr></table></form>`;
@@ -48,13 +48,13 @@ function fetch() {
                     else
                         {
                         fixedDOB = dateFromUTC(res['DOB'], '-');
-                        row.innerHTML = `<form method="post" action="edit_account.php">
-                                         <tr class="search_results_output"> <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
+                        row.innerHTML = `<form method="post" action="edit_account.php"><table><tr class="search_results_output">
+                                         <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
-                                         <td class="search_results_output" id="email"><input type="hidden" name="email">${res['Email']}</input></td>
+                                         <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
                                          <td class="search_results_output">${res['Rank']}</td>
                                          <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
-                                         </form></tr>`;
+                                         </tr></table></form>`;
                         }
 
                     wrapper.appendChild(row);
