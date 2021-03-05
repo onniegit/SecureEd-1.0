@@ -44,7 +44,7 @@
                     <input type="text" id="username" name="username"><br><br>
                     <label style="float: left" for="password">Password:&nbsp;&nbsp;</label>
                     <input type="password" id="password" name="password" ><br><br>
-                    <span style="float: left"><a href="">[Forgot password?]</a></span>
+                    <span style="float: left"><a href="ForgotPassword.php">[Forgot password?]</a></span>
                     <input type="submit" value="Submit">
                 </form>
             </div>
