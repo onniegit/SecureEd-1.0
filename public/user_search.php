@@ -164,40 +164,9 @@
                         </tr>
                         </thead>
 
-
-
-
-                        <tbody>
-
-                        <tr>
-                            <td class="search_results_output">
-                                Test McTesterson
-                            </td>
-
-                            <td class="search_results_output">
-                                00/00/0000
-                            </td>
-
-                            <td class="search_results_output">
-                                test
-                            </td>
-
-                            <td class="search_results_output">
-                                some dude
-                            </td>
-
-                            <td class="search_results_output">
-                                <button type="button">Edit</button>
-                            </td>
-                        </tr>
-
-                        </tbody>
-
-                        
+                        <tbody id="results"></tbody>
 
                     </table>
-                <! -- This div has to be outside the table to display results correctly (Reason currently unknown) -->
-                <div id="results"></div>
 
             </div>
         </div>

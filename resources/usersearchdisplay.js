@@ -34,7 +34,7 @@ function fetch() {
                 wrapper.innerHTML = "";
                 var fixedDOB = "";
                 for (let res of results) {
-                    let row = document.createElement("div");
+                    let row = document.createElement("tr");
                     if (res['AccountType'] === "Student") {
                         fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
                         row.innerHTML = `<tr class="search_results_output"><form method="post" action="edit_account.php">
