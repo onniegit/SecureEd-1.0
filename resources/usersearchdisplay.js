@@ -40,7 +40,7 @@ function fetch() {
                         row.innerHTML = `<form method="post" action="editaccount.php">
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
-                                         <td class="search_results_output">${res['Email']}</td> 
+                                         <td class="search_results_output" id="email">${res['Email']}</td> 
                                          <td class="search_results_output">${res['Year']}</td>
                                          <td class="search_results_output"><button type="button">Edit</button></td>
                                          </form>`;
