@@ -10,24 +10,26 @@
 
     /*Get information from the post request*/
 
-    $email = $_POST['email'];
+    $email = strtolower($_POST['email']);
 
     $query = "SELECT * FROM User WHERE Email = '$email'";
     $results = $db->query($query);
 
-    //if($results !== false) //query failed
-    //{
-    if (($results->fetchArray()[0]) !== null) //checks if rows exist
+    if($results !== false) //query failed
     {
-        // user was found
-        $error = false;
-        $userinfo = $results->fetchArray(SQLITE3_NUM);
-    } else {
-        // user was not found
-        $error = true;
+        if (($results->fetchArray()[0]) !== null) //checks if rows exist
+        {
+            // user was found
+            $error = false;
+            $userinfo = $results->fetchArray(SQLITE3_NUM);
+        }
+        else
+        {
+            // user was not found
+            $error = true;
+        }
     }
-    //}
-    //else
+    else
     {
         $error = true;
     }
@@ -66,6 +68,14 @@
         <div class=horizontal_line>
             <hr>
         </div>
+
+        <?php
+            if ($error)
+            {
+                echo "An errror has occurred finding user";
+                echo $email;
+            }
+        ?>
 
         <br><br>
 
