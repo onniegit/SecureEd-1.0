@@ -25,7 +25,7 @@
 
       <!--Navigation Buttons-->
       <nav>
-          <button class="button_large" type="button"onclick=" location.href = 'index.php'">Log Out</button>
+          <button class="button_large" type="button" onclick=" location.href = 'index.php'">Log Out</button>
       </nav>
 
     <main>
