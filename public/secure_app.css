@@ -63,6 +63,20 @@ nav {
   font-size: x-large;
 }
 
+.edit_acc_pane {
+  background-color: whitesmoke;
+  text-align: left;
+  width: fit-content;
+  padding:2vw;
+  padding-top: 1vw;
+}
+
+.edit_acc_label{
+  text-align: right;
+  padding-left: 2vw;
+  font-size: x-large;
+}
+
 .horizontal_line {
   padding-bottom: 10px;
 }
