@@ -69,11 +69,14 @@ CREATE TABLE Grade
 	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
       	VALUES ('admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
 
-
+	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('scienceguy@email.com', 'Faculty', 'Password2', 'Bill', 'Nye', '1955-11-27', NULL, 'Associate Professor', 'Favorite Relative?', 'Charity Nye');
 	
 	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
       	VALUES ('student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 
+	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('student2@email.com', 'Student', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
 
 /*--------------Course Values-----------------*/
 	INSERT INTO Course (CourseID, CourseName, Semester, StartTime, EndTime, Location, Professor)
