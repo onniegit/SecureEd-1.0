@@ -4,9 +4,9 @@ include_once '../config/ConfigV2.php';
 
 /*Get information from the post request*/
 
-$email = strtolower($_POST['email']);
+$prevemail = strtolower($_POST['email']);
 
-$query = "SELECT * FROM User WHERE Email = '$email'";
+$query = "SELECT * FROM User WHERE Email = '$prevemail'";
 $results = $db->query($query);
 
 if($results !== false) //query failed
@@ -73,8 +73,8 @@ else
         <?php
             if ($error)
             {
-                echo "An errror has occurred finding user";
-                echo "$email";
+                echo "An error has occurred finding user";
+                echo "$prevemail";
             }
             if(!$userinfo)
             {
@@ -82,11 +82,13 @@ else
             }
         ?>
 
+        <p id="submiterror" style="display:none"></p>
+
         <br><br>
 
         <div style="text-align:center">
             <div class = "edit_acc_pane">
-                <form action="" method="POST">
+                <form action="../src/EditAccountUpdateLogic.php" method="POST" id="editform">
                     <label class="edit_acc_label">Account type:</label>
                     <select name="acctype" id="acctype" onchange="swapselection()">
                         <option value="Faculty" <?php if($userinfo[1]==="Faculty"){echo "selected";} ?> ">Faculty</option>
@@ -104,7 +106,7 @@ else
                                 <label class = "edit_acc_label"> First Name: </label>
                             </td>
                             <td>
-                                <input type="text" id="fname" value="<?php if(!$error){echo $userinfo[3];} ?>">
+                                <input type="text" id="fname" name="fname" value="<?php if(!$error){echo "$userinfo[3]";} ?>">
                             </td>
 
                             <!--Last Name-->
@@ -112,7 +114,7 @@ else
                                 <label class = "edit_acc_label"> Last Name: </label>
                             </td>
                             <td>
-                                <input type="text" id="lname" value="<?php if(!$error){echo $userinfo[4];} ?>">
+                                <input type="text" id="lname" name="lname" value="<?php if(!$error){echo "$userinfo[4]";} ?>">
                             </td>
                         </tr>
 
@@ -122,7 +124,7 @@ else
                                 <label class = "edit_acc_label"> Date of Birth: </label>
                             </td>
                             <td>
-                                <input type="date" id="dob" value="<?php if(!$error){echo $userinfo[5];} ?>">
+                                <input type="date" id="dob" name="dob" value="<?php if(!$error){echo $userinfo[5];} ?>">
                             </td>
 
                             <!--Blank-->
@@ -140,10 +142,10 @@ else
                             <td>
                                 <select name="studentyear" id="studentyear" style = "<?php if($userinfo[1]!=="Student"){echo "display:none";}?>">
                                     <optgroup label="Student">
-                                        <option value="freshman" <?php if($userinfo[6] == 1){echo "selected";} ?>>Freshman</option>
-                                        <option value="sophomore" <?php if($userinfo[6] == 2){echo "selected";} ?>>Sophomore</option>
-                                        <option value="junior" <?php if($userinfo[6] == 3){echo "selected";} ?>>Junior</option>
-                                        <option value="senior" <?php if($userinfo[6] == 4){echo "selected";} ?>>Senior</option>
+                                        <option value="1" <?php if($userinfo[6] == 1){echo "selected";} ?>>Freshman</option>
+                                        <option value="2" <?php if($userinfo[6] == 2){echo "selected";} ?>>Sophomore</option>
+                                        <option value="3" <?php if($userinfo[6] == 3){echo "selected";} ?>>Junior</option>
+                                        <option value="4" <?php if($userinfo[6] == 4){echo "selected";} ?>>Senior</option>
                                     </optgroup>
                                 </select>
                                 <select name="facultyrank" id="facultyrank" style = "<?php if($userinfo[1]!=="Faculty"){echo "display:none";}?>">
@@ -182,7 +184,7 @@ else
                                 <label class = "edit_acc_label"> Email: </label>
                             </td>
                             <td>
-                                <input type="text" value="<?php if(!$error){echo $userinfo[0];} ?>">
+                                <input type="email" name="email" id="email" value="<?php if(!$error){echo "$userinfo[0]";} ?>">
                             </td>
 
                             <!--Blank-->
@@ -198,7 +200,7 @@ else
                                 <label class = "edit_acc_label"> Confirm Email: </label>
                             </td>
                             <td>
-                                <input type="text" value="<?php if(!$error){echo $userinfo[0];} ?>">
+                                <input type="email" name="confirmemail" id="confirmemail" value="<?php if(!$error){echo $userinfo[0];} ?>">
                             </td>
 
                             <!--Blank-->
@@ -226,7 +228,7 @@ else
                                 <label class = "edit_acc_label"> Password: </label>
                             </td>
                             <td>
-                                <input type="password" value="<?php if(!$error){echo $userinfo[2];} ?>">
+                                <input type="password" name="password" id="password" value="<?php if(!$error){echo "$userinfo[2]";} ?>">
                             </td>
 
                             <!--Blank-->
@@ -242,7 +244,7 @@ else
                                 <label class = "edit_acc_label"> Confirm Password: </label>
                             </td>
                             <td>
-                                <input type="password" value="<?php if(!$error){echo $userinfo[2];} ?>">
+                                <input type="password" name="confirmpassword" id="confirmpassword" value="<?php if(!$error){echo "$userinfo[2]";} ?>">
                             </td>
 
                             <!--Blank-->
@@ -270,7 +272,7 @@ else
                                 <label class = "edit_acc_label"> Security Question: </label>
                             </td>
                             <td>
-                                <input type="text" value="<?php if(!$error){echo $userinfo[8];} ?>">
+                                <input type="text" name="squestion" value="<?php if(!$error){echo "$userinfo[8]";} ?>">
                             </td>
 
                             <!--Blank-->
@@ -286,11 +288,12 @@ else
                                 <label class = "edit_acc_label"> Answer: </label>
                             </td>
                             <td>
-                                <input type="text" value="<?php if(!$error){echo $userinfo[9];} ?>">
+                                <input type="text" name="sanswer" value="<?php if(!$error){echo "$userinfo[9]";} ?>">
                             </td>
 
                             <!--Blank-->
                             <td>
+                                <input type="hidden" name="prevemail" value="<?php echo "$prevemail" ?>">
                             </td>
                             <td>
                             </td>
@@ -301,7 +304,7 @@ else
             </div>
             <br>
             <div style="text-align: left;">
-                <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" value="Submit" onclick="submitAccount()">&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="button" value="Cancel">
             </div>
         </div>
@@ -312,11 +315,13 @@ else
 
 <script>
     function swapselection(){
+        //get elements from page
         var studentselect = document.getElementById("studentyear");
         var facultyselect = document.getElementById("facultyrank");
         var acctype = document.getElementById("acctype");
         var positionlabel = document.getElementById("positionlabel");
 
+        //change parts of page depending on student of faculty
         if(acctype.options[acctype.selectedIndex].text === "Faculty")
         {
             studentselect.style.display = "none";
@@ -330,6 +335,53 @@ else
             positionlabel.innerText = "Year:";
         }
 
+    }
+
+    function submitAccount() {
+        //get elements from page
+        var pass = document.getElementById("password");
+        var confirmpass = document.getElementById("confirmpassword");
+        var email = document.getElementById("email");
+        var confirmemail = document.getElementById("confirmemail");
+        var submiterror = document.getElementById("submiterror");
+        var editform = document.getElementById("editform");
+        var cansubmit = true;
+
+        //reset the element for errors to a default state
+        submiterror.innerText = "";
+        submiterror.style.display = "none";
+
+        //check if pass is empty
+        if(pass.value === "")
+        {
+            cansubmit = false;
+            submiterror.innerText = "Password is empty. \n";
+            submiterror.style.display = "block";
+        }
+        //check if pass and confirm pass are not the same
+        if (pass.value !== confirmpass.value)
+        {
+            cansubmit = false;
+            submiterror.innerText = submiterror.innerText.concat("Password and Confirm Password are not the same. \n");
+            submiterror.style.display = "block";
+        }
+        //check if email is empty
+        if(email.value === "")
+        {
+            cansubmit = false;
+            submiterror.innerText = submiterror.innerText.concat("Email is empty. \n");
+            submiterror.style.display = "block";
+        }
+        //check if email and confirmemail are not the same
+        if (email.value !== confirmemail.value)
+        {
+            cansubmit = false;
+            submiterror.innerText = submiterror.innerText.concat("Email and Confirm Email are not the same. \n");
+        }
+        if(cansubmit)
+        {
+            editform.submit();
+        }
     }
 
 </script>
