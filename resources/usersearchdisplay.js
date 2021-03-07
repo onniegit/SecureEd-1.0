@@ -37,7 +37,7 @@ function fetch() {
                     let row = document.createElement("span");
                     if (res['AccountType'] === "Student") {
                         fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
-                        row.innerHTML = `<form method="post" action="edit_account.php"><table><tr class="search_results_output">
+                        row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                          <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
@@ -48,7 +48,7 @@ function fetch() {
                     else
                         {
                         fixedDOB = dateFromUTC(res['DOB'], '-');
-                        row.innerHTML = `<form method="post" action="edit_account.php"><table><tr class="search_results_output">
+                        row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
                                          <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 

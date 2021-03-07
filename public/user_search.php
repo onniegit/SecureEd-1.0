@@ -139,34 +139,40 @@
                     <hr>
                 </div>
 
-                    <table>
+                    <table class="search_table">
 
                         <thead>
+
                         <tr>
-                            <td class="search_results_output">
+
+                            <td class="search_results_column_name">
                                 <b><u>Name</u></b>
                             </td>
 
-                            <td class="search_results_output">
+                            <td class="search_results_column_name">
                                 <b><u>DOB</u></b>
                             </td>
 
-                            <td class="search_results_output">
+                            <td class="search_results_column_name">
                                 <b><u>Email</u></b>
                             </td>
 
-                            <td class="search_results_output">
+                            <td class="search_results_column_name">
                                 <b><u>Position</u></b>
                             </td>
 
-                            <td class="search_results_output">
+                            <td class="search_results_column_name">
                             </td>
                         </tr>
                         </thead>
 
-                        <tbody id="results"></tbody>
-
                     </table>
+
+                        <div id="results"></div>
+
+
+
+
 
             </div>
         </div>
