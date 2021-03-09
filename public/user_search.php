@@ -29,7 +29,7 @@
         <!--Navigation Buttons-->
         <nav>
             <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = 'index.php'">Log Out</button>
+            <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
         </nav>
 
         <br>
@@ -50,7 +50,7 @@
                 </div>
                 <!--Search filters-->
 
-                <form action="" method="post" onsubmit="return fetch();">
+                <form action="" method="post" onsubmit="return fetch();" id="searchform">
                     <table>
                     <tbody>
                     <tr>
@@ -61,12 +61,15 @@
                         </td>
 
                         <td class="search_filter_input">
-                            <input type="text" id ="acctype">
+                            <select name="acctype" id="acctype" onchange="swapsearch()">
+                                <option value="Faculty">Faculty</option>
+                                <option value="Student">Student</option>
+                            </select>
                         </td>
 
                         <td class="search_filter">
-                            <label class="search_filter">
-                                Position:
+                            <label class="search_filter" id="positionlabel">
+                                Rank:
                             </label>
                         </td>
 
@@ -119,7 +122,7 @@
 
                         <td></td>
                         <td style="text-align: right">
-                            <button class="button_large" type="submit">
+                            <button class="button_large" type="submit" onclick="swaptablesubmit()">
                                 Search
                             </button></td>
                     </tr>
@@ -158,7 +161,7 @@
                             </td>
 
                             <td class="search_results_column_name">
-                                <b><u>Position</u></b>
+                                <b><u id="positionresults">Rank</u></b>
                             </td>
 
                             <td class="search_results_column_name">
@@ -178,6 +181,41 @@
         </div>
 
         <script src="../resources/usersearchdisplay.js"></script>
+        <script>
+            function swapsearch()
+            {
+                var acctype = document.getElementById("acctype");
+                var positionlabel = document.getElementById("positionlabel");
+
+                //change search depending on student of faculty
+                if(acctype.options[acctype.selectedIndex].text === "Faculty")
+                {
+                    positionlabel.innerText = "Rank:";
+                }
+                else
+                {
+                    positionlabel.innerText = "Year:";
+                }
+            }
+
+            function swaptablesubmit()
+            {
+                var acctype = document.getElementById("acctype");
+                var positionresults = document.getElementById("positionresults");
+
+                //change table header depending on student of faculty
+                if(acctype.options[acctype.selectedIndex].text === "Faculty")
+                {
+                    positionresults.innerText = "Rank";
+                }
+                else
+                {
+                    positionresults.innerText = "Year";
+                }
+
+            }
+        </script>
+
     </main>
 
 </div>

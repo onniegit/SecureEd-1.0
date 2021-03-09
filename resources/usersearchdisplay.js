@@ -26,7 +26,7 @@ function fetch() {
         }
         catch
         {
-            //succeeds when it throws exception}
+            //succeeds when it throws exception
         }
 
             if (results !== null) //using results.length crashed when there was no search results
@@ -89,3 +89,4 @@ function dateFromUTC( dateAsString, ymdDelimiter ) {
         , 0
     ));
 }
+
