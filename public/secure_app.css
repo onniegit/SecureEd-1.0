@@ -85,17 +85,26 @@ nav {
   font-size: x-large;
 }
 
+.course_search_results {
+  background-color: whitesmoke;
+  text-align: left;
+  padding:2vw;
+  padding-top: 1vw;
+}
+
 .course_search_table {
   width: 100%;
   table-layout: fixed;
 }
+
+
 
 .course_search_table td:nth-of-type(1) {width:10vw;}/*Setting the width of column 1.*/
 .course_search_table td:nth-of-type(2) {width:8vw;}/*Setting the width of column 2.*/
 .course_search_table td:nth-of-type(3) {width:13vw;}/*Setting the width of column 3.*/
 .course_search_table td:nth-of-type(4) {width:10vw;}/*Setting the width of column 4.*/
 .course_search_table td:nth-of-type(5) {width:15vw;}/*Setting the width of column 5.*/
-.course_search_table td:nth-of-type(6) {width:25px;}/*Setting the width of column 6.*/
+.course_search_table td:nth-of-type(6) {width:100px;}/*Setting the width of column 6.*/
 
 .course_search_results_column_name {
   text-align: center;
@@ -104,10 +113,15 @@ nav {
   overflow: hidden;
 }
 
+#results span{
+  table-layout: fixed;
+  width:100%;
+  display:block;
+}
+
 .course_search_results_output {
   text-align: center;
   margin: 2vw;
-  padding: 2vw;
   font-size: x-large;
   overflow: hidden;
   word-wrap: break-word;

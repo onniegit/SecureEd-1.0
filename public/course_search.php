@@ -29,13 +29,13 @@
         <!--Navigation Buttons-->
         <nav>
             <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = 'index.php'">Log Out</button>
+            <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
         </nav>
 
         <br>
 
         <!--Heading-->
-        <h1>User Search</h1>
+        <h1>Course Search</h1>
         <div class=horizontal_line>
             <hr>
         </div>
@@ -113,7 +113,7 @@
             </div>
             <br><br><br>
 
-            <div class="search_results">
+            <div class="course_search_results">
                 <h1>Results:</h1>
                 <div class="horizontal_line">
                     <hr>
