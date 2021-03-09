@@ -1,8 +1,8 @@
 <?php
-
- $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+$GLOBALS['db'];
+ $db = new SQLite3(":memory:",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
    
-	if(!$db) 
+	if(!$db)
 	{
       	echo $db->lastErrorMsg();
    	} 
@@ -31,6 +31,8 @@ CREATE TABLE Course
     (
 	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
 	CourseName      TEXT    NOT NULL,
+	CourseCode      TEXT    NOT NULL,
+	SectionLetter   TEXT    NOT NULL,
 	Semester    	TEXT    NOT NULL,
 	StartTime	TEXT	NOT NULL,
 	EndTime		TEXT	NOT NULL,
@@ -43,8 +45,7 @@ CREATE TABLE Course
 CREATE TABLE CourseEnroll
     	(
 	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
-	Student		TEXT    NOT NULL,
-	MaxSize    	INT     NOT NULL,		
+	Student		TEXT    NOT NULL,		
 	FOREIGN KEY (Student) REFERENCES User (Email) ON
     		DELETE SET NULL ON UPDATE CASCADE
 	FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON
@@ -79,38 +80,41 @@ CREATE TABLE Grade
       	VALUES ('student2@email.com', 'Student', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
 
 /*--------------Course Values-----------------*/
-	INSERT INTO Course (CourseID, CourseName, Semester, StartTime, EndTime, Location, Professor)
-      	VALUES ('123', 'Intro to CyberSecurity', 'Fall 2030', '08:30:00', '09:45:00', 'Building A', 'DrProfessor@email.com');
+	INSERT INTO Course (CourseID, CourseName, CourseCode, SectionLetter, Semester, StartTime, EndTime, Location, Professor)
+      	VALUES ('123', 'Intro to CyberSecurity', 'CYBR2200' , 'A', 'Fall 2030', '08:30:00', '09:45:00', 'Building A', 'DrProfessor@email.com');
 
-	INSERT INTO Course (CourseID, CourseName, Semester, StartTime, EndTime, Location, Professor)
-      	VALUES ('456', 'Intermediate CyberSecurity', 'Spring 2030', '13:30:00', '14:45:00', 'Building A', 'DrProfessor@email.com');
+	INSERT INTO Course (CourseID, CourseName, CourseCode, SectionLetter, Semester, StartTime, EndTime, Location, Professor)
+      	VALUES ('456', 'Intermediate CyberSecurity', 'CYBR2480' ,'B', 'Spring 2030', '13:30:00', '14:45:00', 'Building A', 'DrProfessor@email.com');
 
 
 /*--------------CourseEnroll Values-----------------*/
-	INSERT INTO CourseEnroll (CourseID, Student, MaxSize)
-      	VALUES ('123', 'Student@email.com', '30');
+	INSERT INTO CourseEnroll (CourseID, Student)
+      	VALUES ('123', 'student@email.com');
 
-	INSERT INTO CourseEnroll (CourseID, Student, MaxSize)
-      	VALUES ('456', 'Student@email.com', '30');
+	INSERT INTO CourseEnroll (CourseID, Student)
+      	VALUES ('456', 'student@email.com');
 
 
 /*--------------Grade Values-----------------*/
 	INSERT INTO Grade (CourseID, StudentEmail, LetterGrade)
-      	VALUES ('123', 'Student@email.com', 'D');
+      	VALUES ('123', 'student@email.com', 'D');
 
 	INSERT INTO Grade (CourseID, StudentEmail, LetterGrade)
-      	VALUES ('456', 'Student@email.com', 'F');
+      	VALUES ('456', 'student@email.com', 'F');
 
 EOF;
 
     $ret = $db->exec($sql);
     //echo "Config attempt...\n";
+    $GLOBALS['db'] = $db;
     if (!$ret) 
 	{
         echo $db->lastErrorMsg();
-    	}
+	}
 	else
-	{
-       // echo "Table created successfully\n";
-    	}
+    {
+        // echo "Table created successfully\n";
+        $GLOBALS['db'] = $db;
+    }
+
 ?>

@@ -9,7 +9,7 @@ $prevemail = strtolower($_POST['email']);
 $query = "SELECT * FROM User WHERE Email = '$prevemail'";
 $results = $db->query($query);
 
-if($results !== false) //query failed
+if($results !== false) //check if query failed
 {
     if (($userinfo = $results->fetchArray()) !== null) //checks if rows exist
     {
@@ -59,7 +59,7 @@ else
         <!--Navigation Buttons-->
         <nav>
             <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = 'index.php'">Log Out</button>
+            <button class="button_large" type="button" onclick=" location.href = '../src.logout.php'">Log Out</button>
         </nav>
 
         <br>
