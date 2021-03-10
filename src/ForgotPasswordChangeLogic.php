@@ -4,14 +4,12 @@
 
 //Variables and Email gained from user entry------------------
 
-$email = strtolower($_POST['Email']);
-//$SecQuestion = ($_POST['secQuestion']);
-//$SecAnswer = ($_POST['secAnswer']);
-//$mySAnswer = ($_POST['secAnswer']);
-$NewPassword = "";
-$NewPasswordConfirm = "";
-
-
+Global $email;
+//$SecQuestion;
+//$SecAnswer;
+//$mySAnswer;
+$NewPassword = ($_POST['newpassword']);
+$NewPasswordConfirm = ($_POST['confirmnewPassword']);
 
 if($NewPassword == $NewPasswordConfirm)
 {
@@ -22,7 +20,6 @@ header("Location: ../public/index.php");
 
 else	
 {
-
 header("Location: ../public/ForgotPasswordChange.php?passwordcheck=fail");
 }	
      

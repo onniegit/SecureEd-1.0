@@ -38,14 +38,13 @@
 <div class = "SecurityQuestion">
 <?php
                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                   if("passwordcheck=fail" = parse_url($url, PHP_URL_QUERY);
+                   if("passwordcheck=fail" == parse_url($url, PHP_URL_QUERY))
 {
 echo "The passwords do not match";
 }
 
 ?>
-<p>Favorite Relative?</p>
-<p><?=$SecQ?></p>
+
 <form action="/src/PasswordChangeLogic.php">
 		    <label style="float: center" for="newpassword">New Password:&nbsp;&nbsp;</label>
                     <input type="text" id="newpassword" name="newpassword"><br><br>
