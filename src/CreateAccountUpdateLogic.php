@@ -36,7 +36,7 @@ if(!$results)
 }
 else
 {
-    header("Location: ../public/user_search.php");
+    header("Location: ../public/dashboard.php");
 }
 
 

@@ -34,20 +34,24 @@ include_once '../config/ConfigV2.php';
         <!--Navigation Buttons-->
         <nav>
             <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = 'index.php'">Log Out</button>
+            <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
         </nav>
 
         <br>
 
+
+
         <!--Heading-->
         <h1>Create Account</h1>
-        <div class=horizontal_line>
+        <div class="horizontal_line">
             <hr>
         </div>
 
+        <p id="submiterror" style="display:none"></p>
+
         <div style="text-align:center">
             <div class = "edit_acc_pane">
-                <form action="../src/EditAccountUpdateLogic.php" method="POST" id="createform">
+                <form action="../src/CreateAccountUpdateLogic.php" method="POST" id="createform">
                     <label class="edit_acc_label">Account type:</label>
                     <select name="acctype" id="acctype" onchange="swapselection()">
                             <optgroup label="Choose one">
@@ -55,7 +59,7 @@ include_once '../config/ConfigV2.php';
                                 <option value="Student">Student</option>
                             </optgroup>
                     </select>
-                <div class=horizontal_line>
+                <div class="horizontal_line">
                     <hr>
                 </div>
                 <!--Input boxes-->
@@ -67,7 +71,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> First Name: </label>
                             </td>
                             <td>
-                                <input type="text" id="fname" name="fname" value="<?php if(!$error){echo "$userinfo[3]";} ?>">
+                                <input type="text" id="fname" name="fname" value="">
                             </td>
 
                             <!--Last Name-->
@@ -75,7 +79,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Last Name: </label>
                             </td>
                             <td>
-                                <input type="text" id="lname" name="lname" value="<?php if(!$error){echo "$userinfo[4]";} ?>">
+                                <input type="text" id="lname" name="lname" value="">
                             </td>
                         </tr>
 
@@ -85,7 +89,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Date of Birth: </label>
                             </td>
                             <td>
-                                <input type="date" id="dob" name="dob" value="<?php if(!$error){echo $userinfo[5];} ?>">
+                                <input type="date" id="dob" name="dob" value="">
                             </td>
 
                             <!--Blank-->
@@ -98,25 +102,25 @@ include_once '../config/ConfigV2.php';
                         <tr>
                             <!--Faculty Rank/Student Year-->
                             <td>
-                                <label class = "edit_acc_label" id="positionlabel"> <?php if($userinfo[1]==="Student"){echo "Year:";} else {echo "Rank:";}?> </label>
+                                <label class = "edit_acc_label" id="positionlabel"> </label>
                             </td>
                             <td>
                                 <select name="studentyear" id="studentyear" style = "display:none;">
                                     <optgroup label="Student">
-                                        <option selected="selected" value="1" <?php if($userinfo[6] == 1){echo "selected";} ?>>Freshman</option>
-                                        <option value="2" <?php if($userinfo[6] == 2){echo "selected";} ?>>Sophomore</option>
-                                        <option value="3" <?php if($userinfo[6] == 3){echo "selected";} ?>>Junior</option>
-                                        <option value="4" <?php if($userinfo[6] == 4){echo "selected";} ?>>Senior</option>
+                                        <option selected="selected" value="1" >Freshman</option>
+                                        <option value="2" >Sophomore</option>
+                                        <option value="3" >Junior</option>
+                                        <option value="4" >Senior</option>
                                     </optgroup>
                                 </select>
                                 <select name="facultyrank" id="facultyrank" style = "display:block;">
                                     <optgroup label="Faculty">
-                                        <option selected="selected" value="Instructor" <?php if($userinfo[7] === "Instructor"){echo "selected";} ?>>Instructor</option>
-                                        <option value="Adjunct" <?php if($userinfo[7] === "Adjunct"){echo "selected";} ?>>Adjunct Professor</option>
-                                        <option value="Assistant" <?php if($userinfo[7] === "Assistant"){echo "selected";} ?>>Assistant Professor</option>
-                                        <option value="Associate" <?php if($userinfo[7] === "Associate"){echo "selected";} ?>>Associate Professor</option>
-                                        <option value="Professor" <?php if($userinfo[7] === "Professor"){echo "selected";} ?>>Professor</option>
-                                        <option value="Emeritus" <?php if($userinfo[7] === "Emeritus"){echo "selected";} ?>>Professor Emeritus</option>
+                                        <option selected="selected" value="Instructor" >Instructor</option>
+                                        <option value="Adjunct" >Adjunct Professor</option>
+                                        <option value="Assistant" >Assistant Professor</option>
+                                        <option value="Associate" >Associate Professor</option>
+                                        <option value="Professor">Professor</option>
+                                        <option value="Emeritus">Professor Emeritus</option>
                                     </optgroup>
                                 </select>
                             </td>
@@ -145,7 +149,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Email: </label>
                             </td>
                             <td>
-                                <input type="email" name="email" id="email" value="<?php if(!$error){echo "$userinfo[0]";} ?>">
+                                <input type="email" name="email" id="email" value="">
                             </td>
 
                             <!--Blank-->
@@ -161,7 +165,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Confirm Email: </label>
                             </td>
                             <td>
-                                <input type="email" name="confirmemail" id="confirmemail" value="<?php if(!$error){echo $userinfo[0];} ?>">
+                                <input type="email" name="confirmemail" id="confirmemail" value="">
                             </td>
 
                             <!--Blank-->
@@ -189,7 +193,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Password: </label>
                             </td>
                             <td>
-                                <input type="password" name="password" id="password" value="<?php if(!$error){echo "$userinfo[2]";} ?>">
+                                <input type="password" name="password" id="password" value="">
                             </td>
 
                             <!--Blank-->
@@ -205,7 +209,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Confirm Password: </label>
                             </td>
                             <td>
-                                <input type="password" name="confirmpassword" id="confirmpassword" value="<?php if(!$error){echo "$userinfo[2]";} ?>">
+                                <input type="password" name="confirmpassword" id="confirmpassword" value="">
                             </td>
 
                             <!--Blank-->
@@ -233,7 +237,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Security Question: </label>
                             </td>
                             <td>
-                                <input type="text" name="squestion" value="<?php if(!$error){echo "$userinfo[8]";} ?>">
+                                <input type="text" name="squestion" value="">
                             </td>
 
                             <!--Blank-->
@@ -249,7 +253,7 @@ include_once '../config/ConfigV2.php';
                                 <label class = "edit_acc_label"> Answer: </label>
                             </td>
                             <td>
-                                <input type="text" name="sanswer" value="<?php if(!$error){echo "$userinfo[9]";} ?>">
+                                <input type="text" name="sanswer" value="">
                             </td>
 
                             <!--Blank-->
@@ -307,6 +311,18 @@ include_once '../config/ConfigV2.php';
         var createform = document.getElementById("createform");
         var cansubmit = true;
 
+        try
+        {
+            while (submiterror.removeChild(submiterror.childNodes[0]) !== null)
+            {
+                //tries to remove all previous error messages if they exist
+            }
+        }
+        catch
+        {
+            //succeeds when it throws exception
+        }
+
         //reset the element for errors to a default state
         submiterror.innerText = "";
         submiterror.style.display = "none";
@@ -337,6 +353,7 @@ include_once '../config/ConfigV2.php';
         {
             cansubmit = false;
             submiterror.innerText = submiterror.innerText.concat("Email and Confirm Email are not the same. \n");
+            submiterror.style.display = "block";
         }
         if(cansubmit)
         {

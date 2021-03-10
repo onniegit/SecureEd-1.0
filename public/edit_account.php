@@ -347,6 +347,18 @@ else
         var editform = document.getElementById("editform");
         var cansubmit = true;
 
+        try
+        {
+            while (submiterror.removeChild(submiterror.childNodes[0]) !== null)
+            {
+                //tries to remove all previous error messages if they exist
+            }
+        }
+        catch
+        {
+            //succeeds when it throws exception
+        }
+
         //reset the element for errors to a default state
         submiterror.innerText = "";
         submiterror.style.display = "none";
@@ -377,6 +389,7 @@ else
         {
             cansubmit = false;
             submiterror.innerText = submiterror.innerText.concat("Email and Confirm Email are not the same. \n");
+            submiterror.style.display = "block";
         }
         if(cansubmit)
         {
