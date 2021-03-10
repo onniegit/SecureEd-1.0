@@ -118,8 +118,8 @@ else
                         $course = $courseArray[$i];
                         $starttimedate = new DateTime('0000-00-00' . $course['StartTime']);
                         $endtimedate = new DateTime('0000-00-00' . $course['EndTime']);
-                        $starttime = $starttimedate->format('g:i');
-                        $endtime = $endtimedate->format('g:i');
+                        $starttime = $starttimedate->format('g:i:A');
+                        $endtime = $endtimedate->format('g:i:A');
                         //each loop will get all of the necessary info for each course
                         //this implementation works by knowing how many columns we have
                         echo "
