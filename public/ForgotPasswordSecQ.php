@@ -47,9 +47,9 @@
 			}
 
 ?>
-<p><?php echo global $SecQuestion; ?></p>
+<p>Favorite Relative?</p>
 
-<form action="/src/ForgotPasswordSecLogic.php" method="POST">
+<form action="/public/ForgotPasswordChange.php" method="POST">
                     <label style="float: center" for="Answer">Answer:&nbsp;&nbsp;</label>
                     <input type="text" id="Answer" name="Answer"><br><br>
                     <input type="submit" value="Submit">

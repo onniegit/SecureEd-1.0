@@ -7,7 +7,7 @@ $GLOBALS['email'];
 $GLOBALS['SecQuestion'];
 Global $email = strtolower($_POST['email']);
 Global $SecQuestion;
-$SecAnswer = "";
+//$SecAnswer = "";
 //$mySAnswer = "";
 //$NewPassword = "";
 //$NewPasswordConfirm = "";
@@ -16,7 +16,7 @@ $SecAnswer = "";
 $query = "SELECT COUNT(*) as count FROM User WHERE Email ='$email'";
 $count = $db->querySingle($query);
 
-if($count =0)
+if($count >1)
 {
 //Invalid Email
 header("Location: ../public/ForgotPassword.php?emailcheck=fail");

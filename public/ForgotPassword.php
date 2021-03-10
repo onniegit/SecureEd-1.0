@@ -44,7 +44,7 @@
                 }
 ?>
 
-<form action="/src/ForgotPasswordLogic.php" method="POST">
+<form action="/Public/ForgotPasswordSecQ.php" method="POST">
                     <label style="float: center" for="email">Email:&nbsp;&nbsp;</label>
                     <input type="text" id="email" name="email"><br><br>
                     <input type="submit" value="Submit">
