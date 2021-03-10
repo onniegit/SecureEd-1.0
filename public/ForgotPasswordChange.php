@@ -35,16 +35,18 @@
 
 <div style="text-align:center">
 
-<div class = "emailcheck">
+<div class = "SecurityQuestion">
 <?php
                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                if ("emailcheck=fail" == parse_url($url, PHP_URL_QUERY))
-                {
-                    echo "The email is invalid.";
-                }
-                ?>
-<form action="/src/ForgotPasswordLogic.php" method="POST">
-                    <label style="float: center" for="email">Email:&nbsp;&nbsp;</label>
-                    <input type="text" id="email" name="email"><br><br>
+                   $SecQ = parse_url($url, PHP_URL_QUERY);
+
+?>
+<p>Favorite Relative?</p>
+<p><?=$SecQ?></p>
+<form action="/public/index.php">
+		    <label style="float: center" for="newpassword">New Password:&nbsp;&nbsp;</label>
+                    <input type="text" id="newpassword" name="newpassword"><br><br>
+                    <label style="float: center" for="confirmpassword">Confirm password:&nbsp;&nbsp;</label>
+                    <input type="password" id="confirmpassword" name="confirmpassword" ><br><br>
                     <input type="submit" value="Submit">
 </div>

@@ -1,6 +1,6 @@
 <?php
 $GLOBALS['db'];
- $db = new SQLite3(":memory:",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+ $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
    
 	if(!$db)
 	{
