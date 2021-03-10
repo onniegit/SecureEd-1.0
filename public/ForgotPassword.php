@@ -42,7 +42,8 @@
                 {
                     echo "The email is invalid.";
                 }
-                ?>
+?>
+
 <form action="/src/ForgotPasswordLogic.php" method="POST">
                     <label style="float: center" for="email">Email:&nbsp;&nbsp;</label>
                     <input type="text" id="email" name="email"><br><br>

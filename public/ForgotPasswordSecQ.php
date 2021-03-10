@@ -38,12 +38,15 @@
 <div class = "SecurityQuestion">
 <?php
                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                   $SecQ = parse_url($url, PHP_URL_QUERY);
+                   if("answercheck=fail" = parse_url($url, PHP_URL_QUERY);
+			{
+			echo "The answer is invalid";
+			}
 
 ?>
 <p>Favorite Relative?</p>
 <p><?=$SecQ?></p>
-<form action="/public/ForgotPasswordChange.php" method="POST">
+<form action="/src/ForgotPasswordSecLogic.php" method="POST">
                     <label style="float: center" for="Answer">Answer:&nbsp;&nbsp;</label>
                     <input type="text" id="Answer" name="Answer"><br><br>
                     <input type="submit" value="Submit">
