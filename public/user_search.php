@@ -74,7 +74,7 @@
                         </td>
 
                         <td class="search_filter_input">
-                            <input type="text">
+                            <input type="text" name="facultyrank" id="position">
                         </td>
                     </tr>
 
@@ -186,15 +186,18 @@
             {
                 var acctype = document.getElementById("acctype");
                 var positionlabel = document.getElementById("positionlabel");
+                var position = document.getElementById("position");
 
                 //change search depending on student of faculty
                 if(acctype.options[acctype.selectedIndex].text === "Faculty")
                 {
                     positionlabel.innerText = "Rank:";
+                    position.name = "facultyrank"; //sends rank to the usersearchdisplay
                 }
                 else
                 {
                     positionlabel.innerText = "Year:";
+                    position.name = "studentyear"; //sends year to the usersearchdisplay
                 }
             }
 

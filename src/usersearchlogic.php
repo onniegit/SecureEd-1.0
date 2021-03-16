@@ -1,6 +1,7 @@
 <?php
     /*Ensure the database was initialized and obtain db link*/
-    include_once '../config/ConfigV2.php';
+    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+    $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
     /*Get information from the search (post) request*/
     $acctype = $_POST['acctype'];
@@ -8,8 +9,8 @@
     $lname = $_POST['lname'];
     $dob = $_POST['dob'];
     $email = $_POST['email'];
-    $studentyear = $_POST['studentyear'];
-    $facultyrank = $_POST['facultyrank'];
+    $studentyear = $_POST['studentyear']; //currently undefined
+    $facultyrank = $_POST['facultyrank']; //currently undefined
 
     //determine account type
     if($acctype == "Student")
@@ -54,4 +55,5 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 
 echo json_encode($jsonArray);
 
+//note: since no changes happen to the database, it is not backed up on this page
 ?>

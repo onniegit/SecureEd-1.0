@@ -1,8 +1,10 @@
 <?php
 	/*Ensure the database was initialized*/
-    include_once '../config/configV2.php';
+    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+    $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE , $encryptionKey = "");
 
-	/*Get information from the post request*/
+
+/*Get information from the post request*/
     $myusername = $_POST['username'];
     $mypassword = $_POST['password'];
 
@@ -65,7 +67,7 @@
         //login fail
         header("Location: ../public/index.php?login=fail");
     }
-
+//note: since the database is not changed, it is not backed up
 
 
 ?>

@@ -3,7 +3,9 @@
 session_start();
 
 /*Ensure the database was initialized and obtain db link*/
-include_once '../config/ConfigV2.php';
+$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
 
 /*Get information from the search (post) request*/
 $courseid = $_POST['courseid'];
@@ -20,6 +22,9 @@ if(!$results)
 }
 else
 {
+    //backup database
+    $db->backup($GLOBALS['dbPath'], $db, $db);
+    //redirect
     header("Location: ../public/course_search.php");
 }
 

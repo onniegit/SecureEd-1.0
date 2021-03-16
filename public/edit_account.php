@@ -1,6 +1,8 @@
 <?php
 /*Ensure the database was initialized and obtain db link*/
-include_once '../config/ConfigV2.php';
+$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
 
 /*Get information from the post request*/
 

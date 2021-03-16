@@ -6,9 +6,8 @@ function fetch() {
     data.append('lname', document.getElementById("lname").value);
     data.append('dob', document.getElementById("dob").value);
     data.append('email', document.getElementById("email").value);
-    //The two underneath need to be discussed
-    //data.append('studentyear', document.getElementById("studentyear").value);
-    //data.append('facultyrank', document.getElementById("facultyrank").value);
+    data.append('studentyear', document.getElementById("studentyear").value);
+    data.append('facultyrank', document.getElementById("facultyrank").value);
 
     // (B) AJAX SEARCH REQUEST
     var xhr = new XMLHttpRequest();
@@ -33,13 +32,18 @@ function fetch() {
             {
                 wrapper.innerHTML = "";
                 var fixedDOB = "";
+                var DOB = "";
                 for (let res of results) {
                     let row = document.createElement("span");
                     if (res['AccountType'] === "Student") {
-                        fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
+                        if(res['DOB'] !== "") //make sure DOB isn't empty or it will crash
+                        {
+                            fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
+                            DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDay() + '/' + fixedDOB.getFullYear();
+                        }
                         row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
-                                         <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
+                                         <td class="search_results_output">${DOB}</td>
                                          <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
                                          <td class="search_results_output">${res['Year']}</td>
                                          <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
@@ -47,10 +51,14 @@ function fetch() {
                     }
                     else
                         {
-                        fixedDOB = dateFromUTC(res['DOB'], '-');
+                            if(res['DOB'] !== "") //make sure DOB isn't empty or it will crash
+                            {
+                                fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
+                                DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDay() + '/' + fixedDOB.getFullYear();
+                            }
                         row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
-                                         <td class="search_results_output">${fixedDOB.getMonth()}/${fixedDOB.getDay()}/${fixedDOB.getFullYear()}</td>
+                                         <td class="search_results_output">${DOB}</td>
                                          <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
                                          <td class="search_results_output">${res['Rank']}</td>
                                          <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
@@ -81,7 +89,7 @@ function dateFromUTC( dateAsString, ymdDelimiter ) {
     //only gets year month and day from db
     return new Date( Date.UTC(
         parseInt( parts[1] )
-        , parseInt( parts[2], 10 ) - 1
+        , parseInt( parts[2], 10 )
         , parseInt( parts[3], 10 )
         , 0
         , 0

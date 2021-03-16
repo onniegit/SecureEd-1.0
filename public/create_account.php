@@ -1,6 +1,7 @@
 <?php
 /*Check if DB was initialized and grab link*/
-include_once '../config/ConfigV2.php';
+$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +103,7 @@ include_once '../config/ConfigV2.php';
                         <tr>
                             <!--Faculty Rank/Student Year-->
                             <td>
-                                <label class = "edit_acc_label" id="positionlabel"> </label>
+                                <label class = "edit_acc_label" id="positionlabel"> Rank: </label>
                             </td>
                             <td>
                                 <select name="studentyear" id="studentyear" style = "display:none;">

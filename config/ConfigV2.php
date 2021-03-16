@@ -1,8 +1,9 @@
 <?php
-$GLOBALS['db'];
- $db = new SQLite3("",  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
-   
-	if(!$db)
+$GLOBALS['dbPath'] = 'db/persistentconndb.sqlite';
+
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
+if(!$db)
 	{
       	echo $db->lastErrorMsg();
    	} 
@@ -106,7 +107,6 @@ EOF;
 
     $ret = $db->exec($sql);
     //echo "Config attempt...\n";
-    $GLOBALS['db'] = $db;
     if (!$ret) 
 	{
         echo $db->lastErrorMsg();
@@ -114,7 +114,6 @@ EOF;
 	else
     {
         // echo "Table created successfully\n";
-        $GLOBALS['db'] = $db;
     }
 
 ?>
