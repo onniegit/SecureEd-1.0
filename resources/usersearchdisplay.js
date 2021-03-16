@@ -6,8 +6,15 @@ function fetch() {
     data.append('lname', document.getElementById("lname").value);
     data.append('dob', document.getElementById("dob").value);
     data.append('email', document.getElementById("email").value);
-    data.append('studentyear', document.getElementById("studentyear").value);
-    data.append('facultyrank', document.getElementById("facultyrank").value);
+    //check if student or faculty was selected
+    if(document.getElementById("acctype").value === "Student")
+    {
+        data.append('studentyear', document.getElementById("studentyear").value);
+    }
+    else
+    {
+        data.append('facultyrank', document.getElementById("facultyrank").value);
+    }
 
     // (B) AJAX SEARCH REQUEST
     var xhr = new XMLHttpRequest();
