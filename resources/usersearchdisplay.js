@@ -40,6 +40,7 @@ function fetch() {
                 wrapper.innerHTML = "";
                 var fixedDOB = "";
                 var DOB = "";
+                var fixedStudentYear;
                 for (let res of results) {
                     let row = document.createElement("span");
                     if (res['AccountType'] === "Student") {
@@ -52,11 +53,12 @@ function fetch() {
                         {
                             DOB = "";
                         }
+                        fixedStudentYear = fixStudentYear(res['Year']);
                         row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
                                          <td class="search_results_output">${DOB}</td>
                                          <td class="search_results_output" id="email"><input type="hidden" value="${res['Email']}" name="email">${res['Email']}</input></td> 
-                                         <td class="search_results_output">${res['Year']}</td>
+                                         <td class="search_results_output">${fixedStudentYear}</td>
                                          <td class="search_results_output"><button name="Edit" id="Edit" type="submit">Edit</button></td>
                                          </tr></table></form>`;
                     }
@@ -113,3 +115,24 @@ function dateFromUTC( dateAsString, ymdDelimiter ) {
     ));
 }
 
+function fixStudentYear(studentYearAsString)
+{
+    var studentYearAsNumber = parseInt(studentYearAsString);
+
+    if(studentYearAsNumber === 1)
+    {
+        return "Freshman";
+    }
+    else if(studentYearAsNumber === 2)
+    {
+        return "Sophomore";
+    }
+    else if(studentYearAsNumber === 3)
+    {
+        return "Junior";
+    }
+    else
+    {
+        return "Senior";
+    }
+}

@@ -74,7 +74,24 @@
                         </td>
 
                         <td class="search_filter_input">
-                            <input type="text" id="facultyrank">
+                            <select name="studentyear" id="studentyear" style = "display:none;">
+                                <optgroup label="Student">
+                                    <option selected="selected" value="1" >Freshman</option>
+                                    <option value="2" >Sophomore</option>
+                                    <option value="3" >Junior</option>
+                                    <option value="4" >Senior</option>
+                                </optgroup>
+                            </select>
+                            <select name="facultyrank" id="facultyrank" style = "display:block;">
+                                <optgroup label="Faculty">
+                                    <option selected="selected" value="Instructor" >Instructor</option>
+                                    <option value="Adjunct" >Adjunct Professor</option>
+                                    <option value="Assistant" >Assistant Professor</option>
+                                    <option value="Associate" >Associate Professor</option>
+                                    <option value="Professor">Professor</option>
+                                    <option value="Emeritus">Professor Emeritus</option>
+                                </optgroup>
+                            </select>
                         </td>
                     </tr>
 
@@ -186,27 +203,21 @@
             {
                 var acctype = document.getElementById("acctype");
                 var positionlabel = document.getElementById("positionlabel");
-                var position = "";
-                if(document.getElementById("facultyrank") !== null)
-                {
-                    position = document.getElementById("facultyrank");
-                }
-                else
-                {
-                    position = document.getElementById("studentyear");
-                }
+                var studentselect = document.getElementById("studentyear");
+                var facultyselect = document.getElementById("facultyrank");
 
-
-                //change search depending on student of faculty
+                //change parts of page depending on student or faculty
                 if(acctype.options[acctype.selectedIndex].text === "Faculty")
                 {
+                    studentselect.style.display = "none";
+                    facultyselect.style.display = "inline";
                     positionlabel.innerText = "Rank:";
-                    position.id = "facultyrank"; //sends rank to the usersearchdisplay
                 }
                 else
                 {
+                    studentselect.style.display = "inline";
+                    facultyselect.style.display = "none";
                     positionlabel.innerText = "Year:";
-                    position.id = "studentyear"; //sends year to the usersearchdisplay
                 }
             }
 
@@ -215,7 +226,7 @@
                 var acctype = document.getElementById("acctype");
                 var positionresults = document.getElementById("positionresults");
 
-                //change table header depending on student of faculty
+                //change table header depending on student or faculty
                 if(acctype.options[acctype.selectedIndex].text === "Faculty")
                 {
                     positionresults.innerText = "Rank";
