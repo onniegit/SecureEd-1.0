@@ -46,7 +46,11 @@ function fetch() {
                         if(res['DOB'] !== "") //make sure DOB isn't empty or it will crash
                         {
                             fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
-                            DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDay() + '/' + fixedDOB.getFullYear();
+                            DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDate() + '/' + fixedDOB.getFullYear();
+                        }
+                        else
+                        {
+                            DOB = "";
                         }
                         row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
@@ -61,7 +65,11 @@ function fetch() {
                             if(res['DOB'] !== "") //make sure DOB isn't empty or it will crash
                             {
                                 fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
-                                DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDay() + '/' + fixedDOB.getFullYear();
+                                DOB = fixedDOB.getMonth() + '/' + fixedDOB.getDate() + '/' + fixedDOB.getFullYear();
+                            }
+                            else
+                            {
+                                DOB = "";
                             }
                         row.innerHTML = `<form method="post" action="edit_account.php"><table class="search_table"><tr>
                                          <td class="search_results_output">${res['LName']}, ${res['FName']}</td> 
