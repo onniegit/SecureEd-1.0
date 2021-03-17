@@ -105,7 +105,7 @@ function dateFromUTC( dateAsString, ymdDelimiter ) {
     return new Date( Date.UTC(
         parseInt( parts[1] )
         , parseInt( parts[2], 10 )
-        , parseInt( parts[3], 10 )
+        , parseInt( parts[3], 10 ) + 1
         , 0
         , 0
         , 0
