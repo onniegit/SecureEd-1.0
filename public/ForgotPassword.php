@@ -23,6 +23,7 @@
             </tbody>
         </table>
     </header>
+</div>>
 
     <main>
 	<br>
@@ -33,19 +34,11 @@
             <hr>
         </div>
 
-<div style="text-align:center">
 
-<div class = "emailcheck">
-<?php
-                $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                if ("emailcheck=fail" == parse_url($url, PHP_URL_QUERY))
-                {
-                    echo "The email is invalid.";
-                }
-?>
+<div id =ForgotPasswordContent>
 
-<form action="/Public/ForgotPasswordSecQ.php" method="POST">
-                    <label style="float: center" for="email">Email:&nbsp;&nbsp;</label>
-                    <input type="text" id="email" name="email"><br><br>
-                    <input type="submit" value="Submit">
 </div>
+    </main>
+
+<script src="../resources/ForgotPassword.js">
+</body>
