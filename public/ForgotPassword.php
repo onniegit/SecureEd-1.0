@@ -23,9 +23,9 @@
             </tbody>
         </table>
     </header>
-</div>>
+</div>
 
-    <main>
+
 	<br>
 
         <!--Heading-->
@@ -35,10 +35,10 @@
         </div>
 
 
-<div id =ForgotPasswordContent>
+<div id =ForgotPasswordContent style="text-align:center">
 
 </div>
-    </main>
 
-<script src="../resources/ForgotPassword.js">
+
+<script src="../resources/ForgotPassword.js"></script>
 </body>
