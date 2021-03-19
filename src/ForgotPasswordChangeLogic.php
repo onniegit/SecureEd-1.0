@@ -4,10 +4,8 @@ $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 //Variables and Email gained from user entry------------------
-
-$email= "";
-$NewPassword = ($_POST['newpassword']);
-$NewPasswordConfirm = ($_POST['confirmnewPassword']);
+$NewPassword = $_POST["newpassword"];
+$NewPasswordConfirm = $_POST["confirmpassword"];
 
 $filename ="../resources/tmp.txt";
 $file =fopen($filename,"a+");
@@ -18,7 +16,10 @@ if($NewPassword == $NewPasswordConfirm)
 {
 $query = "UPDATE User SET Password=".$NewPassword." WHERE Email ='$email'";
     $db->exec($query);
-    fclose($file);
+
+    //backup database
+    $db->backup($GLOBALS['dbPath'], $db, $db);
+
 header("Location: ../public/index.php");
 }
 

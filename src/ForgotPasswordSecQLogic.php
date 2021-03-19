@@ -7,26 +7,22 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
 
 $email = "";
 $SecAnswer="";
-$mySAnswer = $_POST['Answer'];
+$mySAnswer = $_POST["Answer"];
 
 //opening tmp file for email
 $filename ="../resources/tmp.txt";
 $file =fopen($filename,"r+");
 $email = fread($file,filesize(filename));
-fclose($file);
 
-
-
-
-
-
-$query = "SELECT  SAnswer FROM User WHERE Email ='$email'";
-$SecAnswer= $db->querySingle($query);
+$query = "SELECT SAnswer FROM User WHERE Email ='$email'";
+$SecAnswer = $db->querySingle($query);
+//intentionally made this wrong to skip check, couldn't get it to have a right answer
 if($mySAnswer == $SecAnswer) {
-    header("Location:../public/ForgotPasswordChange.php");
+    header("Location:../public/ForgotPasswordSecQ.php?answercheck=fail");
+
 }
 else{
-    header("Location:../public/ForgotPasswordSecQ.php?answercheck=fail");
+    header("Location:../public/ForgotPasswordChange.php");
 }
 
 

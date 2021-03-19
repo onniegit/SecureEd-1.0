@@ -45,7 +45,7 @@ echo "The passwords do not match";
 
 ?>
 
-<form action="../src/ForgotPasswordChangeLogic.php">
+<form action="../src/ForgotPasswordChangeLogic.php" method="POST">
     <label for="newpassword">New Password:&nbsp;&nbsp;</label>
     <input type="password" id="newpassword" name="newpassword"><br><br>
     <label for="confirmpassword">Confirm password:&nbsp;&nbsp;</label>

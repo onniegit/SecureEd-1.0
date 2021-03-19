@@ -7,10 +7,8 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
 
 $email = strtolower($_POST['email']);
 $SecQuestion="";
-$SecAnswer="";
-//$mySAnswer = "";
-//$NewPassword = "";
-//$NewPasswordConfirm = "";
+
+
 
 //checks if given email exists-------------
 $query = "SELECT COUNT(*) as count FROM User WHERE Email ='$email'";
@@ -27,6 +25,8 @@ else
     $filename ="../resources/tmp.txt";
     $file =fopen($filename,"w+");
     fwrite($file,$email);
+    $query = "SELECT SQuestion FROM User WHERE Email ='$email'";
+    $SecQuestion = $db->querySingle($query);
 
     Global $jsonArray;
     $jsonArray[0] = $email;
