@@ -9,7 +9,7 @@ if(isset($POST['submit']))
 {
     if ($_FILES['file']['name'])
     {
-        $filenames = explode(".", $_FILES['file']['name']);
+        $filename = explode(".", $_FILES['file']['name']);
 
         if ($filename[1]=='csv')
         {
