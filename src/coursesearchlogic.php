@@ -10,12 +10,19 @@
     $department = $_POST['department'];
 
         //search courses
-        $query = "SELECT * FROM Course 
+        /*$query = "SELECT * FROM Course
                     WHERE CourseID LIKE '$courseid'
                        OR CourseName LIKE '$coursename'
                        OR Semester LIKE '$semester'
                        OR Location LIKE '$department'";
-        $results = $db->query($query);
+        */
+$query = "	SELECT *
+            FROM Section
+            CROSS JOIN Course ON Section.Course = Course.Code
+            INNER JOIN User ON Section.Instructor = User.UserID
+            WHERE CRN LIKE '$courseid' OR Semester LIKE '$semester' OR Course LIKE '$department' OR CourseName LIKE '$coursename'";
+
+$results = $db->query($query);
 
 
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {

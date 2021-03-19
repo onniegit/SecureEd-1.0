@@ -286,7 +286,7 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
         var acctype = document.getElementById("acctype");
         var positionlabel = document.getElementById("positionlabel");
 
-        //change parts of page depending on student of faculty
+        //change parts of page depending on student or faculty
         if(acctype.options[acctype.selectedIndex].text === "Faculty")
         {
             studentselect.style.display = "none";

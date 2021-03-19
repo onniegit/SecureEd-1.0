@@ -34,7 +34,7 @@
 
       <?php
 
-      if($_SESSION['acctype']==="Admin")
+      if($_SESSION['acctype']===1)
       {
           echo "
             <main>
@@ -50,7 +50,7 @@
                 <button class=\"button_large\" type=\"button\" onclick=\"location.href = 'user_search.php'\">User Search</button>
             </main>";
       }
-      else if($_SESSION['acctype']==="Faculty")
+      else if($_SESSION['acctype']===2)
       {
         echo "
            <main>
@@ -64,7 +64,7 @@
                 </div>
             </main>";
       }
-      else if($_SESSION['acctype']==="Student")
+      else if($_SESSION['acctype']===3)
       {
           echo "
            <main>

@@ -9,15 +9,43 @@
     $lname = $_POST['lname'];
     $dob = $_POST['dob'];
     $email = $_POST['email'];
-    $studentyear = $_POST['studentyear']; //currently undefined
-    $facultyrank = $_POST['facultyrank']; //currently undefined
+    $studentyear = $_POST['studentyear'];
+    $facultyrank = $_POST['facultyrank'];
+
+    //handle blank values
+/*
+    if($fname === "")
+    {
+        $fname = "defaultvalue!";
+    }
+    if($lname === "")
+    {
+        $lname = "defaultvalue!";
+    }
+    if($dob === "")
+    {
+        $dob = "defaultvalue!";
+    }
+    if($email === "")
+    {
+        $email = "defaultvalue!";
+    }
+    if($studentyear === "")
+    {
+        $studentyear = "defaultvalue!";
+    }
+    if($facultyrank === "")
+    {
+        $facultyrank = "defaultvalue!";
+    }
+*/
 
     //determine account type
     if($acctype == "Student")
     {
         //send back student type search results
         $query = "SELECT * FROM User 
-                    WHERE AccountType='Student' 
+                    WHERE AccType=3
                        AND (Fname LIKE '$fname'
                        OR Lname LIKE '$lname'
                        OR DOB LIKE '$dob'
@@ -29,7 +57,7 @@
     {
         //send back faculty type search results
         $query = "SELECT * FROM User 
-                    WHERE AccountType='Faculty' 
+                    WHERE AccType=2
                        AND (Fname LIKE '$fname'
                        OR Lname LIKE '$lname'
                        OR DOB LIKE '$dob'
@@ -48,6 +76,8 @@
                        OR Rank LIKE '$facultyrank'";
         $results = $db->query($query);
     }
+
+    global $jsonArray;
 
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
     $jsonArray[] = $row;

@@ -9,16 +9,22 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
 
 /*Get information from the search (post) request*/
 $courseid = $_POST['courseid'];
-$email = $_SESSION['email'];
+$email = strtolower($_SESSION['email']);
 
-$query = "INSERT INTO CourseEnroll
-           VALUES ('$courseid','$email')";
+$query = "SELECT UserID FROM User WHERE Email = '$email'";
+$userid = $db->querySingle($query);
+
+
+
+$query = "INSERT INTO Enrollment
+       		    VALUES ('$courseid','$userid')";
 $results = $db->query($query);
 
 //is true on success and false on failure
 if(!$results)
 {
-    echo "An error occurred.";
+    //redirect back on error
+    header("Location: ../public/course_search.php?already_enrolled=true");
 }
 else
 {

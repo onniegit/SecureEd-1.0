@@ -30,7 +30,7 @@ else if($acctype === "Faculty")
 
 /*Update the database with the new info*/
 $query = "UPDATE User "
-               . "SET Email = '$email', AccountType = '$acctype', Password = '$password', FName = '$fname', LName = '$lname', DOB = '$dob', Year = '$studentyear', Rank = '$facultyrank', SQuestion = '$squestion', SAnswer = '$sanswer'"
+               . "SET Email = '$email', AccType = '$acctype', Password = '$password', FName = '$fname', LName = '$lname', DOB = '$dob', Year = '$studentyear', Rank = '$facultyrank', SQuestion = '$squestion', SAnswer = '$sanswer'"
                . "WHERE Email = '$prevemail'";
 $results = $db->query($query);
 

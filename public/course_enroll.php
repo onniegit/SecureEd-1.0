@@ -10,7 +10,11 @@ $coursename = $_POST['coursename'];
 global $error;
 global $courseArray;
 
-$query = "SELECT * FROM Course WHERE CourseName = '$coursename'";
+$query = "SELECT *
+            FROM Section
+            CROSS JOIN Course ON Section.Course = Course.Code
+            INNER JOIN User ON Section.Instructor = User.UserID
+            WHERE CourseName = '$coursename'";
 $results = $db->query($query);
 global $coursecount; //will track number of courses found
 $coursecount = 0;
@@ -125,12 +129,12 @@ else
                         //this implementation works by knowing how many columns we have
                         echo "
                                 <form method=\"post\" action=\"../src/CourseEnrollInsertLogic.php\"><table class=\"course_enroll_table\"><tr>
-                                         <td class=\"enroll_output\">${course['CourseCode']}</td>
+                                         <td class=\"enroll_output\">${course['Code']}</td>
                                          <td class=\"enroll_output\">${course['SectionLetter']}</td>
-                                         <td class=\"enroll_output\">${course['Professor']}</td>
+                                         <td class=\"enroll_output\">${course['Email']}</td>
                                          <td class=\"enroll_output\">${starttime} - ${endtime}</td>
                                          <td class=\"enroll_output\">${course['Location']}</td>
-                                         <input type=\"hidden\" value=\"${course['CourseID']}\"/>
+                                         <input type=\"hidden\" value=\"${course['CRN']}\" name='courseid' id='courseid'/>
                                          <td class=\"enroll_output\"><button name=\"Enroll\" id=\"Enroll\" type=\"submit\">Enroll</button></td>
                                          </tr></table></form>`; ";
                     }

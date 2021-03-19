@@ -26,14 +26,19 @@ else if($acctype === "Faculty")
     $studentyear = null;
 }
 
+/*Check for a valid UserID to use. Assumes Users count in order*/
+$rows = $db->query("SELECT COUNT(*) as count FROM User");
+$row = $rows->fetchArray();
+$newUserID = $row['count'] + 1; //must always be 1 higher than previous
+
 /*Check if user already exists*/
 $query = "SELECT Email FROM User WHERE Email = '$email'";
 $results = $db->query($query);
 
-if($results) //user doesn't exist
+if($results) //user doesn't already exist
 {
     /*Update the database with the new info*/
-    $query = "INSERT INTO User VALUES ('$email', '$acctype', '$password', '$fname', '$lname', '$dob', '$studentyear', '$facultyrank', '$squestion', '$sanswer')";
+    $query = "INSERT INTO User VALUES ($newUserID, '$email', '$acctype', '$password', '$fname', '$lname', '$dob', '$studentyear', '$facultyrank', '$squestion', '$sanswer')";
     $results = $db->query($query);
 }
 
