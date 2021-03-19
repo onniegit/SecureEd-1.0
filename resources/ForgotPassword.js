@@ -1,52 +1,16 @@
-var contents = document.getElementById("ForgotPasswordContent");
-const Eform = document.getElementById("emailform")
-var emailrequest = new XMLHttpRequest();
+var SecurityQuestion = document.getElementById("Secq");
 
-contents.innerHTML = '<p1>Please enter your Email</p1> <br><br>'+'<form id="emailform">'+
-    '<label style="float: center" for="email">Email:&nbsp;&nbsp;</label>'+
-    '<input type="text" id="email" name="email"><br><br>'+
-    '<input type="submit" value = "submit">';
+var xhr = new XMLHttpRequest();
+xhr.open('POST', "../src/ForgotPasswordLogic.php", true);
+xhr.onload = function () {
+ //there must be no other echos except the JSON file or JSON.parse fails
+ var results = JSON.parse(this.response);
+ renderHTML(results);
+ }
 
-
-
-document.getElementById("emailform").addEventListener("submit",emailcheck)
-
-
-
-
-function emailcheck(e)
+function renderHTML()
 {
- e.preventDefault();
-
- contents.innerHTML = '<form id="SecQform">'+
-     '<label style="float: center" for="secR">Answer:&nbsp;&nbsp;</label>'+
-     '<input type="text" id="secR" name="secR"><br><br>'+
-     '<button type="submit">Submit</button>';
- document.getElementById("SecQform").addEventListener("submit",answercheck)
+ var htmlString="test";
+SecurityQuestion.insertAdjacentHTML('beforeend',htmlString)
 }
-
-function answercheck(e)
-{
- e.preventDefault();
-
- contents.innerHTML = '<p1>Please enter your new password</p1> <br><br>'+'<form id="passwordform">'+
-     '<label style="float: center" for="newpassword">New password:&nbsp;&nbsp;</label>'+
-     '<input type="text" id="newpassword" name="newpassword"><br><br>'+
-     '<label style="float: center" for="newpasswordconfirm">New password confirm:&nbsp;&nbsp;</label>'+
-     '<input type="text" id="newpasswordconfirm" name="newpasswordconfirm"><br><br>'+
-     '<input type="submit" value="Submit">';
-  document.getElementById("passwordform").addEventListener("submit",newpassword)
-
-}
-
-
-function newpassword(e)
-{
-
- e.preventDefault();
- location.replace("../public/index.php");
-}
-
-
-
 

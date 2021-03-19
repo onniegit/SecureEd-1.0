@@ -36,10 +36,19 @@
 
 
 <div id =ForgotPasswordContent style="text-align:center">
-
+    <?php
+    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    if ("emailcheck=fail" == parse_url($url, PHP_URL_QUERY))
+    {
+        echo "The email is invalid.";
+    }
+    ?>
+    <p1>Please enter your Email</p1> <br><br>
+        <form action="../src/ForgotPasswordLogic.php" method="POST">
+        <label for="email">Email:&nbsp;&nbsp;</label>
+        <input type="text" id="email" name="email"><br><br>
+        <input type="submit" value = "submit">
+        </form>
 </div>
 
-
-<script src="../resources/ForgotPassword.js">
-</script>
 </body>

@@ -45,10 +45,11 @@ echo "The passwords do not match";
 
 ?>
 
-<form action="/public/index.php">
-		    <label style="float: center" for="newpassword">New Password:&nbsp;&nbsp;</label>
-                    <input type="text" id="newpassword" name="newpassword"><br><br>
-                    <label style="float: center" for="confirmpassword">Confirm password:&nbsp;&nbsp;</label>
-                    <input type="password" id="confirmpassword" name="confirmpassword" ><br><br>
-                    <input type="submit" value="Submit">
+<form action="../src/ForgotPasswordChangeLogic.php">
+    <label for="newpassword">New Password:&nbsp;&nbsp;</label>
+    <input type="password" id="newpassword" name="newpassword"><br><br>
+    <label for="confirmpassword">Confirm password:&nbsp;&nbsp;</label>
+    <input type="password" id="confirmpassword" name="confirmpassword" ><br><br>
+    <input type="submit" value="Submit">
+</form>
 </div>

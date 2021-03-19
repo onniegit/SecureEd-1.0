@@ -34,12 +34,9 @@
         </div>
 
 <div style="text-align:center">
-
+    <p>Who is your Favorite Relative?</p>
 <div class = "SecurityQuestion">
 <?php
-    include_once '../config/ConfigV2.php';
-	$GLOBALS['SecQuestion'];
-
                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                    if("answercheck=fail" == parse_url($url, PHP_URL_QUERY))
 			{
@@ -47,10 +44,13 @@
 			}
 
 ?>
-<p>Favorite Relative?</p>
 
-<form action="/public/ForgotPasswordChange.php" method="POST">
-                    <label style="float: center" for="Answer">Answer:&nbsp;&nbsp;</label>
-                    <input type="text" id="Answer" name="Answer"><br><br>
-                    <input type="submit" value="Submit">
+<div id="SecQ">
+</div>
+
+<form action="../src/ForgotPasswordSecQLogic.php" method="POST">
+    <label for="Answer">Answer:&nbsp;&nbsp;</label>
+    <input type="text" id="Answer" name="Answer"><br><br>
+    <input type="submit" value="Submit">
+</form>
 </div>

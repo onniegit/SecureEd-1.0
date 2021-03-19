@@ -1,13 +1,13 @@
 <?php
 //ensuring database connection
-    include_once '../config/ConfigV2.php';
+$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 //Variables and Email gained from user entry------------------
-$GLOBALS['email'];
-$GLOBALS['SecQuestion'];
-Global $email = strtolower($_POST['email']);
-Global $SecQuestion;
-//$SecAnswer = "";
+
+$email = strtolower($_POST['email']);
+$SecQuestion="";
+$SecAnswer="";
 //$mySAnswer = "";
 //$NewPassword = "";
 //$NewPasswordConfirm = "";
@@ -16,7 +16,7 @@ Global $SecQuestion;
 $query = "SELECT COUNT(*) as count FROM User WHERE Email ='$email'";
 $count = $db->querySingle($query);
 
-if($count >1)
+if($count ==0)
 {
 //Invalid Email
 header("Location: ../public/ForgotPassword.php?emailcheck=fail");
@@ -24,12 +24,21 @@ header("Location: ../public/ForgotPassword.php?emailcheck=fail");
 
 else	
 {
-$query = "SELECT  SQuestion FROM User WHERE Email ='$email'";
-Global $SecQuestion = $db->query($query);
+    $filename ="../resources/tmp.txt";
+    $file =fopen($filename,"w+");
+    fwrite($file,$email);
+
+    Global $jsonArray;
+    $jsonArray[0] = $email;
+    $jsonArray[1] = $SecQuestion;
+
+    echo json_encode($jsonArray);
+
 header("Location:../public/ForgotPasswordSecQ.php");
 }	
-     
-?>
+
+
+
 
 
 
