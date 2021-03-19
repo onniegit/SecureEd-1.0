@@ -99,19 +99,19 @@ CREATE TABLE Role
       	VALUES ('4', 'student2@email.com', '3', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('1234', 'student3@email.com', '3', 'Password5', 'John', 'Le Pew', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Mom');
+      	VALUES ('5', 'student3@email.com', '3', 'Password5', 'John', 'Le Pew', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Mom');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('1122', 'student4@email.com', '3', 'Password1', 'John', 'Smith', '1997-08-12', '3', NULL, 'Favorite Relative?', 'Dad');
+      	VALUES ('6', 'student4@email.com', '3', 'Password1', 'John', 'Smith', '1997-08-12', '3', NULL, 'Favorite Relative?', 'Dad');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('1212', 'student5@email.com', '3', 'Password5', 'John', 'Wright', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Brother');
+      	VALUES ('7', 'student5@email.com', '3', 'Password5', 'John', 'Wright', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Brother');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('9999', 'student6@email.com', '3', 'Password5', 'Link', 'Le Pew', '1998-08-11', '3', NULL, 'Favorite Relative?', 'seastar');
+      	VALUES ('8', 'student6@email.com', '3', 'Password5', 'Link', 'Le Pew', '1998-08-11', '3', NULL, 'Favorite Relative?', 'seastar');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('5235', 'student7@email.com', '3', 'Password5', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom');
+      	VALUES ('9', 'student7@email.com', '3', 'Password5', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom');
 
 /*--------------Course Values-----------------*/
     INSERT INTO Course (Code, CourseName)
