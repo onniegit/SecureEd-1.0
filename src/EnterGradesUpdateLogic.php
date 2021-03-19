@@ -19,7 +19,7 @@ if(isset($POST['submit']))
             {
                 $crn = $data[0];
                 $student_id = $data[1];
-                $grade = $data[0];
+                $grade = $data[2];
                 $query = "SELECT StudentID FROM Enrollment WHERE CRN = '$crn'";
                 $results = $db->query($query);
                 $db->exec("INSERT INTO Grade (CRN, StudentID, Grade) values ('$crn', '$student_id', '$grade')");
