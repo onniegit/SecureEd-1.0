@@ -18,11 +18,11 @@ $query = "SELECT SAnswer FROM User WHERE Email ='$email'";
 $SecAnswer = $db->querySingle($query);
 //intentionally made this wrong to skip check, couldn't get it to have a right answer
 if($mySAnswer == $SecAnswer) {
-    header("Location:../public/ForgotPasswordSecQ.php?answercheck=fail");
+    header("Location:../public/ForgotPasswordChange.php");
 
 }
 else{
-    header("Location:../public/ForgotPasswordChange.php");
+    header("Location:../public/ForgotPasswordSecQ.php?answercheck=fail");
 }
 
 

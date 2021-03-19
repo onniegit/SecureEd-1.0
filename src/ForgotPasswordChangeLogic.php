@@ -18,7 +18,7 @@ $query = "UPDATE User SET Password='$NewPassword' WHERE Email ='$email'";
     $results = $db->exec($query);
 
     //backup database
-    $db->backup($GLOBALS['dbPath'], $db, $db);
+    $db->backup($db, "temp", $GLOBALS['dbPath']);
 
 header("Location: ../public/index.php");
 }
