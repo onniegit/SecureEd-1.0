@@ -1,9 +1,10 @@
 <?php
 /*Ensure the database was initialized and obtain db link*/
+global $db;
 $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
-$crn = $_POST['crn'];
+
 
 if(isset($POST['submit']))
 {
@@ -17,18 +18,21 @@ if(isset($POST['submit']))
 
             while ($data = fgetcsv($handle))
             {
-                $student_id = $data[0];
-                $grade = $data[1];
+                $crn = $data[0];
+                $student_id = $data[1];
+                $grade = $data[2];
+                $query = "SELECT StudentID FROM Enrollment WHERE CRN = '$crn'";
+                $results = $db->query($query);
                 $db->exec("INSERT INTO Grade (CRN, StudentID, Grade) values ('$crn', '$student_id', '$grade')");
             }
-
             fclose($handle);
+            //backup database
+            $db->backup($db,"temp","../db/persistentconndb.sqlite");
             echo "Grades have been updated.";
         }
     }
 }
 
-    //backup database
-    $db->backup($GLOBALS['dbPath'], $db, $db);
+
     //redirect
     header("Location: ../public/dashboard.php");
