@@ -1,6 +1,6 @@
 var pagetype = 1;
 var contents = document.getElementById("ForgotPasswordContent");
-var emailform = document.getElementById("emailform")
+const emailform = document.getElementById("emailform")
 var emailrequest = new XMLHttpRequest();
 
 
@@ -21,13 +21,11 @@ function newpassword(e)
    contents.innerHTML = '<p1>Please enter your Email</p1> <br><br>'+'<form id="emailform">'+
      '<label style="float: center" for="email">Email:&nbsp;&nbsp;</label>'+
      '<input type="text" id="email" name="email"><br><br>'+
-       '<button type="submit" id= "submit1">Submit</button>';
-
-   emailform.addEventListener("submit",emailcheck)
+       '<input type="submit" value = "Submit">';
 
  }
 
-
+emailform.addEventListener("submit",emailcheck)
 
 
 

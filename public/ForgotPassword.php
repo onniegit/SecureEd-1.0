@@ -40,5 +40,6 @@
 </div>
 
 
-<script src="../resources/ForgotPassword.js"></script>
+<script src="../resources/ForgotPassword.js">
+</script>
 </body>
