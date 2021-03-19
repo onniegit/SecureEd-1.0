@@ -12,7 +12,7 @@ $mySAnswer = $_POST["Answer"];
 //opening tmp file for email
 $filename ="../resources/tmp.txt";
 $file =fopen($filename,"r+");
-$email = fread($file,filesize(filename));
+$email = fread($file,filesize($filename));
 
 $query = "SELECT SAnswer FROM User WHERE Email ='$email'";
 $SecAnswer = $db->querySingle($query);

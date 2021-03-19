@@ -9,13 +9,13 @@ $NewPasswordConfirm = $_POST["confirmpassword"];
 
 $filename ="../resources/tmp.txt";
 $file =fopen($filename,"a+");
-$filesize = filesize(filename);
+$filesize = filesize($filename);
 $email = fread($file,$filesize);
 
 if($NewPassword == $NewPasswordConfirm)
 {
-$query = "UPDATE User SET Password=".$NewPassword." WHERE Email ='$email'";
-    $db->exec($query);
+$query = "UPDATE User SET Password='$NewPassword' WHERE Email ='$email'";
+    $results = $db->exec($query);
 
     //backup database
     $db->backup($GLOBALS['dbPath'], $db, $db);
