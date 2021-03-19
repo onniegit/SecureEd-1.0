@@ -21,11 +21,12 @@
 
     if($results !== false) //query failed check
     {
-        if (($userinfo = $results->fetchArray()) !== null) //checks if rows exist
+        if (($userinfo = $results->fetchArray()) !== (null || false)) //checks if rows exist
         {
             // users or user found
             $error = false;
-            $acctype = $userinfo[1];
+            global $acctype;
+            $acctype = $userinfo[2];
         }
         else
         {

@@ -16,94 +16,118 @@ if(!$db)
       
 CREATE TABLE User
       	(
-	Email		TEXT 	PRIMARY KEY     NOT NULL	UNIQUE,
-	AccountType    	TEXT    NOT NULL,
+	UserID	    	INT	    PRIMARY KEY     NOT NULL	UNIQUE,
+	Email		    TEXT 	NOT NULL	UNIQUE,
+	AccType    	    INT     NOT NULL,
 	Password    	TEXT    NOT NULL,      		
 	FName          	TEXT    NOT NULL,
 	LName           TEXT    NOT NULL,
-	DOB		TEXT	NOT NULL,
-      	Year		INT,
-	Rank		TEXT,
-	SQuestion	TEXT	NOT NULL,
-	SAnswer		TEXT	NOT NULL
+	DOB		        TEXT	NOT NULL,
+    Year		    INT,
+	Rank		    TEXT,
+	SQuestion	    TEXT	NOT NULL,
+	SAnswer		    TEXT	NOT NULL,
+	FOREIGN KEY (AccType) REFERENCES Role (RoleID) ON
+    		DELETE SET NULL ON UPDATE CASCADE
 	);
 
-CREATE TABLE Course
+CREATE TABLE Section
     (
-	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
-	CourseName      TEXT    NOT NULL,
-	CourseCode      TEXT    NOT NULL,
-	SectionLetter   TEXT    NOT NULL,
+	CRN		        INT 	PRIMARY KEY     NOT NULL	UNIQUE,
+	Instructor	    TEXT,
+	Course		    TEXT	NOT NULL,
 	Semester    	TEXT    NOT NULL,
-	StartTime	TEXT	NOT NULL,
-	EndTime		TEXT	NOT NULL,
-    	Location	TEXT	NOT NULL,
-	Professor    	TEXT,      		
-	FOREIGN KEY (Professor) REFERENCES User (Email) ON
+	SectionLetter	TEXT	NOT NULL,
+	StartTime	    TEXT	NOT NULL,
+	EndTime		    TEXT	NOT NULL,
+	Year		    TEXT	NOT NULL,
+    Location    	TEXT	NOT NULL,
+	FOREIGN KEY (Course) REFERENCES Course (Code) ON
+    		DELETE SET NULL ON UPDATE CASCADE,	    		
+	FOREIGN KEY (Instructor) REFERENCES User (UserID) ON
     		DELETE SET NULL ON UPDATE CASCADE
 	);
     
-CREATE TABLE CourseEnroll
+CREATE TABLE Enrollment
     	(
-	CourseID	INT 	PRIMARY KEY     NOT NULL	UNIQUE,
-	Student		TEXT    NOT NULL,		
-	FOREIGN KEY (Student) REFERENCES User (Email) ON
-    		DELETE SET NULL ON UPDATE CASCADE
-	FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON
+	CRN		    INT     NOT NULL	UNIQUE,
+	StudentID	TEXT    NOT NULL	UNIQUE,	
+	PRIMARY KEY(CRN,StudentID), 	
+	FOREIGN KEY (StudentID) REFERENCES User (UserID) ON
+    		DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (CRN) REFERENCES Section (CRN) ON
     		DELETE SET NULL ON UPDATE CASCADE
 	);
 	
 CREATE TABLE Grade
       	(
-	CourseID	INT     NOT NULL	UNIQUE,
-	StudentEmail	TEXT    NOT NULL,
-    	LetterGrade	TEXT	NOT NULL,
-	PRIMARY KEY(CourseID,StudentEmail),  		
-	FOREIGN KEY (StudentEmail) REFERENCES User (Email) ON
-    		DELETE SET NULL ON UPDATE CASCADE
-	FOREIGN KEY (CourseID) REFERENCES Course (CourseID) ON
+	CRN		    INT     NOT NULL	UNIQUE,
+	StudentID	INT     NOT NULL,
+    Grade		TEXT	NOT NULL,
+	PRIMARY KEY(CRN,StudentID),  		
+	FOREIGN KEY (StudentID) REFERENCES User (UserID) ON
+    		DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (CRN) REFERENCES Section (CRN) ON
     		DELETE SET NULL ON UPDATE CASCADE
 	);
 
+CREATE TABLE Course
+      	(
+	Code		TEXT	PRIMARY KEY 	NOT NULL	UNIQUE,
+	CourseName	TEXT	NOT NULL
+	);
+
+CREATE TABLE Role
+      	(
+	RoleID		INT	    PRIMARY KEY 	NOT NULL	UNIQUE,
+	Role		TEXT	NOT NULL
+	);
 
 /*--------------User Values-----------------*/
 /*---------Emails must be lowercase---------*/
-	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
+/*--------UserID must be sequential---------*/
+	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('1', 'admin@email.com', 'Admin', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
 
-	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('scienceguy@email.com', 'Faculty', 'Password2', 'Bill', 'Nye', '1955-11-27', NULL, 'Associate Professor', 'Favorite Relative?', 'Charity Nye');
+	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('2', 'scienceguy@email.com', 'Faculty', 'Password2', 'Bill', 'Nye', '1955-11-27', NULL, 'Associate Professor', 'Favorite Relative?', 'Charity Nye');
 	
-	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
+	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('3', 'student@email.com', 'Student', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 
-	INSERT INTO User (Email, AccountType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('student2@email.com', 'Student', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
+	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('4', 'student2@email.com', 'Student', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
 
 /*--------------Course Values-----------------*/
-	INSERT INTO Course (CourseID, CourseName, CourseCode, SectionLetter, Semester, StartTime, EndTime, Location, Professor)
-      	VALUES ('123', 'Intro to CyberSecurity', 'CYBR2200' , 'A', 'Fall 2030', '08:30:00', '09:45:00', 'Building A', 'DrProfessor@email.com');
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 2200', 'Intro to CyberSecurity');
 
-	INSERT INTO Course (CourseID, CourseName, CourseCode, SectionLetter, Semester, StartTime, EndTime, Location, Professor)
-      	VALUES ('456', 'Intermediate CyberSecurity', 'CYBR2480' ,'B', 'Spring 2030', '13:30:00', '14:45:00', 'Building A', 'DrProfessor@email.com');
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 2480', 'Intermediate CyberSecurity');
+
+/*--------------Section Values-----------------*/
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('123', '2', 'CYBR 2200' , 'Fall', 'A', '08:30:00', '09:45:00', '2030','Building A');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('456', '2', 'CYBR 2480', 'Spring', 'B','13:30:00', '14:45:00', '2030', 'Building A');
 
 
 /*--------------CourseEnroll Values-----------------*/
-	INSERT INTO CourseEnroll (CourseID, Student)
-      	VALUES ('123', 'student@email.com');
-
-	INSERT INTO CourseEnroll (CourseID, Student)
-      	VALUES ('456', 'student@email.com');
+	INSERT INTO Enrollment (CRN, StudentID)
+      	VALUES ('123', '4');
 
 
 /*--------------Grade Values-----------------*/
-	INSERT INTO Grade (CourseID, StudentEmail, LetterGrade)
-      	VALUES ('123', 'student@email.com', 'D');
+	INSERT INTO Grade (CRN, StudentID, Grade)
+      	VALUES ('123', '3', 'C');
 
-	INSERT INTO Grade (CourseID, StudentEmail, LetterGrade)
-      	VALUES ('456', 'student@email.com', 'F');
-
+	INSERT INTO Grade (CRN, StudentID, Grade)
+      	VALUES ('456', '4', 'F');
 EOF;
+
+
+
 
     $ret = $db->exec($sql);
     //echo "Config attempt...\n";
@@ -113,7 +137,7 @@ EOF;
 	}
 	else
     {
-        // echo "Table created successfully\n";
+        // Tables created successfully.
     }
 
 ?>
