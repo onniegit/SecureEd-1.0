@@ -53,3 +53,7 @@ echo "The passwords do not match";
     <input type="submit" value="Submit">
 </form>
 </div>
+
+    </main>
+</div>
+</body>
