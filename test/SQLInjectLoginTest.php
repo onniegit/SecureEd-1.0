@@ -108,7 +108,7 @@
         else if(sqlinject.options[sqlinject.selectedIndex].text === "Delete user table")
         {
             injectiondiv.innerHTML = "<p>Statement to execute: </p> " +
-                "<p>Select * FROM User WHERE Email='student@email.com' AND Password=' OR 1=1; DROP TABLE User;</p>" +
+                "<p>Select * FROM User WHERE Email='student@email.com' AND Password= Password3'; DROP TABLE User;</p>" +
                 "<p>Intended result: Drops the User table after logging in </p>" +
                 "<p>Actual result: Logs in, but does not drop user table. query seems to not support batch instructions. </p>";
             usernamefield.value = "student@email.com";
