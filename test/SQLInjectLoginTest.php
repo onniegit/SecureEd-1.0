@@ -112,7 +112,7 @@
                 "<p>Intended result: Drops the User table after logging in </p>" +
                 "<p>Actual result: Logs in, but does not drop user table. query seems to not support batch instructions. </p>";
             usernamefield.value = "student@email.com";
-            passwordfield.value = "' OR 1=1; DROP TABLE User";
+            passwordfield.value = "Password3'; DROP TABLE User;";
         }
         else if(sqlinject.options[sqlinject.selectedIndex].text === "No credentials")
         {

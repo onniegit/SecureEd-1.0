@@ -10,6 +10,8 @@
 
 
     $myusername = strtolower($myusername); //makes username noncase-sensitive
+    global $acctype;
+
 
     //query for count
     $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND Password='$mypassword'";
@@ -25,23 +27,25 @@
         {
             // users or user found
             $error = false;
-            global $acctype;
+
             $acctype = $userinfo[2];
         }
         else
         {
             // user was not found
             $error = true;
+
         }
     }
     else
     {
         //query failed
         $error = true;
+
     }
 
     //determine if an account that met the credentials was found
-    if($count==1 && !$error)
+    if($count>=1 && !$error)
     {
         //login success
 
