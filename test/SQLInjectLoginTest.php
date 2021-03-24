@@ -64,6 +64,8 @@
                 <p>Statement to execute: </p>
                 <p>Select * FROM User WHERE Email='admin@email.com'–-' AND Password='';</p>
                 <p>Intended result: Ignores AND Password='' because -- is a comment </p>
+                <p>Actual result: Same as intended </p>
+
 
             </div>
         </div>
