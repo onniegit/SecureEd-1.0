@@ -113,6 +113,9 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
       	VALUES ('9', 'student7@email.com', '3', 'Password5', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom');
 
+	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+      	VALUES ('10', 'cyberperson@email.com', '2', 'Password2', 'Cherryll', 'Young', '1855-05-15', NULL, 'Associate', 'Favorite Relative?', 'Bobby');
+
 /*--------------Course Values-----------------*/
     INSERT INTO Course (Code, CourseName)
     VALUES ('CYBR 2200', 'Intro to CyberSecurity');
@@ -120,13 +123,35 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
     INSERT INTO Course (Code, CourseName)
     VALUES ('CYBR 2480', 'Intermediate CyberSecurity');
 
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 3501', 'Intermediate CyberSecurity II');
+
+
 /*--------------Section Values-----------------*/
 	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
       	VALUES ('123', '2', 'CYBR 2200' , 'Fall', 'A', '08:30:00', '09:45:00', '2030','Building A');
 
 	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
-      	VALUES ('456', '2', 'CYBR 2480', 'Spring', 'B','13:30:00', '14:45:00', '2030', 'Building A');
+      	VALUES ('456', '10', 'CYBR 2480', 'Spring', 'A','13:30:00', '14:45:00', '2030', 'Building A');
 
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1233', '2', 'CYBR 2480', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1113', '10', 'CYBR 2480', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1343', '2', 'CYBR 2200' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1233', '10', 'CYBR 3501', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1113', '10', 'CYBR 3501', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
+
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1343', '2', 'CYBR 3501' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
 
 /*--------------CourseEnroll Values-----------------*/
 	INSERT INTO Enrollment (CRN, StudentID)
