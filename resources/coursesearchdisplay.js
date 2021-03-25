@@ -36,9 +36,9 @@ function fetch() {
                     endtime = timeToDate(res['EndTime'], ':')
 
                 row.innerHTML = `<form method="post" action="course_enroll.php"><table class="course_search_table"><tr>
-                                         <td class="course_search_results_output">${res['CourseName']}</td> 
-                                         <td class="course_search_results_output"><input type="hidden" value="${res['CourseID']}" name="courseid">${res['CourseID']}</input></td>
-                                         <td class="course_search_results_output">${res['Professor']}</td> 
+                                         <td class="course_search_results_output"><input type="hidden" value="${res['CourseName']}" name="coursename">${res['CourseName']}</input></td> 
+                                         <td class="course_search_results_output">${res['CRN']}</td>
+                                         <td class="course_search_results_output">${res['Email']}</td> 
                                          <td class="course_search_results_output">${dateToTime(starttime)} - ${dateToTime(endtime)}</td> 
                                          <td class="course_search_results_output">${res['Location']}</td>
                                          <td class="course_search_results_output"><button name="Enroll" id="Enroll" type="submit">Enroll</button></td>
