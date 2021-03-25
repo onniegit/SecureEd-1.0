@@ -32,14 +32,28 @@ $row = $rows->fetchArray();
 $newUserID = $row['count'] + 1; //must always be 1 higher than previous
 
 /*Check if user already exists*/
-$query = "SELECT Email FROM User WHERE Email = '$email'";
-$results = $db->query($query);
+$query = "SELECT Email FROM User WHERE Email = :email";
+$stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
+$stmt->bindValue(':email', $email);
+$results = $stmt->execute();
 
 if($results) //user doesn't already exist
 {
     /*Update the database with the new info*/
-    $query = "INSERT INTO User VALUES ($newUserID, '$email', '$acctype', '$password', '$fname', '$lname', '$dob', '$studentyear', '$facultyrank', '$squestion', '$sanswer')";
-    $results = $db->query($query);
+    $query = "INSERT INTO User VALUES (:newUserID, :email, :acctype, :password, :fname, :lname, :dob, :studentyear, :facultyrank, :squestion, :sanswer)";
+    $stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
+    $stmt->bindParam(':newUserID', $newUserID, SQLITE3_INTEGER);
+    $stmt->bindParam(':email', $email, SQLITE3_TEXT);
+    $stmt->bindParam(':acctype', $acctype, SQLITE3_INTEGER);
+    $stmt->bindParam(':password', $password, SQLITE3_TEXT);
+    $stmt->bindParam(':fname', $fname, SQLITE3_TEXT);
+    $stmt->bindParam(':lname', $lname, SQLITE3_TEXT);
+    $stmt->bindParam(':dob', $dob, SQLITE3_TEXT);
+    $stmt->bindParam(':studentyear', $studentyear, SQLITE3_INTEGER);
+    $stmt->bindParam(':facultyrank', $facultyrank, SQLITE3_TEXT);
+    $stmt->bindParam(':squestion', $squestion, SQLITE3_TEXT);
+    $stmt->bindParam(':sanswer', $sanswer, SQLITE3_TEXT);
+    $results = $stmt->execute();
 }
 
 //is true on success and false on failure (can fail in either query)
@@ -50,7 +64,7 @@ if(!$results)
 else
 {
     //backup database
-    $db->backup($GLOBALS['dbPath'], $db, $db);
+    $db->backup($db, "temp", $GLOBALS['dbPath']);
     //redirect
     header("Location: ../public/dashboard.php");
 }

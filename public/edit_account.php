@@ -8,8 +8,10 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
 
 $prevemail = strtolower($_POST['email']);
 
-$query = "SELECT * FROM User WHERE Email = '$prevemail'";
-$results = $db->query($query);
+$query = "SELECT * FROM User WHERE Email = :prevemail";
+$stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
+$stmt->bindParam(':prevemail', $prevemail, SQLITE3_TEXT);
+$results = $stmt->execute();
 
 if($results !== false) //check if query failed
 {

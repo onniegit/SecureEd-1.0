@@ -30,9 +30,21 @@ else if($acctype === "Faculty")
 
 /*Update the database with the new info*/
 $query = "UPDATE User "
-               . "SET Email = '$email', AccType = '$acctype', Password = '$password', FName = '$fname', LName = '$lname', DOB = '$dob', Year = '$studentyear', Rank = '$facultyrank', SQuestion = '$squestion', SAnswer = '$sanswer'"
-               . "WHERE Email = '$prevemail'";
-$results = $db->query($query);
+               . "SET Email = :email, AccType = :acctype, Password = :password, FName = :fname, LName = :lname, DOB = :dob, Year = :studentyear, Rank = :facultyrank, SQuestion = :squestion, SAnswer = :sanswer"
+               . "WHERE Email = :prevemail";
+$stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
+$stmt->bindParam(':email', $email, SQLITE3_TEXT);
+$stmt->bindParam(':acctype', $acctype, SQLITE3_INTEGER);
+$stmt->bindParam(':password', $password, SQLITE3_TEXT);
+$stmt->bindParam(':fname', $fname, SQLITE3_TEXT);
+$stmt->bindParam(':lname', $lname, SQLITE3_TEXT);
+$stmt->bindParam(':dob', $dob, SQLITE3_TEXT);
+$stmt->bindParam(':studentyear', $studentyear, SQLITE3_INTEGER);
+$stmt->bindParam(':facultyrank', $facultyrank, SQLITE3_TEXT);
+$stmt->bindParam(':squestion', $squestion, SQLITE3_TEXT);
+$stmt->bindParam(':sanswer', $sanswer, SQLITE3_TEXT);
+$stmt->bindParam(':prevemail', $prevemail, SQLITE3_TEXT);
+$results = $stmt->execute();
 
 //is true on success and false on failure
 if(!$results)
@@ -42,7 +54,7 @@ if(!$results)
 else
 {
     //backup database
-    $db->backup($GLOBALS['dbPath'], $db, $db);
+    $db->backup($db, "temp", $GLOBALS['dbPath']);
     //redirect
     header("Location: ../public/user_search.php");
 

@@ -1,9 +1,3 @@
-<?php
-/*Check if DB was initialized and grab link*/
-$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
