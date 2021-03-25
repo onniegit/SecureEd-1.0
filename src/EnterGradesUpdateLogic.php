@@ -4,8 +4,6 @@ global $db;
 $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
-
-
 if(isset($POST['submit']))
 {
     if ($_FILES['file']['name'])
@@ -16,13 +14,11 @@ if(isset($POST['submit']))
         {
             $handle = fopen($_FILES['file']['tmp_name'],"r");
 
+            $crn = $_POST['crn'];
             while ($data = fgetcsv($handle))
             {
-                $crn = $data[0];
-                $student_id = $data[1];
-                $grade = $data[2];
-                $query = "SELECT StudentID FROM Enrollment WHERE CRN = '$crn'";
-                $results = $db->query($query);
+                $student_id = $data[0];
+                $grade = $data[1];
                 $db->exec("INSERT INTO Grade (CRN, StudentID, Grade) values ('$crn', '$student_id', '$grade')");
             }
             fclose($handle);
