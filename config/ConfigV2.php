@@ -139,6 +139,16 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
 
 	INSERT INTO Grade (CRN, StudentID, Grade)
       	VALUES ('456', '4', 'F');
+      	
+/*--------------Role Values-----------------*/
+	INSERT INTO Role (RoleID, Role)
+      	VALUES ('1', 'Admin');
+      	
+    INSERT INTO Role (RoleID, Role)
+      	VALUES ('2', 'Faculty');
+      	
+    INSERT INTO Role (RoleID, Role)
+      	VALUES ('3', 'Student');
 EOF;
 
 
