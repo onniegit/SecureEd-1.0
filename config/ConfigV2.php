@@ -144,14 +144,14 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
       	VALUES ('1343', '2', 'CYBR 2200' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
 
 	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
-      	VALUES ('1233', '10', 'CYBR 3501', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
+      	VALUES ('1453', '10', 'CYBR 3501', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
 
 	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
-      	VALUES ('1113', '10', 'CYBR 3501', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
+      	VALUES ('113', '10', 'CYBR 3501', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
 
 
 	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
-      	VALUES ('1343', '2', 'CYBR 3501' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
+      	VALUES ('5000', '2', 'CYBR 3501' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
 
 /*--------------CourseEnroll Values-----------------*/
 	INSERT INTO Enrollment (CRN, StudentID)
