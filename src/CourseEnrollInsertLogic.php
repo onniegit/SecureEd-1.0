@@ -29,7 +29,7 @@ if(!$results)
 else
 {
     //backup database
-    $db->backup($GLOBALS['dbPath'], $db, $db);
+    $db->backup($db, "temp", $GLOBALS['dbPath']);
     //redirect
     header("Location: ../public/course_search.php");
 }
