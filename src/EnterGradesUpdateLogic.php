@@ -5,7 +5,7 @@ $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 if (isset($_POST['submit'])) {
-    echo $_FILES;
+    echo $_FILES['filename'];
     $handle = fopen($_FILES['filename']['type'], "r");
     echo "<br>handle = " . $handle;
     $headers = fgetcsv($handle, 9001, ",");
