@@ -1,0 +1,205 @@
+<?php
+$GLOBALS['dbPath'] = 'db/persistentconndb.sqlite';
+
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
+if(!$db)
+	{
+      	echo $db->lastErrorMsg();
+   	} 
+	else 
+	{
+      	//echo "Opened database successfully\n";
+   	}
+
+   $sql =<<<EOF
+      
+CREATE TABLE User
+      	(
+	UserID	    	INT	    PRIMARY KEY     NOT NULL	UNIQUE,
+	Email		    TEXT 	NOT NULL	UNIQUE,
+	AccType    	    INT     NOT NULL,
+	Password    	TEXT    NOT NULL,      		
+	FName          	TEXT    NOT NULL,
+	LName           TEXT    NOT NULL,
+	DOB		        TEXT	NOT NULL,
+    Year		    INT,
+	Rank		    TEXT,
+	SQuestion	    TEXT	NOT NULL,
+	SAnswer		    TEXT	NOT NULL,
+	FOREIGN KEY (AccType) REFERENCES Role (RoleID) ON
+    		DELETE SET NULL ON UPDATE CASCADE
+	);
+
+CREATE TABLE Section
+    (
+	CRN		        INT 	PRIMARY KEY     NOT NULL	UNIQUE,
+	Instructor	    TEXT,
+	Course		    TEXT	NOT NULL,
+	Semester    	TEXT    NOT NULL,
+	SectionLetter	TEXT	NOT NULL,
+	StartTime	    TEXT	NOT NULL,
+	EndTime		    TEXT	NOT NULL,
+	Year		    TEXT	NOT NULL,
+    Location    	TEXT	NOT NULL,
+	FOREIGN KEY (Course) REFERENCES Course (Code) ON
+    		DELETE SET NULL ON UPDATE CASCADE,	    		
+	FOREIGN KEY (Instructor) REFERENCES User (UserID) ON
+    		DELETE SET NULL ON UPDATE CASCADE
+	);
+    
+CREATE TABLE Enrollment
+    	(
+	CRN		    INT     NOT NULL,
+	StudentID	TEXT    NOT NULL,	
+	PRIMARY KEY(CRN,StudentID), 	
+	FOREIGN KEY (StudentID) REFERENCES User (UserID) ON
+    		DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (CRN) REFERENCES Section (CRN) ON
+    		DELETE SET NULL ON UPDATE CASCADE
+	);
+	
+CREATE TABLE Grade
+      	(
+	CRN		    INT     NOT NULL	UNIQUE,
+	StudentID	INT     NOT NULL,
+    Grade		TEXT	NOT NULL,
+	PRIMARY KEY(CRN,StudentID),  		
+	FOREIGN KEY (StudentID) REFERENCES User (UserID) ON
+    		DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY (CRN) REFERENCES Section (CRN) ON
+    		DELETE SET NULL ON UPDATE CASCADE
+	);
+
+CREATE TABLE Course
+      	(
+	Code		TEXT	PRIMARY KEY 	NOT NULL	UNIQUE,
+	CourseName	TEXT	NOT NULL
+	);
+
+CREATE TABLE Role
+      	(
+	RoleID		INT	    PRIMARY KEY 	NOT NULL	UNIQUE,
+	Role		TEXT	NOT NULL
+	);
+
+/*--------------User Values-----------------*/
+/*---------Emails must be lowercase---------*/
+/*--------UserID must be sequential---------*/
+    INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
+
+        /*Admin*/
+        SELECT '000000000' AS UserID, 'admin@email.com' AS Email, '1' AS AccType, 'abc123' AS Password, 'John' AS FName, 'Doe' AS LName, '2001-04-10' AS DOB, NULL AS Year, NULL AS Rank, 'Favorite relative?' AS SQuestion, 'Bobsmyuncle' AS SAnswer
+
+
+        /*Faculty - template: UNION ALL SELECT '927', 'EMAIL', 'ACCTYPE', 'PASSWORD', 'FNAME', 'LNAME', 'DOB', NULL, 'RANK', 'SQUESTION', 'SANSWER'*/
+        UNION SELECT '927902403', 'professor@email.com', '2', 'abc123', 'Professor', 'Guy', '1969-04-20', NULL, 'Professor', 'This is a question!', 'And Gondor shall answer.'
+        /*
+        UNION SELECT '927144347', 'scienceguy@email.com', '2', 'Password2', 'Bill', 'Nye', '1959-11-27', NULL, 'Adjunct', 'SQUESTION', 'SANSWER'
+        UNION SELECT '927230962', 'jsmith@gmail.com', '2', 'PASSWORD', 'John', 'Smith', '1580-01-06', NULL, 'RANK', 'SQUESTION', 'SANSWER'
+        UNION SELECT '927542823', 'crazyhair@yahoo.com', '2', 'PASSWORD', 'Albert', 'Einstein', 'DOB', NULL, 'RANK', 'SQUESTION', 'SANSWER'
+        UNION SELECT '927232191', 'bigmang@usa.gov', '2', 'FREEDOM1776', 'George', 'Washington', 'DOB', NULL, 'RANK', 'What''s the best country ever?', 'USA! USA! USA!'
+        UNION SELECT '927957825', 'batman@fbi.gov', '2', 'PASSWORD', 'Bruce', 'Wayne', 'DOB', 'YEAR', NULL, 'SQUESTION', 'SANSWER'
+        UNION SELECT '927676786', 'aaaaaa@aaa.aaa', '2', 'PASSWORD', 'Eduard', 'Khil', 'DOB', 'YEAR', NULL, 'SQUESTION', 'SANSWER'
+        UNION SELECT '927318399', 'crazycatlady@hotmail.com', '2', 'catsarethebestomgwtf', 'Angela', 'Martin', 'DOB', NULL, 'RANK', 'What''s your favorite animal?', 'CATS OMG'
+        UNION SELECT '927161515', 'historynerd@hotmail.com', '2', 'PASSWORD', 'FNAME', 'LNAME', 'DOB', NULL, 'RANK', 'SQUESTION', 'SANSWER'
+        UNION SELECT '927321692', 'rm80@pirates.cove', '2', 'PASSWORD', 'FNAME', 'LNAME', 'DOB', NULL, 'RANK', 'SQUESTION', 'SANSWER'
+        */
+
+
+        /*Students - template: UNION ALL SELECT '927', 'EMAIL', 'ACCTYPE', 'PASSWORD', 'FNAME', 'LNAME', 'DOB', 'YEAR', NULL, 'SQUESTION', 'SANSWER'*/
+        UNION SELECT '927565074', 'student@email.com', '2', 'abc123', 'Student', 'Guy', '1969-04-20', '1', NULL, 'Where was Gondor when the Westfold fell?', 'gone fishing'
+        UNION SELECT '927066652', 'dwang@email.com', '2', 'abc123', 'Daisy', 'Wang', '1966-04-09', '3', NULL, 'What time is it?', 'time to get a watch'
+        UNION SELECT '927600214', 'lquintana@email.com', '2', 'abc123', 'Linda', 'Quintana', '1967-05-08', '4', NULL, 'This is a question?', 'sure seems like it'
+        UNION SELECT '927535222', 'charmon@email.com', '2', 'abc123', 'Chance', 'Harmon', '1989-08-09', '2', NULL, 'Who is your best friend?', 'Alejandro'
+        UNION SELECT '927829999', 'kduffy@email.com', '2', 'abc123', 'Kane', 'Duffy', '2002-01-02', '1', NULL, 'What''s your favorite fruit?', 'bananas'
+        UNION SELECT '927190481', 'ivargas@email.com', '2', 'abc123', 'Izzy', 'Vargas', '1999-03-21', '1', NULL, 'Who was your favorite teacher?', 'Mrs. Thompson'
+        UNION SELECT '927410321', 'iwalls@email.com', '2', 'abc123', 'Iain', 'Walls', '1992-04-20', '2', NULL, 'What''s your mom''s maiden name?', 'Dorito'
+        UNION SELECT '927620146', 'dsantiago@email.com', '2', 'abc123', 'Duane', 'Santiago', '1996-01-19', '3', NULL, 'Che cazzo fai?', 'Sto fare i cazzi miei, stronzo.'
+        UNION SELECT '927888080', 'mlang@email.com', '2', 'abc123', 'Mathilde', 'Lang', '1985-02-15', '4', NULL, 'This is a question?', 'i think so'
+        UNION SELECT '927694539', 'mbooth@email.com', '2', 'abc123', 'Mason', 'Booth', '1990-06-11', '2', NULL, 'What is your hometown?', 'Flavortown'
+        UNION SELECT '927671464', 'plepew@email.com', '3', 'Password4', 'Pepe', 'Le Pew', '1975-04-12', '3', NULL, 'Favorite Relative?', 'PituLePew'
+        UNION SELECT '927830127', 'jlepewt3@email.com', '3', 'Password5', 'John', 'Le Pew', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Mom'
+        UNION SELECT '927201552', 'jsmith@email.com', '3', 'Password1', 'John', 'Smith', '1997-08-12', '3', NULL, 'Favorite Relative?', 'Dad'
+        UNION SELECT '927237023', 'jwright@email.com', '3', 'Password5', 'John', 'Wright', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Brother'
+        UNION SELECT '927512079', 'llepew@email.com', '3', 'Password5', 'Link', 'Le Pew', '1998-08-11', '3', NULL, 'Favorite Relative?', 'seastar'
+        UNION SELECT '927369978', 'ssmitherson7@email.com', '3', 'Password5', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom'
+        UNION SELECT '927790514', 'cyoung@email.com', '2', 'Password2', 'Cheryl', 'Young', '1855-05-15', NULL, 'Associate', 'Favorite Relative?', 'Bobby'
+    ;
+        
+
+/*--------------Course Values-----------------*/
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 2200', 'Intro to CyberSecurity');
+
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 2480', 'Intermediate CyberSecurity');
+
+    INSERT INTO Course (Code, CourseName)
+    VALUES ('CYBR 3501', 'Intermediate CyberSecurity II');
+
+
+/*--------------Section Values-----------------*/
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('123', '2', 'CYBR 2200' , 'Fall', 'A', '08:30:00', '09:45:00', '2030','Building A');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('456', '10', 'CYBR 2480', 'Spring', 'A','13:30:00', '14:45:00', '2030', 'Building A');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1233', '2', 'CYBR 2480', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1113', '10', 'CYBR 2480', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1343', '2', 'CYBR 2200' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('1453', '10', 'CYBR 3501', 'Spring', 'B','15:30:00', '16:45:00', '2030', 'Building 51');
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('113', '10', 'CYBR 3501', 'Spring', 'C','12:30:00', '13:45:00', '2030', 'Building C');
+
+
+	INSERT INTO Section (CRN, Instructor, Course,  Semester, SectionLetter, StartTime, EndTime, Year, Location)
+      	VALUES ('5000', '2', 'CYBR 3501' , 'Fall', 'A', '08:31:00', '09:46:00', '2030','Building X');
+
+/*--------------CourseEnroll Values-----------------*/
+	INSERT INTO Enrollment (CRN, StudentID)
+      	VALUES ('123', '4');
+
+
+/*--------------Grade Values-----------------*/
+	INSERT INTO Grade (CRN, StudentID, Grade)
+      	VALUES ('123', '3', 'C');
+
+	INSERT INTO Grade (CRN, StudentID, Grade)
+      	VALUES ('456', '4', 'F');
+      	
+/*--------------Role Values-----------------*/
+	INSERT INTO Role (RoleID, Role)
+      	VALUES ('1', 'Admin');
+      	
+    INSERT INTO Role (RoleID, Role)
+      	VALUES ('2', 'Faculty');
+      	
+    INSERT INTO Role (RoleID, Role)
+      	VALUES ('3', 'Student');
+EOF;
+
+
+
+
+    $ret = $db->exec($sql);
+    echo "Config attempt...\n";
+    if (!$ret) 
+	{
+        //echo $db->lastErrorMsg();
+	}
+	else
+    {
+        //echo 'Tables created successfully.';
+    }
+
+?>

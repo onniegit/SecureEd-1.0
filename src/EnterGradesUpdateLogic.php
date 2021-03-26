@@ -1,34 +1,31 @@
 <?php
+
 /*Ensure the database was initialized and obtain db link*/
-global $db;
 $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
-if(isset($POST['submit']))
-{
-    if ($_FILES['file']['name'])
-    {
-        $filename = explode(".", $_FILES['file']['name']);
+if (isset($_POST['submit'])) {
+    echo $_FILES;
+    $handle = fopen($_FILES['filename']['type'], "r");
+    echo "<br>handle = " . $handle;
+    $headers = fgetcsv($handle, 9001, ",");
+    echo "<br>headers = " . $headers;
+    $crn = $_POST['crn'];
+    echo "<br>crn = " . $crn;
 
-        if ($filename[1]=='csv')
-        {
-            $handle = fopen($_FILES['file']['tmp_name'],"r");
+    $info = pathinfo($_FILES['filename']['type']);
+    echo "<br>info = " . $info;
 
-            $crn = $_POST['crn'];
-            while ($data = fgetcsv($handle))
-            {
-                $student_id = $data[0];
-                $grade = $data[1];
-                $db->exec("INSERT INTO Grade (CRN, StudentID, Grade) values ('$crn', '$student_id', '$grade')");
-            }
-            fclose($handle);
-            //backup database
-            $db->backup($db,"temp","../db/persistentconndb.sqlite");
-            echo "Grades have been updated.";
+    if($info['extension'] == 'csv') {
+        while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) {
+            $data[0];
+            $data[1];
+            echo $data;
+            $db->exec("INSERT INTO Grade VALUES ('$crn', '$data[0]', '$data[1]')");
         }
-    }
+        $db->backup($db, "temp", $GLOBALS['dbPath']);
+        echo "The loop completed.";
+
+        fclose($handle);
+    } else echo "File extension is not '.csv'. Please try again.";
 }
-
-
-    //redirect
-    header("Location: ../public/dashboard.php");

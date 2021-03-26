@@ -41,27 +41,24 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
         <br>
 
 
-
         <!--Heading-->
-        <h1>Create Account</h1>
+        <h1>Enter Grades</h1>
         <div class="horizontal_line">
             <hr>
         </div>
-
-        <p id="submiterror" style="display:none"></p>
 
         <div style="text-align:center">
             <div style="text-align:center;">
                 <form action="../src/EnterGradesUpdateLogic.php" method="POST" enctype="multipart/form-data">
                     <div style="text-align:left"><br>
-                        Course ID: <input type="text" id="crn"/><br><br><br>
+                        Course ID: <input type="text" name="crn" id="crn"/><br><br><br>
 
-                        <input type="file" name="file" accept=".csv"/>
+                        <input type="file" name="file" id="file" accept=".csv"/>
 
                         <br><br><br>
 
-                        <input type="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" value="Cancel">
+                        <input type="submit" name="submit" id="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" name="cancel" id="cancel" value="Cancel">
 
                     </div>
                 </form>
