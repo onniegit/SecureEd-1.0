@@ -29,9 +29,9 @@ else if($acctype === "Faculty")
 
 
 /*Update the database with the new info*/
-$query = "UPDATE User "
-               . "SET Email = :email, AccType = :acctype, Password = :password, FName = :fname, LName = :lname, DOB = :dob, Year = :studentyear, Rank = :facultyrank, SQuestion = :squestion, SAnswer = :sanswer"
-               . "WHERE Email = :prevemail";
+$query = "UPDATE User 
+            SET Email = :email, AccType = :acctype, Password = :password, FName = :fname, LName = :lname, DOB = :dob, Year = :studentyear, Rank = :facultyrank, SQuestion = :squestion, SAnswer = :sanswer 
+            WHERE Email = :prevemail";
 $stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
 $stmt->bindParam(':email', $email, SQLITE3_TEXT);
 $stmt->bindParam(':acctype', $acctype, SQLITE3_INTEGER);

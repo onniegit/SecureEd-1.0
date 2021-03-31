@@ -14,7 +14,6 @@ $studentyear = $_POST['studentyear']; //only if student, ensure null otherwise (
 $facultyrank = $_POST['facultyrank']; //only if faculty, ensure null otherwise
 $squestion = $_POST['squestion'];
 $sanswer = $_POST['sanswer'];
-$prevemail = $_POST['prevemail']; //required to find the user being updated
 
 /*Checking studentyear and facultyrank*/
 if($acctype === "Student")
@@ -53,6 +52,7 @@ if($results) //user doesn't already exist
     $stmt->bindParam(':facultyrank', $facultyrank, SQLITE3_TEXT);
     $stmt->bindParam(':squestion', $squestion, SQLITE3_TEXT);
     $stmt->bindParam(':sanswer', $sanswer, SQLITE3_TEXT);
+    global $results;
     $results = $stmt->execute();
 }
 

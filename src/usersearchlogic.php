@@ -83,7 +83,7 @@
             (Lname LIKE :lname OR :lname = 'defaultvalue!') AND
             (DOB LIKE :dob OR :dob = 'defaultvalue!') AND
             (Email LIKE :email OR :email = 'defaultvalue!') AND
-            (Year LIKE :facultyrank OR :facultyrank = 'defaultvalue!')";
+            (Rank LIKE :facultyrank OR :facultyrank = 'defaultvalue!')";
         $stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
         $stmt->bindParam(':facultyrank', $facultyrank, SQLITE3_TEXT);
         $stmt->bindParam(':fname', $fname, SQLITE3_TEXT);
@@ -108,7 +108,7 @@
             (Lname LIKE :lname OR :lname = 'defaultvalue!') AND
             (DOB LIKE :dob OR :dob = 'defaultvalue!') AND
             (Email LIKE :email OR :email = 'defaultvalue!') AND
-            (Year LIKE :facultyrank OR :facultyrank = 'defaultvalue!')";
+            (Rank LIKE :facultyrank OR :facultyrank = 'defaultvalue!')";
         $stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
         $stmt->bindParam(':fname', $fname, SQLITE3_TEXT);
         $stmt->bindParam(':lname', $lname, SQLITE3_TEXT);

@@ -95,8 +95,8 @@ else
                 <form action="../src/EditAccountUpdateLogic.php" method="POST" id="editform">
                     <label class="edit_acc_label">Account type:</label>
                     <select name="acctype" id="acctype" onchange="swapselection()">
-                        <option value="Faculty" <?php if($userinfo[2]===2){echo "selected";} ?> ">Faculty</option>
-                        <option value="Student" <?php if($userinfo[2]===3){echo "selected";} ?> ">Student</option>
+                        <option value="2" <?php if($userinfo[2]===2){echo "selected";} ?> ">Faculty</option>
+                        <option value="3" <?php if($userinfo[2]===3){echo "selected";} ?> ">Student</option>
                     </select>
                 <div class=horizontal_line>
                     <hr>

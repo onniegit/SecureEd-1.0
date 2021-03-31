@@ -50,8 +50,8 @@
                     <label class="edit_acc_label">Account type:</label>
                     <select name="acctype" id="acctype" onchange="swapselection()">
                             <optgroup label="Choose one">
-                                <option selected="selected" value="Faculty" >Faculty</option>
-                                <option value="Student">Student</option>
+                                <option selected="selected" value="2" >Faculty</option>
+                                <option value="3">Student</option>
                             </optgroup>
                     </select>
                 <div class="horizontal_line">
