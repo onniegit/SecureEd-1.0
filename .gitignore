@@ -5,3 +5,4 @@
 .idea/php.xml
 .idea/modules.xml
 .idea/ISWA.iml
+*.tmp
