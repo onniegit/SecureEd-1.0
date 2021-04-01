@@ -52,7 +52,7 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
                 <form action="../src/EnterGradesUpdateLogic.php" method="POST" enctype="multipart/form-data">
                     <div style="text-align:left"><br>
                         Course ID: <input type="text" name="crn" id="crn"/><br><br><br>
-
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1M" />
                         <input type="file" name="file" id="file" accept=".csv"/>
 
                         <br><br><br>
