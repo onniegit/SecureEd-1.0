@@ -14,7 +14,11 @@ catch(Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
-    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
+
+    $allVars = get_defined_vars();
+    //print_r($allVars);
+    debug_zval_dump($allVars);
 }
 
 ?>
