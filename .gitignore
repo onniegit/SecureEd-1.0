@@ -7,3 +7,4 @@
 .idea/ISWA.iml
 *.tmp
 db/persistentconndb.sqlite
+db/persistentconndb.sqlite
