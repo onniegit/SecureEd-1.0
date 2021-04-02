@@ -43,7 +43,7 @@ function fetch() {
                 var fixedStudentYear;
                 for (let res of results) {
                     let row = document.createElement("span");
-                    if (res['AccountType'] === "Student") {
+                    if (res['AccType'] === 3) {
                         if(res['DOB'] !== "") //make sure DOB isn't empty or it will crash
                         {
                             fixedDOB = dateFromUTC(res['DOB'], '-'); //create a Date object using SQLite's format
