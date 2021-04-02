@@ -1,12 +1,17 @@
 <?php
-session_start(); //required to bring session variables into context
+try {
+    session_start(); //required to bring session variables into context
 
-if(isset($_SESSION['acctype']))
-{
-    //a session exists
-    session_destroy(); //clear all session variables
-}
+    if (isset($_SESSION['acctype'])) {
+        //a session exists
+        session_destroy(); //clear all session variables
+    }
 //redirect
-header("Location: ../public/index.php");
+    header("Location: ../public/index.php");
+}
+catch(Exception $e)
+{
+    header("Location:../resources/Errorpage.php");
+}
 
 ?>

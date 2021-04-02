@@ -1,5 +1,5 @@
 <?php
-
+try{
 session_start();
 
 /*Ensure the database was initialized and obtain db link*/
@@ -33,4 +33,8 @@ else
     //redirect
     header("Location: ../public/course_search.php");
 }
-
+}
+catch(Exception $e)
+{
+    header("Location:../resources/Errorpage.php");
+}

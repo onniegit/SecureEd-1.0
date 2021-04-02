@@ -1,7 +1,8 @@
 <?php
+try {
     /*Ensure the database was initialized and obtain db link*/
     $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-    $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+    $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $encryptionKey = "");
 
     /*Get information from the search (post) request*/
     $acctype = $_POST['acctype'];
@@ -14,35 +15,28 @@
 
     //handle blank values
 
-    if($fname === "")
-    {
+    if ($fname === "") {
         $fname = "defaultvalue!";
     }
-    if($lname === "")
-    {
+    if ($lname === "") {
         $lname = "defaultvalue!";
     }
-    if($dob === "")
-    {
+    if ($dob === "") {
         $dob = "defaultvalue!";
     }
-    if($email === "")
-    {
+    if ($email === "") {
         $email = "defaultvalue!";
     }
-    if($studentyear === "")
-    {
+    if ($studentyear === "") {
         $studentyear = "defaultvalue!";
     }
-    if($facultyrank === "")
-    {
+    if ($facultyrank === "") {
         $facultyrank = "defaultvalue!";
     }
 
 
     //determine account type
-    if($acctype == "Student")
-    {
+    if ($acctype == "Student") {
         //send back student type search results
         /*
         $query = "SELECT * FROM User 
@@ -65,9 +59,7 @@
         $stmt->bindParam(':dob', $dob, SQLITE3_TEXT);
         $stmt->bindParam(':email', $email, SQLITE3_TEXT);
         $results = $stmt->execute();
-    }
-    else if($acctype == "Faculty")
-    {
+    } else if ($acctype == "Faculty") {
         //send back faculty type search results
         /*
         $query = "SELECT * FROM User 
@@ -91,9 +83,7 @@
         $stmt->bindParam(':dob', $dob, SQLITE3_TEXT);
         $stmt->bindParam(':email', $email, SQLITE3_TEXT);
         $results = $stmt->execute();
-    }
-    else
-    {
+    } else {
         //send back a general search (may change to exclude admins)
         /*
         $query = "SELECT * FROM User 
@@ -120,12 +110,18 @@
 
     global $jsonArray;
 
-while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-    $jsonArray[] = $row;
-}
+    while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+        $jsonArray[] = $row;
+    }
 
 //echo $stmt->getSQL(true);
-echo json_encode($jsonArray);
+    echo json_encode($jsonArray);
+}
+catch(Exception $e)
+{
+    header("Location:../resources/Errorpage.php");
+}
+
 
 //note: since no changes happen to the database, it is not backed up on this page
 ?>
