@@ -31,6 +31,7 @@ try {
     $row = $rows->fetchArray();
     $newUserID = $row['count'] + 1; //must always be 1 higher than previous
 
+
     /*Check if user already exists*/
     $query = "SELECT Email FROM User WHERE Email = :email";
     $stmt = $db->prepare($query); //prevents SQL injection by escaping SQLite characters
@@ -72,6 +73,10 @@ catch(Exception $e)
     echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+    $allVars = get_defined_vars();
+    print_r($allVars);
+    debug_zval_dump($allVars);
 }
 
 /* depricated function
