@@ -61,7 +61,7 @@ CREATE TABLE Enrollment
 	
 CREATE TABLE Grade
       	(
-	CRN		    INT     NOT NULL	UNIQUE,
+	CRN		    INT     NOT NULL,
 	StudentID	INT     NOT NULL,
     Grade		TEXT	NOT NULL,
 	PRIMARY KEY(CRN,StudentID),  		
