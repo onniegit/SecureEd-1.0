@@ -18,7 +18,7 @@ try {
             fclose($handle);
         }
 
-        header("Location: ../test/DBcontents.php");
+        header("Location: ../public/dashboard.php");
     }
 }
 catch(Exception $e)
