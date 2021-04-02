@@ -17,6 +17,10 @@ try {
     $sanswer = $_POST['sanswer'];
     $prevemail = $_POST['prevemail']; //required to find the user being updated
 
+
+    if($acctype==null)
+    {throw new Exception("input did not exist");}
+
     /*Checking studentyear and facultyrank*/
     if ($acctype === "Student") {
         $facultyrank = null;
@@ -45,7 +49,7 @@ try {
 
 //is true on success and false on failure
     if (!$results) {
-        echo "An error occurred.";
+        throw new Exception("edit failed");
     } else {
         //backup database
         $db->backup($db, "temp", $GLOBALS['dbPath']);
@@ -56,7 +60,9 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 /*depricated function
 function dateToUTC (String $date): ?string //expects dd/mm/yyyy and returns yyyy-mm-dd or null

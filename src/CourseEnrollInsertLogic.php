@@ -11,6 +11,9 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
 $courseid = $_POST['courseid'];
 $email = strtolower($_SESSION['email']);
 
+    if($courseid==null)
+    {throw new Exception("input did not exist");}
+
 $query = "SELECT UserID FROM User WHERE Email = '$email'";
 $userid = $db->querySingle($query);
 
@@ -34,7 +37,10 @@ else
     header("Location: ../public/course_search.php");
 }
 }
+
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }

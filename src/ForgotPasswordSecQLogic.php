@@ -4,11 +4,14 @@ $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 //Variables and Email gained from user entry------------------
-
+try{
 $email = "";
 $SecAnswer="";
 $mySAnswer = $_POST["Answer"];
-try{
+
+    if($mySAnswer==null)
+    {throw new Exception("input did not exist");}
+
 //opening tmp file for email
 $filename ="../resources/tmp.txt";
 $file =fopen($filename,"r+");
@@ -30,7 +33,9 @@ else{
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 
 

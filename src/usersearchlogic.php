@@ -13,6 +13,9 @@ try {
     $studentyear = $_POST['studentyear'];
     $facultyrank = $_POST['facultyrank'];
 
+    if($acctype==null)
+    {throw new Exception("input did not exist");}
+
     //handle blank values
 
     if ($fname === "") {
@@ -119,7 +122,9 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 
 

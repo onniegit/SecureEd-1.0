@@ -9,6 +9,9 @@ try {
     $email = strtolower($_POST['email']);
     $SecQuestion = "";
 
+    if($email==null)
+    {throw new Exception("input did not exist");}
+
 
 //checks if given email exists-------------
     $query = "SELECT COUNT(*) as count FROM User WHERE Email ='$email'";
@@ -35,7 +38,9 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 
 

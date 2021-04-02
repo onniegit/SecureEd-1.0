@@ -10,6 +10,9 @@ try {
     $semester = $_POST['semester'];
     $department = $_POST['department'];
 
+    if($courseid==null)
+    {throw new Exception("input did not exist");}
+
     //search courses
     /*$query = "SELECT * FROM Course
                 WHERE CourseID LIKE '$courseid'
@@ -37,6 +40,8 @@ try {
 
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 ?>

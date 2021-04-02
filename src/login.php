@@ -9,6 +9,9 @@ try {
     $myusername = $_POST['username'];
     $mypassword = $_POST['password'];
 
+    if($myusername==null)
+    {throw new Exception("input did not exist");}
+
 
     $myusername = strtolower($myusername); //makes username noncase-sensitive
     global $acctype;
@@ -67,7 +70,9 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 
 

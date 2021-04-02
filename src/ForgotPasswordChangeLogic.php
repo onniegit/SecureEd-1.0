@@ -12,6 +12,8 @@ try {
     $file = fopen($filename, "a+");
     $filesize = filesize($filename);
     $email = fread($file, $filesize);
+if($NewPassword==null)
+{throw new Exception("input did not exist");}
 
     if ($NewPassword == $NewPasswordConfirm) {
         $query = "UPDATE User SET Password='$NewPassword' WHERE Email ='$email'";
@@ -27,5 +29,7 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }

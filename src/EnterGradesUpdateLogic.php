@@ -20,8 +20,11 @@ try {
 
         header("Location: ../public/dashboard.php");
     }
+    else{throw new Exception("entergrades failed");}
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }

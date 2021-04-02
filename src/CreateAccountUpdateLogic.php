@@ -16,6 +16,9 @@ try {
     $squestion = $_POST['squestion'];
     $sanswer = $_POST['sanswer'];
 
+    if($acctype==null)
+    {throw new Exception("input did not exist");}
+
     /*Checking studentyear and facultyrank*/
     if ($acctype === "Student") {
         $facultyrank = null;
@@ -56,7 +59,7 @@ try {
 
 //is true on success and false on failure (can fail in either query)
     if (!$results) {
-        echo "An error occurred.";
+        throw new Exception("Create account failed");
     } else {
         //backup database
         $db->backup($db, "temp", $GLOBALS['dbPath']);
@@ -66,7 +69,9 @@ try {
 }
 catch(Exception $e)
 {
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 }
 
 /* depricated function
