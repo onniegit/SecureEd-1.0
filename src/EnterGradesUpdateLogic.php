@@ -5,9 +5,10 @@ $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
 $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
 
 if (isset($_POST['submit'])) {
+    echo "<br>FILES = ";
     echo print_r($_FILES);
-    echo print_r($_FILES['file']['type']);
-    $handle = fopen($_FILES['file']['type'], "r");
+    echo "<br>FILES['file']['type] = " . print_r($_FILES['file']['type']);
+    $handle = fopen(($_FILES['file']['type']), "r");
     echo "<br>handle = " . $handle;
     $headers = fgetcsv($handle, 9001, ",");
     echo "<br>headers = " . $headers;
