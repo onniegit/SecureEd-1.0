@@ -51,14 +51,14 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
             <div style="text-align:center;">
                 <form action="../src/EnterGradesUpdateLogic.php" method="POST" enctype="multipart/form-data">
                     <div style="text-align:left"><br>
-                        Course ID: <input type="text" name="crn" id="crn"/><br><br><br>
+                        Course ID: <input type="text" name="crn" id="crn" /><br><br><br>
                         <input type="hidden" name="MAX_FILE_SIZE" value="9437184000" />
-                        <input type="file" name="file" id="file" accept=".csv"/>
+                        <input type="file" name="file" id="file" />
 
                         <br><br><br>
 
                         <input type="submit" name="submit" id="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="button" name="cancel" id="cancel" value="Cancel">
+                        <input type="button" value="Cancel" onclick=" location.href = 'dashboard.php'">
 
                     </div>
                 </form>
