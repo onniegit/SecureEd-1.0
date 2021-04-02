@@ -56,7 +56,7 @@ try {
 }
 catch(Exception $e)
 {
-    var_dump(debug_backtrace ());
+    var_dump($e->getTraceAsString());
 }
 /*depricated function
 function dateToUTC (String $date): ?string //expects dd/mm/yyyy and returns yyyy-mm-dd or null
