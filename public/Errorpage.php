@@ -37,8 +37,8 @@
 <img src="../resources/Frownemoji.png" style="width:20vh;" alt="">
     <br>
 <?php
-    debug_backtrace ();
-    debug_print_backtrace();
+    var_dump(debug_backtrace ());
+
 ?>
 
 </div>

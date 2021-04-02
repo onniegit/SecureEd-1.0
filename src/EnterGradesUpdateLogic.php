@@ -23,5 +23,5 @@ try {
 }
 catch(Exception $e)
 {
-    header("Location:../resources/Errorpage.php");
+    var_dump(debug_backtrace ());
 }
