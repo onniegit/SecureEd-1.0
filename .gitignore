@@ -6,3 +6,4 @@
 .idea/modules.xml
 .idea/ISWA.iml
 *.tmp
+db/persistentconndb.sqlite
