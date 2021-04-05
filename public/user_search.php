@@ -182,6 +182,7 @@
                             </td>
 
                             <td class="search_results_column_name">
+                                &nbsp; &nbsp; &nbsp;
                             </td>
                         </tr>
                         </thead>

@@ -10,8 +10,24 @@ try {
     $semester = $_POST['semester'];
     $department = $_POST['department'];
 
-    if($courseid==null)
-    {throw new Exception("input did not exist");}
+
+    //set default values if blank
+    if($courseid=="")
+    {
+        $courseid="defaultvalue!";
+    }
+    if($coursename=="")
+    {
+        $coursename="defaultvalue!";
+    }
+    if($semester=="")
+    {
+        $semester="defaultvalue!";
+    }
+    if($department=="")
+    {
+        $department="defaultvalue!";
+    }
 
     //search courses
     /*$query = "SELECT * FROM Course
@@ -24,7 +40,10 @@ try {
             FROM Section
             CROSS JOIN Course ON Section.Course = Course.Code
             INNER JOIN User ON Section.Instructor = User.UserID
-            WHERE CRN LIKE '$courseid' OR Semester LIKE '$semester' OR Course LIKE '$department' OR CourseName LIKE '$coursename'";
+            WHERE (CRN LIKE '$courseid' OR '$courseid'='defaultvalue!') AND
+                    (Semester LIKE '$semester' OR '$semester'='defaultvalue!') AND
+                    (Course LIKE '$department' OR '$department'='defaultvalue!') AND
+                    (CourseName LIKE '$coursename' OR '$coursename' = 'defaultvalue!')";
 
     $results = $db->query($query);
 
@@ -45,7 +64,6 @@ catch(Exception $e)
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
 
     $allVars = get_defined_vars();
-    //print_r($allVars);
     debug_zval_dump($allVars);
 }
 ?>

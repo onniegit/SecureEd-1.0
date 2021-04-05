@@ -52,29 +52,40 @@ nav {
   padding-top: 1vw;
 }
 
+#results span{
+  table-layout: fixed;
+  width:100%;
+  display:block;
+}
+
+#results span:nth-child(even){
+  background-color: lightgrey;
+}
+
 .search_table {
   width: 100%;
   table-layout: fixed;
 }
 
-.search_table td:nth-of-type(1) {width:1vw;}/*Setting the width of column 1.*/
-.search_table td:nth-of-type(2) {width:0.75vw;}/*Setting the width of column 2.*/
-.search_table td:nth-of-type(3) {width:1.25vw;}/*Setting the width of column 3.*/
-.search_table td:nth-of-type(4) {width:1vw;}/*Setting the width of column 4.*/
-.search_table td:nth-of-type(5) {width:5px;}/*Setting the width of column 5.*/
+.search_table td:nth-of-type(1) {width:10vw;}/*Setting the width of column 1.*/
+.search_table td:nth-of-type(2) {width:7.5vw;}/*Setting the width of column 2.*/
+.search_table td:nth-of-type(3) {width:11vw;}/*Setting the width of column 3.*/
+.search_table td:nth-of-type(4) {width:10vw;}/*Setting the width of column 4.*/
+.search_table td:nth-of-type(5) {width:50px;}/*Setting the width of column 5.*/
 
 .search_results_column_name {
   text-align: center;
   margin: 2vw;
   font-size: x-large;
   overflow: hidden;
+  padding: 2vw;
 }
 
 .search_results_output {
   text-align: center;
   margin: 2vw;
   padding: 2vw;
-  font-size: x-large;
+  font-size: large;
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-all;
@@ -102,30 +113,28 @@ nav {
 .course_search_table td:nth-of-type(1) {width:10vw;}/*Setting the width of column 1.*/
 .course_search_table td:nth-of-type(2) {width:8vw;}/*Setting the width of column 2.*/
 .course_search_table td:nth-of-type(3) {width:13vw;}/*Setting the width of column 3.*/
-.course_search_table td:nth-of-type(4) {width:10vw;}/*Setting the width of column 4.*/
-.course_search_table td:nth-of-type(5) {width:15vw;}/*Setting the width of column 5.*/
-.course_search_table td:nth-of-type(6) {width:100px;}/*Setting the width of column 6.*/
+.course_search_table td:nth-of-type(4) {width:11vw;}/*Setting the width of column 4.*/
+.course_search_table td:nth-of-type(5) {width:8vw;}/*Setting the width of column 5.*/
+.course_search_table td:nth-of-type(6) {width:75px;}/*Setting the width of column 6.*/
 
 .course_search_results_column_name {
   text-align: center;
   margin: 2vw;
   font-size: x-large;
   overflow: hidden;
+  padding: 0.5vw;
 }
 
-#results span{
-  table-layout: fixed;
-  width:100%;
-  display:block;
-}
+
 
 .course_search_results_output {
   text-align: center;
   margin: 2vw;
-  font-size: x-large;
+  font-size: large;
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-all;
+  padding: 0.5vw;
 }
 
 .course_enroll_table {
@@ -134,20 +143,30 @@ nav {
 }
 
 .course_enroll_table td:nth-of-type(1) {width:10vw;}/*Setting the width of column 1.*/
-.course_enroll_table td:nth-of-type(2) {width:12vw;}/*Setting the width of column 2.*/
+.course_enroll_table td:nth-of-type(2) {width:6vw;}/*Setting the width of column 2.*/
 .course_enroll_table td:nth-of-type(3) {width:13vw;}/*Setting the width of column 3.*/
-.course_enroll_table td:nth-of-type(4) {width:12vw;}/*Setting the width of column 4.*/
-.course_enroll_table td:nth-of-type(5) {width:13vw;}/*Setting the width of column 5.*/
-.course_enroll_table td:nth-of-type(6) {width:100px;}/*Setting the width of column 6.*/
+.course_enroll_table td:nth-of-type(4) {width:11vw;}/*Setting the width of column 4.*/
+.course_enroll_table td:nth-of-type(5) {width:8vw;}/*Setting the width of column 5.*/
+.course_enroll_table td:nth-of-type(6) {width:75px;}/*Setting the width of column 6.*/
 
 .course_enroll_column_name {
   text-align: center;
   margin: 2vw;
   font-size: x-large;
   overflow: hidden;
+  padding: 0.5vw;
 }
 
+.course_enroll_results {
+  background-color: whitesmoke;
+  text-align: left;
+  padding:2vw;
+  padding-top: 1vw;
+}
 
+.course_enroll_results form:nth-child(odd){
+  background-color: lightgrey;
+}
 
 .enroll_output {
   text-align: center;
@@ -156,6 +175,7 @@ nav {
   overflow: hidden;
   word-wrap: break-word;
   word-break: break-all;
+  padding: 0.5vw;
 }
 
 .edit_acc_pane {

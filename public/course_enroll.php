@@ -74,7 +74,7 @@ else
             <hr>
         </div>
 
-        <div class="course_search_results">
+        <div class="course_enroll_results">
             <h1><?php echo "$coursename"; ?></h1>
             <div class="horizontal_line">
                 <hr>
@@ -136,7 +136,7 @@ else
                                          <td class=\"enroll_output\">${course['Location']}</td>
                                          <input type=\"hidden\" value=\"${course['CRN']}\" name='courseid' id='courseid'/>
                                          <td class=\"enroll_output\"><button name=\"Enroll\" id=\"Enroll\" type=\"submit\">Enroll</button></td>
-                                         </tr></table></form>`; ";
+                                         </tr></table></form>";
                     }
                 }
             
