@@ -11,7 +11,10 @@ try {
 
         if($path['extension'] == 'csv') { //check if file is .csv
             while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) { //iterate through csv
-                $db->exec("INSERT INTO Grade VALUES ('$crn', '$data[0]', '$data[1]')"); //populate db from csv
+                $query = "INSERT INTO Grade VALUES (:crn, '$data[0]', '$data[1]')";//create query for db
+                $stmt = $db->prepare($query); //we want to stop crn from having SQL Injection, but keep it in the file
+                $stmt->bindParam(':crn', $crn, SQLITE3_INTEGER);
+                $stmt->execute(); //populate db from csv using our prepared query
             }
 
             $db->backup($db, "temp", $GLOBALS['dbPath']);
@@ -24,11 +27,12 @@ try {
 }
 catch(Exception $e)
 {
+    //stack trace and general exception
     echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
 
+    //variable dump
     $allVars = get_defined_vars();
-    //print_r($allVars);
     debug_zval_dump($allVars);
 }
