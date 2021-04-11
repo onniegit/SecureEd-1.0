@@ -83,6 +83,8 @@ CREATE TABLE Role
 	Role		TEXT	NOT NULL
 	);
 
+
+BEGIN TRANSACTION;
 /*--------------User Values-----------------*/
 /*---------Emails must be lowercase---------*/
 /*--------UserID must be sequential---------*/
@@ -174,6 +176,8 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
       	
     INSERT INTO Role (RoleID, Role)
       	VALUES ('3', 'Student');
+      	
+      	END TRANSACTION;
 EOF;
 
 
