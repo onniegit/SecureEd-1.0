@@ -1,18 +1,18 @@
 <?php
-$GLOBALS['dbPath'] = 'db/persistentconndb.sqlite';
+try {
+    $GLOBALS['dbPath'] = 'db/persistentconndb.sqlite';
 
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+    $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $encryptionKey = "");
 
-if(!$db)
-	{
-      	echo $db->lastErrorMsg();
-   	} 
-	else 
-	{
-      	//echo "Opened database successfully\n";
-   	}
+    if (!$db)
+    {
+        echo $db->lastErrorMsg();
+    } else
+    {
+        //echo "Opened database successfully\n";
+    }
 
-   $sql =<<<EOF
+    $sql = <<<EOF
       
 CREATE TABLE User
       	(
@@ -181,17 +181,23 @@ INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Ran
 EOF;
 
 
-
-
     $ret = $db->exec($sql);
     //echo "Config attempt...\n";
-    if (!$ret) 
-	{
+    if (!$ret)
+    {
         echo $db->lastErrorMsg();
-	}
-	else
+    } else
     {
         // Tables created successfully.
     }
+}
+catch(Exception $e)
+{
+    echo 'Caught exception: ',  $e->getMessage(), "<br>";
+    var_dump($e->getTraceAsString());
+    echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
 
+    $allVars = get_defined_vars();
+    debug_zval_dump($allVars);
+}
 ?>
