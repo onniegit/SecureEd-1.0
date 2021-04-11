@@ -5,9 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="secure_app.css">
-  <meta charset="utf-8" />
-  <title>Secure App - Dashboard</title>
+    <link rel="stylesheet" href="../resources/secure_app.css">
+    <meta charset="utf-8" />
+    <title>Secure App - Dashboard</title>
 </head>
 <body>
   <div id="wrapper">
@@ -15,13 +15,9 @@
 	  <table class="header_table">
 	    <tbody>
 		  <tr>
-
-			<td class="lock"><img src="Header_Lock_Image.svg" style="width:9vh;" alt=""></td>
-
-			<td class="title"><b>Secure App</b></td>
-
-			<td class="header_table_cell"></td>
-
+              <td class="lock"><img src="../resources/Header_Lock_Image.svg" style="width:9vh;" alt="Header_lock"></td>
+			  <td class="title"><b>Secure App</b></td>
+              <td class="header_table_cell"></td>
 		  </tr>
 		</tbody>
 	  </table>
@@ -33,7 +29,6 @@
       </nav>
 
       <?php
-
       if($_SESSION['acctype']===1)
       {
           echo "
@@ -79,7 +74,6 @@
             </main>";
       }
     ?>
-
   </div>
 </body>
 </html>
