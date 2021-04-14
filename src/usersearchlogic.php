@@ -1,8 +1,7 @@
 <?php
 try {
-    /*Ensure the database was initialized and obtain db link*/
-    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-    $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $encryptionKey = "");
+    /*Get DB connection*/
+    require_once "../src/DBController.php";
 
     /*Get information from the search (post) request*/
     $acctype = $_POST['acctype'];
@@ -17,7 +16,6 @@ try {
     {throw new Exception("input did not exist");}
 
     //handle blank values
-
     if ($fname === "") {
         $fname = "defaultvalue!";
     }
@@ -41,14 +39,7 @@ try {
     //determine account type
     if ($acctype == "Student") {
         //send back student type search results
-        /*
-        $query = "SELECT * FROM User 
-                    WHERE AccType=3 AND Year LIKE :studentyear
-                       AND (Fname LIKE :fname
-                       OR Lname LIKE :lname
-                       OR DOB LIKE :dob
-                       OR Email LIKE :email)";
-        */
+
         $query = "SELECT * FROM User WHERE AccType=3 AND 
             (Fname LIKE :fname OR :fname = 'defaultvalue!') AND
             (Lname LIKE :lname OR :lname = 'defaultvalue!') AND
@@ -64,14 +55,6 @@ try {
         $results = $stmt->execute();
     } else if ($acctype == "Faculty") {
         //send back faculty type search results
-        /*
-        $query = "SELECT * FROM User 
-                    WHERE AccType=2 AND Rank LIKE :facultyrank
-                       AND (Fname LIKE :fname
-                       OR Lname LIKE :lname
-                       OR DOB LIKE :dob
-                       OR Email LIKE :email)";
-        */
 
         $query = "SELECT * FROM User WHERE AccType=2 AND 
             (Fname LIKE :fname OR :fname = 'defaultvalue!') AND
@@ -88,14 +71,7 @@ try {
         $results = $stmt->execute();
     } else {
         //send back a general search (may change to exclude admins)
-        /*
-        $query = "SELECT * FROM User 
-                    WHERE Fname LIKE :fname
-                       OR Lname LIKE :lname
-                       OR DOB LIKE :dob
-                       OR Email LIKE :email
-                       OR Rank LIKE :facultyrank";
-        */
+
         $query = "SELECT * FROM User WHERE
             (Fname LIKE :fname OR :fname = 'defaultvalue!') AND
             (Lname LIKE :lname OR :lname = 'defaultvalue!') AND

@@ -1,9 +1,7 @@
 <?php
 try {
-    /*Ensure the database was initialized*/
-    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-    $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE, $encryptionKey = "");
-
+    /*Get DB connection*/
+    require_once "../src/DBController.php";
 
     /*Get information from the post request*/
     $myusername = $_POST['username'];

@@ -1,9 +1,8 @@
 <?php
 //This php code gets the selected user's security question from the database
 
-/*Ensure the database was initialized and obtain db link*/
-$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+/*Get DB connection*/
+require_once "../src/DBController.php";
 
 /*Get the stored email*/
 $filename = "../resources/tmp.txt";

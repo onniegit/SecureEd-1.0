@@ -1,8 +1,7 @@
 <?php
 try {
-    /*Ensure the database was initialized and obtain db link*/
-    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-    $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $encryptionKey = "");
+    /*Get DB connection*/
+    require_once "../src/DBController.php";
 
     /*Get information from the search (post) request*/
     $acctype = $_POST['acctype'];

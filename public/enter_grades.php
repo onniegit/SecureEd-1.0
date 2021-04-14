@@ -1,9 +1,3 @@
-<?php
-/*Check if DB was initialized and grab link*/
-$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,12 +37,12 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
             <div style="text-align:center">
                 <div style="text-align:center;">
                     <form action="../src/EnterGradesUpdateLogic.php" method="POST" enctype="multipart/form-data">
-                        <div style="text-align:left"><br>
-                            Course ID: <input type="text" name="crn" id="crn"/><br><br><br>
+                        <div class="enter_grades_input" style="text-align:left">
+                            Course ID: <input type="text" name="crn" id="crn"/>
                             <input type="hidden" name="MAX_FILE_SIZE" value="9437184000" />
                             <input type="file" name="file" id="file" accept=".csv"/>
 
-                            <br><br><br>
+
 
                             <input type="submit" name="submit" id="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="button" name="cancel" id="cancel" value="Cancel">

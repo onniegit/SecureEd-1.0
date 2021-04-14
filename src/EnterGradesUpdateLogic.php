@@ -1,8 +1,7 @@
 <?php
 try {
-    //Ensure the database was initialized and obtain db link
-    $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-    $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+    /*Get DB connection*/
+    require_once "../src/DBController.php";
 
     if (isset($_POST['submit'])) { //checks if submit var is set
         $handle = fopen(($_FILES['file']['tmp_name']), "r"); //sets a read-only pointer at beginning of file

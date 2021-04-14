@@ -270,3 +270,15 @@ main {
   padding-left: 15px;
 }
 /* End forgot password page styling */
+
+/* Start enter grades page styling */
+.enter_grades_input #crn{
+  margin-top: 18px;
+  margin-bottom: 36px;
+}
+
+.enter_grades_input #file{
+  margin-bottom: 35px;
+  display: block;
+}
+/* End enter grades page styling */

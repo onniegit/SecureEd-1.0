@@ -1,9 +1,8 @@
 <?php
 //This php code gets all the sections of a given course from course search
 
-/*Ensure the database was initialized and obtain db link*/
-$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+/*Get DB connection*/
+require_once "../src/DBController.php";
 
 /*Get information from the post request*/
 

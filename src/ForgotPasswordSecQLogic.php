@@ -1,7 +1,6 @@
 <?php
-//ensuring database connection
-$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
-$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+/*Get DB connection*/
+require_once "../src/DBController.php";
 
 //Variables and Email gained from user entry------------------
 try{
