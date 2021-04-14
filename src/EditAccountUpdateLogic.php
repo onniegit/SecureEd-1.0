@@ -6,7 +6,7 @@ try {
 
     /*Get information from the search (post) request*/
     $acctype = $_POST['acctype'];
-    $password = $_POST['password'];
+    $password = hash('ripemd256', $_POST['password']); //convert password to 80 byte hash using ripemd256 before saving
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $dob = $_POST['dob']; //date obtained is already UTC
@@ -65,16 +65,5 @@ catch(Exception $e)
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
 
     $allVars = get_defined_vars();
-    //print_r($allVars);
     debug_zval_dump($allVars);
 }
-/*depricated function
-function dateToUTC (String $date): ?string //expects dd/mm/yyyy and returns yyyy-mm-dd or null
-{
-    list($dd,$mm,$yyyy) = explode('/', $date);
-    if (!checkdate($mm,$dd,$yyyy)) {
-        return null;
-    }
-    return $utcdate = $yyyy . '-' . $mm . '-' . $dd;
-}
-*/

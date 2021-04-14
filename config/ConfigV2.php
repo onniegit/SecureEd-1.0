@@ -9,7 +9,23 @@ try {
         echo $db->lastErrorMsg();
     } else
     {
-        //echo "Opened database successfully\n";
+        //Opened database successfully
+    }
+
+    //Set up passwords for hashing
+    $passwords = [0 => 'Password1', 1 => 'Password2', 2 => 'Password3', 3 => 'Password4', 4 => 'Password5',
+         5 => 'Password6', 6 => 'Password7', 7 => 'Password8', 8 => 'Password9', 9 => 'Password10'
+    ];
+
+    //Create variables for hashed passwords
+    $count = 0; //tracks array index
+    $HashedPasswords = [];
+
+    //Hash all the passwords as 80 byte hash using ripemd256
+    foreach($passwords as $pass)
+    {
+        $HashedPasswords[$count] = hash('ripemd256', $pass);
+        $count++;
     }
 
     $sql = <<<EOF
@@ -89,34 +105,34 @@ BEGIN TRANSACTION;
 /*---------Emails must be lowercase---------*/
 /*--------UserID must be sequential---------*/
 	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('1', 'admin@email.com', '1', 'Password1', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
+      	VALUES ('1', 'admin@email.com', '1', '$HashedPasswords[0]', 'John', 'Doe', '2001-05-10', NULL, NULL, 'Favorite Relative?', 'Bobsmyuncle');
 
 	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('2', 'scienceguy@email.com', '2', 'Password2', 'Bill', 'Nye', '1955-11-27', NULL, 'Associate', 'Favorite Relative?', 'Charity Nye');
+      	VALUES ('2', 'scienceguy@email.com', '2', '$HashedPasswords[1]', 'Bill', 'Nye', '1955-11-27', NULL, 'Associate', 'Favorite Relative?', 'Charity Nye');
 	
 	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('3', 'student@email.com', '3', 'Password3', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
+      	VALUES ('3', 'student@email.com', '3', '$HashedPasswords[2]', 'Pepe', 'Frog', '2002-06-12', '3', NULL, 'Favorite Relative?', 'JoeyBatey');
 
 	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('4', 'student2@email.com', '3', 'Password4', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
+      	VALUES ('4', 'student2@email.com', '3', '$HashedPasswords[3]', 'Pepe', 'Le Pew', '2002-06-12', '3', NULL, 'Favorite Relative?', 'PituLePew');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('5', 'student3@email.com', '3', 'Password5', 'John', 'Le Pew', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Mom');
+      	VALUES ('5', 'student3@email.com', '3', '$HashedPasswords[4]', 'John', 'Le Pew', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Mom');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('6', 'student4@email.com', '3', 'Password1', 'John', 'Smith', '1997-08-12', '3', NULL, 'Favorite Relative?', 'Dad');
+      	VALUES ('6', 'student4@email.com', '3', '$HashedPasswords[5]', 'John', 'Smith', '1997-08-12', '3', NULL, 'Favorite Relative?', 'Dad');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('7', 'student5@email.com', '3', 'Password5', 'John', 'Wright', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Brother');
+      	VALUES ('7', 'student5@email.com', '3', '$HashedPasswords[6]', 'John', 'Wright', '1997-08-11', '3', NULL, 'Favorite Relative?', 'Brother');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('8', 'student6@email.com', '3', 'Password5', 'Link', 'Le Pew', '1998-08-11', '3', NULL, 'Favorite Relative?', 'seastar');
+      	VALUES ('8', 'student6@email.com', '3', '$HashedPasswords[7]', 'Link', 'Le Pew', '1998-08-11', '3', NULL, 'Favorite Relative?', 'seastar');
 
 INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('9', 'student7@email.com', '3', 'Password5', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom');
+      	VALUES ('9', 'student7@email.com', '3', '$HashedPasswords[8]', 'Smith', 'Smitherson', '1987-08-13', '3', NULL, 'Favorite Relative?', 'Mom');
 
 	INSERT INTO User (UserID, Email, AccType, Password, FName, LName, DOB, Year, Rank, SQuestion, SAnswer)
-      	VALUES ('10', 'cyberperson@email.com', '2', 'Password2', 'Cherryll', 'Young', '1855-05-15', NULL, 'Associate', 'Favorite Relative?', 'Bobby');
+      	VALUES ('10', 'cyberperson@email.com', '2', '$HashedPasswords[9]', 'Cherryll', 'Young', '1855-05-15', NULL, 'Associate', 'Favorite Relative?', 'Bobby');
 
 /*--------------Course Values-----------------*/
     INSERT INTO Course (Code, CourseName)
@@ -182,13 +198,12 @@ EOF;
 
 
     $ret = $db->exec($sql);
-    //echo "Config attempt...\n";
     if (!$ret)
     {
         echo $db->lastErrorMsg();
     } else
     {
-        // Tables created successfully.
+        //Tables created successfully.
     }
 }
 catch(Exception $e)

@@ -9,6 +9,9 @@ try {
     $myusername = $_POST['username'];
     $mypassword = $_POST['password'];
 
+    //convert password to 80 byte hash using ripemd256 before comparing
+    $hashpassword = hash('ripemd256', $mypassword);
+
     if($myusername==null)
     {throw new Exception("input did not exist");}
 
@@ -18,11 +21,11 @@ try {
 
 
     //query for count
-    $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND Password='$mypassword'";
+    $query = "SELECT COUNT(*) as count FROM User WHERE Email='$myusername' AND (Password='$mypassword' OR Password='$hashpassword')";
     $count = $db->querySingle($query);
 
     //query for the row(s)
-    $query = "SELECT * FROM User WHERE Email='$myusername' AND Password='$mypassword'";
+    $query = "SELECT * FROM User WHERE Email='$myusername' AND (Password='$mypassword' OR Password='$hashpassword')";
     $results = $db->query($query);
 
     if ($results !== false) //query failed check

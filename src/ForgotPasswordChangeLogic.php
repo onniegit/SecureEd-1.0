@@ -1,35 +1,45 @@
 <?php
 try {
-//ensuring database connection
+    //ensuring database connection
     $GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
     $db = new SQLite3($GLOBALS['dbPath'], $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE, $encryptionKey = "");
 
-//Variables and Email gained from user entry------------------
+    //Variables and Email gained from user entry------------------
     $NewPassword = $_POST["newpassword"];
     $NewPasswordConfirm = $_POST["confirmpassword"];
+
+    //Hash new password as 80 byte hash using ripemd256 before changing
+    $HashedNewPass = hash('ripemd256', $NewPassword);
 
     $filename = "../resources/tmp.txt";
     $file = fopen($filename, "a+");
     $filesize = filesize($filename);
     $email = fread($file, $filesize);
-if($NewPassword==null)
-{throw new Exception("input did not exist");}
 
-    if ($NewPassword == $NewPasswordConfirm) {
-        $query = "UPDATE User SET Password='$NewPassword' WHERE Email ='$email'";
-        $results = $db->exec($query);
+    if($NewPassword==null)
+    {throw new Exception("input did not exist");}
 
-        //backup database
-        $db->backup($db, "temp", $GLOBALS['dbPath']);
+        if ($NewPassword == $NewPasswordConfirm)
+        {
+            $query = "UPDATE User SET Password='$HashedNewPass' WHERE Email ='$email'";
+            $results = $db->exec($query);
 
-        header("Location: ../public/index.php");
-    } else {
-        header("Location: ../public/ForgotPasswordChange.php?passwordcheck=fail");
-    }
+            //backup database
+            $db->backup($db, "temp", $GLOBALS['dbPath']);
+
+            header("Location: ../public/index.php");
+        }
+        else
+        {
+            header("Location: ../public/ForgotPasswordChange.php?passwordcheck=fail");
+        }
 }
 catch(Exception $e)
 {
     echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+    $allVars = get_defined_vars();
+    debug_zval_dump($allVars);
 }
