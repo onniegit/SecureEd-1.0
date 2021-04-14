@@ -32,8 +32,7 @@
       if($_SESSION['acctype']===1)
       {
           echo "
-            <main>
-            <br>
+            <main>          
                 <h1>Dashboard</h1>
                 <div class=horizontal_line>
                     <hr>
@@ -48,8 +47,7 @@
       else if($_SESSION['acctype']===2)
       {
         echo "
-           <main>
-            <br>
+           <main>         
                 <h1>Dashboard</h1>
                 <div class=horizontal_line>
                     <hr>
@@ -62,8 +60,7 @@
       else if($_SESSION['acctype']===3)
       {
           echo "
-           <main>
-            <br>
+           <main>        
                 <h1>Dashboard</h1>
                 <div class=horizontal_line>
                     <hr>

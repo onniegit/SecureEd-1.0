@@ -27,7 +27,6 @@
         </nav>
 
         <main>
-            <br>
 
             <!--Heading-->
             <h1>Create Account</h1>
@@ -254,7 +253,7 @@
                         </table>
                     </form>
                 </div>
-                <br>
+
                 <div style="text-align: left;">
                     <input type="submit" value="Submit" onclick="submitAccount()">&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="button" value="Cancel">
@@ -285,7 +284,6 @@
             facultyselect.style.display = "none";
             positionlabel.innerText = "Year:";
         }
-
     }
 
     function submitAccount() //checks for basic errors when submitting

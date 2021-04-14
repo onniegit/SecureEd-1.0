@@ -63,7 +63,6 @@ else
         </nav>
 
         <main>
-            <br>
 
             <!--Heading-->
             <h1>Course Enroll</h1>

@@ -21,7 +21,7 @@
     </header>
 
     <main>
-	<br>
+
         <!--Heading-->
 		<h1>Log In</h1>
 		<div class=horizontal_line>

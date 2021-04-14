@@ -27,7 +27,6 @@
         </nav>
 
         <main>
-            <br>
 
             <!--Heading-->
             <h1>Course Search</h1>
@@ -106,10 +105,8 @@
                         </table>
                     </form>
                 </div>
-
-
                 <!--End of Search filters-->
-                <br><br><br><br>
+
 
                 <!--Search results-->
                 <div class="course_search_results">

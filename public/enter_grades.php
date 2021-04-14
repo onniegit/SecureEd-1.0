@@ -33,7 +33,6 @@ $db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3
         </nav>
 
         <main>
-            <br>
 
             <!--Heading-->
             <h1>Enter Grades</h1>

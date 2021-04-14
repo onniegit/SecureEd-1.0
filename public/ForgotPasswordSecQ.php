@@ -1,3 +1,20 @@
+<?php
+//This php code gets the selected user's security question from the database
+
+/*Ensure the database was initialized and obtain db link*/
+$GLOBALS['dbPath'] = '../db/persistentconndb.sqlite';
+$db = new SQLite3($GLOBALS['dbPath'],  $flags = SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE , $encryptionKey = "");
+
+/*Get the stored email*/
+$filename = "../resources/tmp.txt";
+$file = fopen($filename, "a+");
+$filesize = filesize($filename);
+$email = fread($file, $filesize);
+
+$query = "SELECT SQuestion FROM User WHERE Email = '$email'";
+$secquestion = $db->querySingle($query);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,14 +38,14 @@
         </header>
 
         <main>
-        <br>
+
             <!--Heading-->
             <h1>Forgot Password</h1>
             <div class=horizontal_line>
                 <hr>
             </div>
 
-            <p>Who is your Favorite Relative?</p>
+            <p><?php echo $secquestion;?></p>
             <div class = "SecurityQuestion">
                 <?php
                                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -36,11 +53,7 @@
                             {
                             echo "The answer is invalid";
                             }
-
                 ?>
-
-                <div id="SecQ">
-                </div>
 
                 <form action="../src/ForgotPasswordSecQLogic.php" method="POST">
                     <label for="Answer">Answer:&nbsp;&nbsp;</label>

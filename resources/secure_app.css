@@ -1,3 +1,4 @@
+/* Start standard page styling */
 header {
   display: block;
   background: linear-gradient(69deg, rgba(127,127,127,1) 0%, white, rgba(127,127,127,1) 100%);
@@ -16,29 +17,88 @@ nav {
   font-size: xxx-large;
 }
 
-.login {
-  font-size: x-large;
-  text-align:right;
-  display: inline-block;
-}
-
-.dashboard {
-  font-size: x-large;
-  text-align:right;
-  display: inline-block;
+main {
+  padding-top: 18px; /*Replaces a br element*/
 }
 
 .button_large {
   font-size: large;
 }
 
-.search_pane {
+.horizontal_line {
+  padding-bottom: 10px;
+}
+
+.header_lock {
+  position: relative;
+  float: left;
+}
+
+.header_background {
+  float: left;
+  display: inline;
+  width: 100%;
+}
+
+.header_table {
+  min-width:90%;
+}
+
+.header_table_cell {
+  min-width: 33%;
+}
+
+.lock{
+  max-width: 1vh;
+  text-align: left;
+  padding-left: 2vw;
+}
+
+.title {
+  min-width: 33%;
+  max-width: 33%;
+  text-align: center;
+  margin-left: -4vw;
+}
+
+
+.spacer{
+  display: inline-block;
+  padding-bottom: 18px;
+}
+
+#wrapper {
+  max-width: 150vh;
+  margin: auto;
+}
+/* End standard page styling */
+
+/* Start login page styling */
+.login {
+  font-size: x-large;
+  text-align:right;
+  display: inline-block;
+}
+/* End login page styling */
+
+/* Start dashboard page styling */
+.dashboard {
+  font-size: x-large;
+  text-align:right;
+  display: inline-block;
+}
+/* End dashboard page styling */
+
+/* Start user search page styling */
+.search_pane { /* also used for course search */
   background-color: whitesmoke;
   text-align: left;
   width: fit-content;
   padding:2vw;
   padding-top: 1vw;
+  margin-bottom: 72px;
 }
+
 .search_filter {
   text-align: right;
   padding-left: 2vw;
@@ -95,7 +155,9 @@ nav {
   text-align: left;
   font-size: x-large;
 }
+/* End user search page styling */
 
+/* Begin course search page styling */
 .course_search_results {
   background-color: whitesmoke;
   text-align: left;
@@ -107,8 +169,6 @@ nav {
   width: 100%;
   table-layout: fixed;
 }
-
-
 
 .course_search_table td:nth-of-type(1) {width:10vw;}/*Setting the width of column 1.*/
 .course_search_table td:nth-of-type(2) {width:8vw;}/*Setting the width of column 2.*/
@@ -125,8 +185,6 @@ nav {
   padding: 0.5vw;
 }
 
-
-
 .course_search_results_output {
   text-align: center;
   margin: 2vw;
@@ -136,7 +194,9 @@ nav {
   word-break: break-all;
   padding: 0.5vw;
 }
+/* End course search page styling */
 
+/* Start course enroll page styling */
 .course_enroll_table {
   width: 100%;
   table-layout: fixed;
@@ -177,13 +237,16 @@ nav {
   word-break: break-all;
   padding: 0.5vw;
 }
+/* End course enroll page styling */
 
-.edit_acc_pane {
+/* Start edit account page styling */
+.edit_acc_pane { /* also used for create account */
   background-color: whitesmoke;
   text-align: left;
   width: fit-content;
   padding:2vw;
   padding-top: 1vw;
+  margin-bottom: 18px;
 }
 
 .edit_acc_label{
@@ -191,44 +254,19 @@ nav {
   padding-left: 2vw;
   font-size: x-large;
 }
+/* End edit account page styling */
 
-.horizontal_line {
-  padding-bottom: 10px;
-}
-
-.header_lock {
-  position: relative;
-  float: left;
-}
-
-.header_background {
-  float: left;
+/* Start forgot password page styling */
+#ForgotPasswordContent #submit {
   display: inline;
-  width: 100%;
+  margin-top: 18px;
 }
 
-.header_table {
-  min-width:90%;
+.NewPassword table{
+  border-spacing: 20px;
 }
 
-.header_table_cell {
-  min-width: 33%;
+.SecurityQuestion label{
+  padding-left: 15px;
 }
-
-.lock{
-  max-width: 1vh;
-  text-align: left;
-  padding-left: 2vw;
-}
-
-.title {
-  min-width: 33%;
-  max-width: 33%;
-  text-align: center;
-  margin-left: -4vw;
-}
-
-#wrapper {
-  max-width: 150vh;
-  margin: auto;
-}
+/* End forgot password page styling */

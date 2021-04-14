@@ -63,7 +63,6 @@ else
         </nav>
 
         <main>
-            <br>
 
             <!--Heading-->
             <h1>Edit Account</h1>
@@ -303,7 +302,7 @@ else
                         </table>
                     </form>
                 </div>
-                <br>
+
                 <div style="text-align: left;">
                     <input type="submit" value="Submit" onclick="submitAccount()">&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="button" value="Cancel" onclick=" location.href = 'user_search.php'">

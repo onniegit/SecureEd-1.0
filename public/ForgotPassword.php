@@ -21,7 +21,7 @@
     </header>
 
     <main>
-	<br>
+
         <!--Heading-->
         <h1>Forgot Password</h1>
         <div class=horizontal_line>
@@ -36,11 +36,11 @@
                 echo "The email is invalid.";
             }
             ?>
-            <p1>Please enter your Email</p1> <br><br>
+            <div class="spacer">Please enter your Email</div>
             <form action="../src/ForgotPasswordLogic.php" method="POST">
                 <label for="email">Email:&nbsp;&nbsp;</label>
-                <input type="text" id="email" name="email"><br><br>
-                <input type="submit" value ="submit">
+                <input type="text" id="email" name="email"> <br>
+                <input type="submit" id="submit" value ="Submit">
             </form>
         </div>
     </main>

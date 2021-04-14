@@ -8,3 +8,4 @@
 *.tmp
 db/persistentconndb.sqlite
 db/persistentconndb.sqlite
+resources/tmp.txt
