@@ -44,8 +44,9 @@ $secquestion = $db->querySingle($query);
                 <hr>
             </div>
 
-            <p><?php echo $secquestion;?></p>
-            <div class = "SecurityQuestion">
+
+            <div class = "SecurityQuestion" style="text-align:center">
+                <p><?php echo $secquestion;?></p>
                 <?php
                                 $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                                    if("answercheck=fail" == parse_url($url, PHP_URL_QUERY))

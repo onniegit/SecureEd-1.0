@@ -130,7 +130,7 @@
                                 <!--Email-->
                                 <td class="search_filter">
                                     <label class="search_filter">
-                                        Email
+                                        Email:
                                     </label>
                                 </td>
                                 <td class="search_filter_input">

@@ -36,7 +36,7 @@
                 echo "The email is invalid.";
             }
             ?>
-            <div class="spacer">Please enter your Email</div>
+            <div class="spacer">Please enter your email:</div>
             <form action="../src/ForgotPasswordLogic.php" method="POST">
                 <label for="email">Email:&nbsp;&nbsp;</label>
                 <input type="text" id="email" name="email"> <br>
