@@ -8,15 +8,19 @@ try {
         $crn = $_POST['crn']; //grabs CRN from form
         $path = pathinfo($_FILES['file']['name']); //path info for file
 
-        while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) { //iterate through csv
-            $query = "INSERT INTO Grade VALUES (:crn, '$data[0]', '$data[1]')";//create query for db
-            $stmt = $db->prepare($query); //we want to stop crn from having SQL Injection, but keep it in the file
-            $stmt->bindParam(':crn', $crn, SQLITE3_INTEGER);
-            $stmt->execute(); //populate db from csv using our prepared query
+        if($path['extension'] == 'csv') { //check if file is .csv
+            while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) { //iterate through csv
+                $query = "INSERT INTO Grade VALUES (:crn, '$data[0]', '$data[1]')";//create query for db
+                $stmt = $db->prepare($query); //we want to stop crn from having SQL Injection, but keep it in the file
+                $stmt->bindParam(':crn', $crn, SQLITE3_INTEGER);
+                $stmt->execute(); //populate db from csv using our prepared query
+            }
+
+            $db->backup($db, "temp", $GLOBALS['dbPath']);
+            fclose($handle);
         }
 
         $db->backup($db, "temp", $GLOBALS['dbPath']);
-        fclose($handle);
 
 
         header("Location: ../public/dashboard.php");
