@@ -29,6 +29,7 @@
             </div>
 
             <div class = "NewPassword" style="text-align:center">
+                <div style="text-align:center">
                 <?php
                          $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                          if("passwordcheck=fail" == parse_url($url, PHP_URL_QUERY))
@@ -40,19 +41,23 @@
                              echo "<p>Please enter your new password below.</p>";
                          }
                 ?>
+                </div>
 
 
                 <form action="../src/ForgotPasswordChangeLogic.php" method="POST">
+                <table>
 
-                            <label for="newpassword">New Password:&nbsp;&nbsp;</label>
-                            <input type="password" id="newpassword" name="newpassword"> <br><br>
+                    <tr>
+                        <td><label for="newpassword">New Password:&nbsp;&nbsp;</label></td>
+                        <td><input type="password" id="newpassword" name="newpassword"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="confirmpassword">Confirm password:&nbsp;&nbsp;</label></td>
+                        <td><input type="password" id="confirmpassword" name="confirmpassword" ></td>
+                    </tr>
 
-                            <label for="confirmpassword">Confirm Password:&nbsp;&nbsp;</label>
-                            <input type="password" id="confirmpassword" name="confirmpassword" > <br><br>
-
-                            <input type="submit" value="Submit">
-
-
+                </table>
+                   <div style="text-align:center"><input type="submit" value="Submit" ></div>
                 </form>
             </div>
         </main>

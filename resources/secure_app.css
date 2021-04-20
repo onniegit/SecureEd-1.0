@@ -263,7 +263,8 @@ main {
 }
 
 .NewPassword table{
-  border-spacing: 20px;
+  border-spacing: 15px;
+  margin: 0 auto;
 }
 
 .SecurityQuestion label{
