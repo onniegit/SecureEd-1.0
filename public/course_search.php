@@ -131,7 +131,7 @@
                             </td>
 
                             <td class="course_search_results_column_name">
-                                <b><u>Time</u></b>
+                                <b><u>Semester</u></b>
                             </td>
 
                             <td class="course_search_results_column_name">

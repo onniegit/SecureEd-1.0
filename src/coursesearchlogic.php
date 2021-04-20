@@ -35,7 +35,7 @@ try {
                    OR Semester LIKE '$semester'
                    OR Location LIKE '$department'";
     */
-    $query = "	SELECT *
+    $query = "	SELECT Section.CRN, Course.CourseName, Section.Year, Section.Semester, User.Email, Section.Location
             FROM Section
             CROSS JOIN Course ON Section.Course = Course.Code
             INNER JOIN User ON Section.Instructor = User.UserID

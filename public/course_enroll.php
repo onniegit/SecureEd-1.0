@@ -5,18 +5,20 @@
 require_once "../src/DBController.php";
 
 /*Get information from the post request*/
-
 $coursename = $_POST['coursename'];
+$semester = $_POST['semester'];
+$year = $_POST['year'];
 
-global $error;
-global $courseArray;
+global $error; //a flag that can be set when an error occurs
+global $courseArray; //where course data will be stored from the query
 
 $query = "SELECT *
             FROM Section
             CROSS JOIN Course ON Section.Course = Course.Code
             INNER JOIN User ON Section.Instructor = User.UserID
-            WHERE CourseName = '$coursename'";
+            WHERE CourseName = '$coursename' AND Semester = '$semester' AND Section.Year = '$year'";
 $results = $db->query($query);
+
 global $coursecount; //will track number of courses found
 $coursecount = 0;
 
@@ -70,7 +72,11 @@ else
             </div>
 
             <div class="course_enroll_results">
-                <h1><?php echo "$coursename"; ?></h1>
+                <h1>
+                    <?php
+                        echo "$coursename " ."(" . "$semester " . "$year" . ")";
+                    ?>
+                </h1>
                 <div class="horizontal_line">
                     <hr>
                 </div>

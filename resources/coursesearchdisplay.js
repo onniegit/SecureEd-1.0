@@ -28,18 +28,14 @@ function fetch() {
         if (results !== null) //using results.length crashed when there was no search results
         {
             wrapper.innerHTML = "";
-            var starttime = "";
-            var endtime = "";
             for (let res of results) {
                 let row = document.createElement("span");
-                    starttime = timeToDate(res['StartTime'], ':'); //create a Date object from a time
-                    endtime = timeToDate(res['EndTime'], ':')
 
                 row.innerHTML = `<form method="post" action="course_enroll.php"><table class="course_search_table"><tr>
                                          <td class="course_search_results_output"><input type="hidden" value="${res['CourseName']}" name="coursename">${res['CourseName']}</input></td> 
                                          <td class="course_search_results_output">${res['CRN']}</td>
                                          <td class="course_search_results_output">${res['Email']}</td> 
-                                         <td class="course_search_results_output">${dateToTime(starttime)} - ${dateToTime(endtime)}</td> 
+                                         <td class="course_search_results_output"><input type="hidden" value="${res['Semester']}" name="semester"><input type="hidden" value="${res['Year']}" name="year">${res['Semester'] + ' ' + res['Year']}</td> 
                                          <td class="course_search_results_output">${res['Location']}</td>
                                          <td class="course_search_results_output"><button name="Enroll" id="Enroll" type="submit">Enroll</button></td>
                                          </tr></table></form>`;
@@ -57,68 +53,4 @@ function fetch() {
             throw new Error(' replied 404');
     }
     return false;
-}
-
-function timeToDate( timeAsString, ymdDelimiter ) {
-    //sqlite time pattern is HH:MM:SS
-    var pattern = new RegExp( "(\\d{2})" + ymdDelimiter + "(\\d{2})" + ymdDelimiter + "(\\d{2})" );
-    var parts = timeAsString.match( pattern );
-
-    //only gets hours, minutes, and seconds from db
-    return new Date( Date.UTC(
-         0
-        , 0
-        , 0
-        ,  parseInt( parts[1] ) //hours
-        , parseInt( parts[2], 10 ) //minutes
-        ,  parseInt( parts[3], 10 ) //seconds
-        , 0
-    ));
-}
-
-function dateToTime(Date)
-{
-    //Returns a string of form HH:MM AM/PM where if minutes<10 it returns 0M
-
-    var returnTime = "";
-    var isPM = false;
-
-    if(Date.getHours()>12) //check AM/PM
-    {
-        returnTime = returnTime + (Date.getHours() - 12) + ':';
-        isPM = true;
-    }
-    else
-    {
-        returnTime = returnTime + Date.getHours() + ':';
-    }
-
-    if(Date.getMinutes()<10)
-    {
-        returnTime = returnTime + '0' + Date.getMinutes();
-    }
-    else
-    {
-        returnTime = returnTime + Date.getMinutes();
-    }
-
-    /* Uncomment if seconds are desired
-    if(Date.getSeconds()<10)
-    {
-        returnTime = returnTime + '0' + Date.getSeconds();
-    }
-    else
-    {
-        returnTime = returnTime + Date.getSeconds();
-    }*/
-
-    //apply AM/PM
-    if(isPM)
-    {
-        return returnTime = returnTime + "PM";
-    }
-    else
-    {
-        return returnTime = returnTime +"AM";
-    }
 }
