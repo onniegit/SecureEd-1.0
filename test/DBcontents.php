@@ -8,7 +8,7 @@ require_once "../src/DBController.php";
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <meta charset="utf-8" />
-    <title>Secure App Tests - CSRF Test</title>
+    <title>Secure App Tests - DB Contents</title>
 </head>
 
 <body>
