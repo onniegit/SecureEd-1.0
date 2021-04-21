@@ -20,7 +20,7 @@ try {
 
         if ($NewPassword == $NewPasswordConfirm)
         {
-            $query = "UPDATE User SET Password='$HashedNewPass' WHERE Email ='$email'";
+            $query = "UPDATE User SET Password='$HashedNewPass' WHERE Email ='$email' AND '$NewPassword' = '$NewPasswordConfirm'";
             $results = $db->exec($query);
 
             //backup database
