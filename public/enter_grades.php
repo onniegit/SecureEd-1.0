@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
+    <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
     <meta charset="utf-8" />
     <title>Secure App - Create Account</title>
 </head>
@@ -40,7 +41,7 @@
                         <div class="enter_grades_input" style="text-align:left">
                             Course ID: <input type="text" name="crn" id="crn"/>
                             <input type="hidden" name="MAX_FILE_SIZE" value="9437184000" />
-                            <input type="file" name="file" id="file"/>
+                            <input type="file" name="file" id="file" accept=".csv"/>
 
 
 
