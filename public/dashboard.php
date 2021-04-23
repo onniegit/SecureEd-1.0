@@ -7,6 +7,7 @@
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
+    <script async src="../resources/nav.js"></script>
     <meta charset="utf-8" />
     <title>Secure App - Dashboard</title>
 </head>
@@ -26,11 +27,11 @@
 
       <!--Navigation Buttons-->
       <nav>
-          <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
+          <button class="button_large" type="button" onclick="toLogout();">Log Out</button>
       </nav>
 
       <?php
-      if($_SESSION['acctype']===1)
+      if($_SESSION['acctype']===1) //admin
       {
           echo "
             <main>          
@@ -45,7 +46,7 @@
                 <button class=\"button_large\" type=\"button\" onclick=\"location.href = 'user_search.php'\">User Search</button>
             </main>";
       }
-      else if($_SESSION['acctype']===2)
+      else if($_SESSION['acctype']===2) //faculty
       {
         echo "
            <main>         
@@ -58,7 +59,7 @@
                 </div>
             </main>";
       }
-      else if($_SESSION['acctype']===3)
+      else if($_SESSION['acctype']===3) //student
       {
           echo "
            <main>        

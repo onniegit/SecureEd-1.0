@@ -37,12 +37,23 @@ try {
 }
 catch(Exception $e)
 {
+    //prepare page for content
+    echo '<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <link rel="stylesheet" href="../resources/secure_app.css">
+                <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
+                <script async src="../resources/nav.js"></script>
+                <meta charset="utf-8" />
+                <title>Secure App - Course Enroll</title>
+            </head>';
+
+    //Display error information
     echo 'Caught exception: ',  $e->getMessage(), "<br>";
     var_dump($e->getTraceAsString());
     echo 'in '.'http://'. $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']."<br>";
 
     $allVars = get_defined_vars();
-    //print_r($allVars);
     debug_zval_dump($allVars);
 }
 

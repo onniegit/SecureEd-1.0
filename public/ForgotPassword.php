@@ -31,6 +31,7 @@
 
         <div id =ForgotPasswordContent style="text-align:center">
             <?php
+            //check url to see if emailcheck failed
             $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             if ("emailcheck=fail" == parse_url($url, PHP_URL_QUERY))
             {

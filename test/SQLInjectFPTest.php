@@ -28,21 +28,14 @@
             </div>
             <br><br>
             <div style="text-align:center">
-                <div class = "NewPassword">
-                    <label class="sqlinject_label">Injection type:</label>
+                <label class="sqlinject_label"> Injection Type:
                     <select name="sqlinject" id="sqlinject" onchange="changeinjection()">
                         <optgroup label="SQL Injection">
                             <option selected="selected" value="1" >Delete user table</option>
                             <option value="2">Create admin user</option>
                         </optgroup>
                     </select>
-                    <?php
-                    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                    if ("login=fail" == parse_url($url, PHP_URL_QUERY))
-                    {
-                        echo "The username/password is invalid.";
-                    }
-                    ?>
+                <div class = "NewPassword" style="text-align:right" >
                     <form action="../src/ForgotPasswordChangeLogic.php" method="POST">
                         <table>
                             <tr>
@@ -75,7 +68,6 @@
             var newpassword = document.getElementById("newpassword");
             var confirmpassword = document.getElementById("confirmpassword");
 
-
             //change parts of page depending on selection
             try
             {
@@ -89,6 +81,7 @@
                 //succeeds when it throws exception
             }
 
+            //Change the info on screen according to the selected option
             if(sqlinject.options[sqlinject.selectedIndex].value === "1")
             {
                 injectiondiv.innerHTML = "<p>Statement to execute: </p>" +

@@ -37,14 +37,7 @@
                             <option value="3">No credentials</option>
                         </optgroup>
                     </select>
-                    <?php
-                    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                    if ("login=fail" == parse_url($url, PHP_URL_QUERY))
-                    {
-                        echo "The username/password is invalid.";
-                    }
-                    ?>
-                    <form action="../src/login.php" method="POST">
+                    <form action="../src/Login.php" method="POST">
                         <label style="float: left" for="username">Username:&nbsp;&nbsp;</label>
                         <input type="text" id="username" name="username" value="admin@email.com'--"><br><br>
                         <label style="float: left" for="password">Password:&nbsp;&nbsp;</label>
@@ -84,6 +77,7 @@
                 //succeeds when it throws exception
             }
 
+            //Change the info on screen according to the selected option
             if(sqlinject.options[sqlinject.selectedIndex].text === "Ignore password")
             {
                 injectiondiv.innerHTML = "<p>Statement to execute: </p>" +
@@ -112,6 +106,4 @@
         }
     </script>
 </body>
-
-
 </html>

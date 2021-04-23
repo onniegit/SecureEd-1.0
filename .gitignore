@@ -9,3 +9,5 @@
 db/persistentconndb.sqlite
 db/persistentconndb.sqlite
 resources/tmp.txt
+db/persistentconndb.sqlite
+resources/tmp.txt

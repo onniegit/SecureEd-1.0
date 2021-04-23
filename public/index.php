@@ -39,7 +39,7 @@
                     echo "The username/password is invalid.";
                 }
                 ?>
-                <form action="../src/login.php" method="POST">
+                <form action="../src/Login.php" method="POST">
                     <label style="float: left" for="username">Username:&nbsp;&nbsp;</label>
                     <input type="text" id="username" name="username"><br><br>
                     <label style="float: left" for="password">Password:&nbsp;&nbsp;</label>

@@ -22,6 +22,10 @@
         </header>
 
         <main>
+            <h1>Tests</h1>
+            <div class=horizontal_line>
+                <hr>
+            </div>
             <button class="button_large" style= "display: block; margin: 6px;" type="button" onclick=" location.href = '../test/CSRFTest.php'">Cross Site Request Forgery</button>
             <button class="button_large" style= "display: block; margin: 6px;" type="button" onclick=" location.href = '../test/SQLInjectLoginTest.php'">Login SQL Injection</button>
             <button class="button_large" style= "display: block; margin: 6px;" type="button" onclick=" location.href = '../test/SQLInjectFPTest.php'">Forgot Password SQL Injection</button>

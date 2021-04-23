@@ -28,10 +28,13 @@ require_once "../src/DBController.php";
 
         <main>
             <?php
+            //get user table from db
             $sql =<<<EOF
             Select * From User;
             EOF;
             $ret = $db->query($sql);
+
+            //display user table
             echo "<h1>User Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -47,10 +50,13 @@ require_once "../src/DBController.php";
                 echo "<p>Security Answer = " . $row['SAnswer'] . "\n</p>";
             }
 
+            //get Course table from db
             $sql =<<<EOF
             Select * From Course;
             EOF;
             $ret = $db->query($sql);
+
+            //display course table
             echo "<h1>Course Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -58,10 +64,13 @@ require_once "../src/DBController.php";
                 echo "<p>CourseName = " . $row['CourseName'] . "\n</p>";
             }
 
+            //get Section table from db
             $sql =<<<EOF
             Select * From Section;
             EOF;
             $ret = $db->query($sql);
+
+            //display Section table
             echo "<h1>Section Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -76,10 +85,13 @@ require_once "../src/DBController.php";
                 echo "<p>Location = " . $row['Location'] . "\n</p>";
             }
 
+            //get Enrollment table from db
             $sql =<<<EOF
             Select * From Enrollment;
             EOF;
             $ret = $db->query($sql);
+
+            //display Enrollment table
             echo "<h1>Enrollment Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -87,10 +99,13 @@ require_once "../src/DBController.php";
                 echo "<p>StudentID = " . $row['StudentID'] . "\n</p>";
             }
 
+            //get Grade table from db
             $sql =<<<EOF
             Select * From Grade;
             EOF;
             $ret = $db->query($sql);
+
+            //display Grade table
             echo "<h1>Grade Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -99,10 +114,13 @@ require_once "../src/DBController.php";
                 echo "<p>Grade = " . $row['Grade'] . "\n</p>";
             }
 
+            //get Role table from db
             $sql =<<<EOF
             Select * From Role;
             EOF;
             $ret = $db->query($sql);
+
+            //display Role table
             echo "<h1>Role Table Contents</h1>";
             while($row = $ret->fetchArray(SQLITE3_ASSOC) )
             {
@@ -110,8 +128,6 @@ require_once "../src/DBController.php";
                 echo "<p>Role = " . $row['Role'] . "\n</p>";
             }
             ?>
-
-
         </main>
     </div>
 </body>

@@ -8,7 +8,7 @@ function fetch() {
 
     // (B) AJAX SEARCH REQUEST
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', "../src/coursesearchlogic.php", true);
+    xhr.open('POST', "../src/CourseSearchLogic.php", true);
     xhr.onload = function () {
         //there must be no other echos except the JSON file or JSON.parse fails
         var results = JSON.parse(this.response),

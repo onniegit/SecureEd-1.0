@@ -10,6 +10,7 @@ $file = fopen($filename, "a+");
 $filesize = filesize($filename);
 $email = fread($file, $filesize);
 
+/*Get user's security question*/
 $query = "SELECT SQuestion FROM User WHERE Email = '$email'";
 $secquestion = $db->querySingle($query);
 ?>

@@ -40,6 +40,7 @@ else
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
+    <script async src="../resources/nav.js"></script>
     <meta charset="utf-8" />
     <title>Secure App - Course Enroll</title>
 </head>
@@ -50,7 +51,7 @@ else
             <table class="header_table">
                 <tbody>
                 <tr>
-                    <td class="lock"><img src="../resources/Header_Lock_Image.svg" style="width:9vh;" alt="eader_lock"></td>
+                    <td class="lock"><img src="../resources/Header_Lock_Image.svg" style="width:9vh;" alt="Header_lock"></td>
                     <td class="title"><b>Secure App</b></td>
                     <td class="header_table_cell"></td>
                 </tr>
@@ -60,8 +61,8 @@ else
 
         <!--Navigation Buttons-->
         <nav>
-            <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
+            <button class="button_large" type="button" onclick="toDashboard();">Dashboard</button>
+            <button class="button_large" type="button" onclick="toLogout();">Log Out</button>
         </nav>
 
         <main>
@@ -120,13 +121,14 @@ else
                     {
                         for($i=0; $i<$coursecount; $i++)
                         {
+                            //get the current course
                             $course = $courseArray[$i];
+                            //convert time into correct format
                             $starttimedate = new DateTime('0000-00-00' . $course['StartTime']);
                             $endtimedate = new DateTime('0000-00-00' . $course['EndTime']);
                             $starttime = $starttimedate->format('g:i:A');
                             $endtime = $endtimedate->format('g:i:A');
                             //each loop will get all of the necessary info for each course
-                            //this implementation works by knowing how many columns we have
                             echo "
                                     <form method=\"post\" action=\"../src/CourseEnrollInsertLogic.php\"><table class=\"course_enroll_table\"><tr>
                                              <td class=\"enroll_output\">${course['Code']}</td>

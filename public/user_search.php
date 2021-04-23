@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
+    <script async src="../resources/nav.js"></script>
     <meta charset="utf-8" />
     <title>Secure App - User Search</title>
 </head>
@@ -23,8 +24,8 @@
 
         <!--Navigation Buttons-->
         <nav>
-            <button class="button_large" type="button" onclick=" location.href = 'dashboard.php'">Dashboard</button>
-            <button class="button_large" type="button" onclick=" location.href = '../src/logout.php'">Log Out</button>
+            <button class="button_large" type="button" onclick="toDashboard();">Dashboard</button>
+            <button class="button_large" type="button" onclick="toLogout();">Log Out</button>
         </nav>
 
         <main>
@@ -187,7 +188,7 @@
             <!--End of Search results-->
         </main>
     </div>
-    <script src="../resources/usersearchdisplay.js"></script>
+    <script async src="../resources/usersearchdisplay.js"></script>
     <script>
         function swapsearch() //changes the search filter based on faculty or student
         {

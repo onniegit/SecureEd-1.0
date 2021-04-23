@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); //session data for display purposes only
 
 /*Get DB connection*/
 require_once "../src/DBController.php";
@@ -51,18 +51,21 @@ require_once "../src/DBController.php";
                 </form>
             </div>
             <?php
-            $sql =<<<EOF
+                    //get User table from db
+                    $sql =<<<EOF
                     Select * From User;
                     EOF;
                     $ret = $db->query($sql);
-                echo "<div id='usertableinfo'><h1>User Table Contents</h1>";
-                while($row = $ret->fetchArray(SQLITE3_ASSOC) )
-                {
-                    echo "<p>Email = " . $row['Email'] . "\n</p>";
-                    echo "<p>Password = " . $row['Password'] . "\n</p>";
-                    echo "<br>";
-                }
-                echo "</div>";
+
+                    //display User table
+                    echo "<div id='usertableinfo'><h1>User Table Contents</h1>";
+                    while($row = $ret->fetchArray(SQLITE3_ASSOC) )
+                    {
+                        echo "<p>Email = " . $row['Email'] . "\n</p>";
+                        echo "<p>Password = " . $row['Password'] . "\n</p>";
+                        echo "<br>";
+                    }
+                    echo "</div>";
             ?>
         </main>
     </div>
