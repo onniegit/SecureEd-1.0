@@ -53,8 +53,8 @@
                 </div>
                 <div id="injection">
                     <p>Statement to execute: </p>
-                    <p>Select * FROM User WHERE Email='admin@email.com'–-' AND Password='';</p>
-                    <p>Intended result: Ignores AND Password='' because -- is a comment </p>
+                    <p>Select * FROM User WHERE Email='student@email.com'–- AND (Password='hash( )' OR Password=' ')</p>
+                    <p>Intended result: Ignores AND (Password='hash( )' OR Password=' ') because -- is a comment </p>
                     <p>Actual result: Same as intended </p>
                 </div>
             </div>
@@ -87,24 +87,25 @@
             if(sqlinject.options[sqlinject.selectedIndex].text === "Ignore password")
             {
                 injectiondiv.innerHTML = "<p>Statement to execute: </p>" +
-                    " <p>Select * FROM User WHERE Email='student@email.com'–- AND Password='';</p>" +
-                    "<p>Intended result: Ignores AND Password='' because -- is a comment </p>" +
+                    " <p>Select * FROM User WHERE Email='student@email.com'–- AND (Password='hash( )' OR Password=' ')</p>" +
+                    "<p>Intended result: Ignores AND (Password='hash( )' OR Password=' ') because -- is a comment </p>" +
                     "<p>Actual result: Same as intended </p>";
                 usernamefield.value = "student@email.com'--";
             }
             else if(sqlinject.options[sqlinject.selectedIndex].text === "Delete user table")
             {
+                //"SELECT * FROM User WHERE Email='$myusername' AND (Password='$mypassword' OR Password='$hashpassword')"
                 injectiondiv.innerHTML = "<p>Statement to execute: </p> " +
-                    "<p>Select * FROM User WHERE Email='student@email.com' AND Password= Password3'; DROP TABLE User;</p>" +
-                    "<p>Intended result: Drops the User table after logging in </p>" +
-                    "<p>Actual result: Logs in, but does not drop user table. query seems to not support batch instructions. </p>";
+                    "<p>Select * FROM User WHERE Email='student@email.com' AND (Password= 'hash(Password3'; DROP TABLE User;)' OR Password='Password3'; DROP TABLE User;')</p>" +
+                    "<p>Intended result: Drops the User table after logging in. </p>" +
+                    "<p>Actual result: Fails to log in and does not drop the user table. Since passwords are hashed, it would need to be the hash of Password3 to log in. The user table still would not drop as the query function does not support batch instructions.</p>";
                 usernamefield.value = "student@email.com";
                 passwordfield.value = "Password3'; DROP TABLE User;";
             }
             else if(sqlinject.options[sqlinject.selectedIndex].text === "No credentials")
             {
                 injectiondiv.innerHTML = "<p>Statement to execute: </p> " +
-                    "<p>Select * FROM User WHERE Email='student@email.com' OR 1=1;-- AND Password='';</p>" +
+                    "<p>Select * FROM User WHERE Email='student@email.com' OR 1=1;-- AND (Password='hash( )' OR Password=' ';)</p>" +
                     "<p>Intended result: Logs in as the first user (Admin) </p>" +
                     "<p>Actual result: Same as intended</p>";
                 usernamefield.value = "student@email.com' OR 1=1;--";
