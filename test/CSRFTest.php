@@ -10,6 +10,7 @@ require_once "../src/DBController.php";
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
+    <script async src="../resources/nav.js"></script>
     <meta charset="utf-8" />
     <title>Secure App Tests - CSRF Test</title>
 </head>
@@ -27,6 +28,11 @@ require_once "../src/DBController.php";
                 </tbody>
             </table>
         </header>
+
+        <!--Navigation Buttons-->
+        <nav>
+            <button class="button_large" type="button" onclick="toIndex();">Exit Tests</button>
+        </nav>
 
         <main>
             <h1>Cross Site Request Forgery Test</h1>
@@ -138,7 +144,7 @@ require_once "../src/DBController.php";
                 email = email.substr(email.indexOf('"')+ 1).slice(0, -1);
                 email = email.split('"')[0];
 
-                // (C) GET SEARCH TERMS
+                // (C) APPEND EMAIL TO OUR NEW FORM
                 var data2 = new FormData();
                 data2.append('email', email);
 
