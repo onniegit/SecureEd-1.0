@@ -1,6 +1,7 @@
 <b><u>ISWA Setup:</u></b>
 
-Step 1: Installation</u></b>
+
+<b><u>Step 1: Installation</u></b>
 
 Clone the repository, or simple download and unzip it to the directory of your choosing.
 
