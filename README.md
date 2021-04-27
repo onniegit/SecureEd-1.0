@@ -8,7 +8,7 @@ Clone the repository, or simple download and unzip it to the directory of your c
 <b><u>Step 2: Startup</u></b>
 
 
-In the ISWA folder, open startup.bin. This will open the web server in a command prompt, and then it will open the webapp in your default browser.
+In the ISWA folder, navigate to ISWA/bin/ and open startup.bat ー this will open the web server in a command prompt, and then it will open the webapp in your default browser.
 <b>IMPORTANT NOTE:</b> Do NOT close the prompt that opens up with the web server, as that will close the server and reset your progress.
 
 
