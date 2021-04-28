@@ -28,7 +28,7 @@ try {
     /*Check for a valid UserID to use. Assumes Users count in order*/
     $rows = $db->query("SELECT COUNT(*) as count FROM User");
     $row = $rows->fetchArray();
-    $newUserID = $row['count'] + 1; //must always be 1 higher than previous
+    $newUserID = $row['count'] + 927000000; //must always be 1 higher than previous
 
 
     /*Check if user already exists*/
