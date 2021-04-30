@@ -19,9 +19,9 @@ try {
     {throw new Exception("input did not exist");}
 
     /*Checking studentyear and facultyrank*/
-    if ($acctype === "Student") {
+    if ($acctype === "3") {
         $facultyrank = null;
-    } else if ($acctype === "Faculty") {
+    } else if ($acctype === "2") {
         $studentyear = null;
     }
 
