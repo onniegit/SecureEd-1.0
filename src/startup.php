@@ -6,4 +6,4 @@ if(file_exists($GLOBALS['dbPath'])) {
     unlink($GLOBALS['dbPath']);
 }
 
-shell_exec('php config/ConfigV2.php');
+shell_exec('php config/Config.php');

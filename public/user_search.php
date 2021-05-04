@@ -15,7 +15,7 @@
                 <tbody>
                 <tr>
                     <td class="lock"><img src="../resources/Header_Lock_Image.svg" style="width:9vh;" alt="Header_lock"></td>
-                    <td class="title"><b>Secure ED./b></td>
+                    <td class="title"><b>Secure ED.</b></td>
                     <td class="header_table_cell"></td>
                 </tr>
                 </tbody>
