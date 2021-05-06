@@ -1,4 +1,5 @@
 <?php
+
 try {
     /*Get DB connection*/
     require_once "../src/DBController.php";
@@ -10,10 +11,9 @@ try {
 
         if($path['extension'] == 'csv') { //check if file is .csv
             while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) { //iterate through csv
-                $query = "INSERT INTO Grade VALUES (:crn, '$data[0]', '$data[1]')";//create query for db
-                $stmt = $db->prepare($query); //we want to stop crn from having SQL Injection, but keep it in the file
-                $stmt->bindParam(':crn', $crn, SQLITE3_INTEGER);
-                $stmt->execute(); //populate db from csv using our prepared query
+                $crn = $db->escapeString($crn); //sanitize the crn
+                $query = "INSERT INTO Grade VALUES ('$crn', '$data[0]', '$data[1]')";//create query for db
+                $db->exec($query);
             }
 
             $db->backup($db, "temp", $GLOBALS['dbPath']);
