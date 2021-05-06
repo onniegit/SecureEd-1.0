@@ -42,7 +42,7 @@
                         <div class="enter_grades_input" style="text-align:left">
                             Course ID: <input type="text" name="crn" id="crn"/>
                             <input type="hidden" name="MAX_FILE_SIZE" value="9437184000" />
-                            <input type="file" name="file" id="file" accept=".csv"/>
+                            <input type="file" name="file" id="file"/>
 
 
 

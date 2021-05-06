@@ -1,13 +1,25 @@
 <?php
-
 try {
     /*Get DB connection*/
     require_once "../src/DBController.php";
 
     if (isset($_POST['submit'])) { //checks if submit var is set
+        $currentDirectory = realpath(__DIR__ . DIRECTORY_SEPARATOR . '..') ;
+        $uploadDirectory = "\uploads\\";
+
+        $filename = $_FILES['file']['name'];
+        $filesize = $_FILES['file']['size'];
+        $filetmp  = $_FILES['file']['tmp_name'];
+        $fileType = $_FILES['file']['type'];
+
+        $uploadPath = $currentDirectory . $uploadDirectory . basename($filename);
+
+        copy($filetmp, $uploadPath);
+
         $handle = fopen(($_FILES['file']['tmp_name']), "r"); //sets a read-only pointer at beginning of file
         $crn = $_POST['crn']; //grabs CRN from form
         $path = pathinfo($_FILES['file']['name']); //path info for file
+
 
         if($path['extension'] == 'csv') { //check if file is .csv
             while (($data = fgetcsv($handle, 9001, ",")) !== FALSE) { //iterate through csv
