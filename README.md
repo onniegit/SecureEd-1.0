@@ -1,4 +1,4 @@
-<b><u>Setup</u></b>
+<b><u>Instructions</u></b>
 
 
 <b><u>Step 1: Installation</u></b>
