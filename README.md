@@ -14,7 +14,7 @@ In the installation folder, open startup.bat ー this will open the web server i
 
 <b><u>Step 3: Usage</u></b>
 
-Follow the instructions in the user manual. 
+Follow the instructions in the user manual (see Chapter 6 for vulnerabilities).
 
 <b><u>Step 4: Closing the web server</u></b>
 
