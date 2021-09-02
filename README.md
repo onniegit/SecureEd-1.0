@@ -1,4 +1,4 @@
-<b><u>ISWA Setup</u></b>
+<b><u>Setup</u></b>
 
 
 <b><u>Step 1: Installation</u></b>
