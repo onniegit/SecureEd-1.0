@@ -13,6 +13,7 @@ In the installation folder, open startup.bat ー this will open the web server i
 <b>IMPORTANT NOTE:</b> Do NOT close the prompt that opens up with the web server, as that will close the server and reset your progress.
 
 <b><u>Step 3: Usage</u></b>
+
 Follow the instructions in the user manual. 
 
 <b><u>Step 4: Closing the web server</u></b>
