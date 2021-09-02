@@ -12,7 +12,9 @@ In the installation folder, open startup.bat ー this will open the web server i
 
 <b>IMPORTANT NOTE:</b> Do NOT close the prompt that opens up with the web server, as that will close the server and reset your progress.
 
+<b><u>Step 3: Usage</u></b>
+Follow the instructions in the user manual. 
 
-<b><u>Step 3: Closing the web server</u></b>
+<b><u>Step 4: Closing the web server</u></b>
 
 Simply close the Windows command prompt, and the web server will be closed immediately. Restarting the webserver is as simple as opening startup.bat again, but note that it will reset the database automatically when you do.
