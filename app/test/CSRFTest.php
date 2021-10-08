@@ -5,8 +5,6 @@ session_start(); //session data for display purposes only
 require_once "../src/DBController.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <link rel="stylesheet" href="../resources/secure_app.css">
     <link rel="icon" type="image/svg" href="../resources/Header_Lock_Image.svg">

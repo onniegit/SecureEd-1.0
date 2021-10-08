@@ -1,5 +1,13 @@
 <?php
-    session_start(); //required to bring session variables into context
+//Access Control
+
+session_start(); //required to bring session variables into context
+
+if (!isset($_SESSION['email']) or (empty($_SESSION['email']))) //check that session exists and is nonempty
+{
+    http_response_code(403);
+    die('Forbidden');
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,4 +1,19 @@
 <?php
+//Access Control
+
+session_start(); //required to bring session variables into context
+
+if (!(isset($_SESSION['email']) && !empty($_SESSION['email']))) //check that session exists and is nonempty
+{
+    if (!($_SESSION['acctype'] === 1)) //check if user is not admin
+    {
+        http_response_code(403);
+        die('Forbidden');
+    }
+}
+?>
+
+<?php
 //This php code gets the selected users info from the database for display
 
 /*Get DB connection*/
