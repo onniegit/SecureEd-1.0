@@ -59,7 +59,7 @@ if (!(isset($_SESSION['email']) && !empty($_SESSION['email']))) //check that ses
 
 
                             <input type="submit" name="submit" id="submit" value="Submit">&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="button" name="cancel" id="cancel" value="Cancel">
+                            <input type="button" value="Cancel" onclick=" location.href = 'dashboard.php'">
 
                         </div>
                     </form>

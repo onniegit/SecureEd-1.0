@@ -280,7 +280,7 @@ else
 
                 <div style="text-align: left;">
                     <input type="submit" value="Submit" onclick="submitAccount()">&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="Cancel">
+                    <input type="button" value="Cancel" onclick=" location.href = 'dashboard.php'">
                 </div>
             </div>
         </main>
