@@ -1,19 +1,42 @@
 <?php
 //Access Control
-
+//echo "Before session started <br>";
 session_start(); //required to bring session variables into context
+//echo "Session started <br>";
 
-if (isset($_SESSION['email']) && !empty($_SESSION['email'])) //check that session exists and is nonempty
+//echo "Before if 1 <br>";
+
+//echo $_SESSION['email'];
+//echo "<br>";
+
+if (isset($_SESSION['email']))
 {
-    if (!($_SESSION['acctype'] == 1)) //check if user is not admin
+    //echo "Session is set <br>";
+    if (!empty($_SESSION['email']))
     {
-        http_response_code(403);
-        die('Forbidden');
+        //echo "Email is non-empty <br>";
+        if (!($_SESSION['acctype'] == 1)) //check if user is not admin
+        {
+            //echo "User is not admin <br>";
+            http_response_code(403);
+            die('Forbidden');
+        }
+        else
+        {
+            //echo "User is admin <br>";
+        }
+    }
+    else
+    {
+        //echo "Email is empty <br>";
     }
 }
 
+//check that session exists and is nonempty
+
 else
 {
+    //echo "Session is not set. <br>";
     http_response_code(403);
     die('Forbidden');
 }
